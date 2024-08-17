@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/common/styles/spacing_styles.dart';
 import 'package:job2main/features/authentication/screens/login/widgets/login_header.dart';
-import 'package:job2main/features/authentication/screens/login/widgets/login_form_divider.dart';
+import 'package:job2main/features/authentication/screens/common/form_divider.dart';
 import 'package:job2main/features/authentication/screens/login/widgets/login_form.dart';
-import 'package:job2main/features/authentication/screens/login/widgets/login_social_button.dart';
+import 'package:job2main/features/authentication/screens/common/social_button.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 
 class LoginScreen extends StatelessWidget {
