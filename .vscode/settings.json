@@ -1,4 +1,4 @@
 {
     "cmake.ignoreCMakeListsMissing": true,
-    "dart.lineLength": 100
+    "dart.lineLength": 100,
 }

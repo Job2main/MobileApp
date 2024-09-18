@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job2main/common/widgets/success_screen/sucess_screen.dart';
 import 'package:job2main/features/authentication/screens/login/login.dart';
 import 'package:job2main/utils/constants/image_strings.dart';
 import 'package:job2main/utils/constants/sizes.dart';
@@ -42,7 +43,13 @@ class VerifyEmailScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwSections),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(onPressed: () {}, child: const Text(TTexts.tContinue)),
+                child: ElevatedButton(
+                    onPressed: () => Get.to(() => SuccessScreen(
+                        image: TImages.checkMark,
+                        title: TTexts.yourAccountCreatedTitle,
+                        subTitle: TTexts.yourAccountCreatedSubTitle,
+                        onPressed: () => Get.to(const LoginScreen()))),
+                    child: const Text(TTexts.tContinue)),
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
               SizedBox(
