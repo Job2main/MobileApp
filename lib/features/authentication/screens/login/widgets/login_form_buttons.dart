@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job2main/features/authentication/controllers/usertype_controller.dart';
 import 'package:job2main/features/authentication/screens/signup/signup.dart';
+import 'package:job2main/features/employer/employer_home.dart';
+import 'package:job2main/features/worker/worker_home.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
 
@@ -11,12 +14,21 @@ class LoginFormButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final UserTypeController userTypeController = Get.find<UserTypeController>();
+
     return Column(
       children: [
         SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-                onPressed: () {}, child: const Text(TTexts.signIn))),
+                onPressed: () {
+                  if (userTypeController.userType.value == UserType.employer) {
+                    Get.to(() => const EmployerHomeScreen());
+                  } else {
+                    Get.to(() => const WorkerHomeScreen());
+                  }
+                },
+                child: const Text(TTexts.signIn))),
         const SizedBox(height: TSizes.spaceBtwItems),
         SizedBox(
             width: double.infinity,

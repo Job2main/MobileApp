@@ -8,4 +8,10 @@ class TSpacingStyle {
     right: TSizes.defaultSpace,
     bottom: TSizes.defaultSpace,
   );
+  static const EdgeInsetsGeometry paddingWithDoubleAppBarHeight = EdgeInsets.only(
+    top: TSizes.doubleAppBarHeight,
+    left: TSizes.defaultSpace,
+    right: TSizes.defaultSpace,
+    bottom: TSizes.defaultSpace,
+  );
 }

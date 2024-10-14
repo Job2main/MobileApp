@@ -23,8 +23,7 @@ class OnBoardingDotNavigation extends StatelessWidget {
       child: SmoothPageIndicator(
         controller: controller.pageController,
         onDotClicked: (index) => controller.dotNavigationClick(index),
-        count:
-            controller.pageCount, // Use dynamic page count from the controller
+        count: controller.pageCount, // Use dynamic page count from the controller
         effect: ExpandingDotsEffect(
           activeDotColor: activeColor,
         ),

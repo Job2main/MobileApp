@@ -9,6 +9,8 @@ class TTexts {
   static const String tContinue = "Continue";
 
   // -- OnBoarding Texts
+  static const String onBoardingWorker = "Job Seeker";
+  static const String onBoardingEmployer = "Employer";
   static const String onBoardingTitle1 = "Choose your product";
   static const String onBoardingTitle2 = "Select Payment Method";
   static const String onBoardingTitle3 = "Deliver at your door step";
@@ -43,8 +45,7 @@ class TTexts {
 
   // -- Authentication Headings
   static const String loginTitle = "Welcome back,";
-  static const String loginSubTitle =
-      "Discover Limitless Choices and Unmatched Convenience.";
+  static const String loginSubTitle = "Discover Limitless Choices and Unmatched Convenience.";
   static const String signupTitle = "Let’s create your account";
   static const String forgetPasswordTitle = "Forget password";
   static const String forgetPasswordSubTitle =
@@ -57,8 +58,7 @@ class TTexts {
       "Congratulations! Your Account Awaits: Verify Your Email to Start Shopping and Experience a World of Unrivaled Deals and Personalized Offers.";
   static const String emailNotReceivedMessage =
       "Didn’t get the email? Check your junk/spam or resend it.";
-  static const String yourAccountCreatedTitle =
-      "Your account successfully created!";
+  static const String yourAccountCreatedTitle = "Your account successfully created!";
   static const String yourAccountCreatedSubTitle =
       "Welcome to Your Ultimate Shopping Destination: Your Account is Created, Unleash the Joy of Seamless Online Shopping!";
 

@@ -17,8 +17,7 @@ class SignupScreen extends StatelessWidget {
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              Text(TTexts.signupTitle,
-                  style: Theme.of(context).textTheme.headlineMedium),
+              Text(TTexts.signupTitle, style: Theme.of(context).textTheme.headlineMedium),
               const SizedBox(height: TSizes.spaceBtwSections),
               const SignupForm(),
               const SizedBox(height: TSizes.spaceBtwSections),

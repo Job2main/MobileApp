@@ -20,7 +20,7 @@ class SuccessScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: TSpacingStyle.paddingWithAppBarHeight,
+          padding: TSpacingStyle.paddingWithDoubleAppBarHeight,
           child: Column(
             children: [
               Image(image: AssetImage(image), width: THelperFunctions.screenWidth() * 0.6),
