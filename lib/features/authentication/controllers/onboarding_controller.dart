@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job2main/features/authentication/screens/onboarding/branching.dart';
 import 'package:job2main/features/authentication/screens/login/login.dart';
 
 class OnBoardingController extends GetxController {
@@ -25,7 +26,7 @@ class OnBoardingController extends GetxController {
       int nextPage = currentPageIndex.value + 1;
       pageController.jumpToPage(nextPage);
     } else {
-      Get.offAll(const LoginScreen());
+      Get.offAll(const BranchingScreen());
     }
   }
 
