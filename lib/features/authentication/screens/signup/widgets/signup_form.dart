@@ -22,16 +22,14 @@ class SignupForm extends StatelessWidget {
                 child: TextFormField(
                     expands: false,
                     decoration: const InputDecoration(
-                        labelText: TTexts.firstName,
-                        prefixIcon: Icon(Iconsax.user))),
+                        labelText: TTexts.firstName, prefixIcon: Icon(Iconsax.user))),
               ),
               const SizedBox(width: TSizes.spaceBtwInputFields),
               Expanded(
                 child: TextFormField(
                     expands: false,
                     decoration: const InputDecoration(
-                        labelText: TTexts.lastName,
-                        prefixIcon: Icon(Iconsax.user))),
+                        labelText: TTexts.lastName, prefixIcon: Icon(Iconsax.user))),
               )
             ],
           ),
@@ -39,16 +37,15 @@ class SignupForm extends StatelessWidget {
           TextFormField(
               expands: false,
               decoration: const InputDecoration(
-                  labelText: TTexts.username,
-                  prefixIcon: Icon(Iconsax.user_edit))),
+                  labelText: TTexts.username, prefixIcon: Icon(Iconsax.user_edit))),
           const SizedBox(height: TSizes.spaceBtwInputFields),
           TextFormField(
-              decoration: const InputDecoration(
-                  labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct))),
+              decoration:
+                  const InputDecoration(labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct))),
           const SizedBox(height: TSizes.spaceBtwInputFields),
           TextFormField(
-              decoration: const InputDecoration(
-                  labelText: TTexts.phoneNo, prefixIcon: Icon(Iconsax.call))),
+              decoration:
+                  const InputDecoration(labelText: TTexts.phoneNo, prefixIcon: Icon(Iconsax.call))),
           const SizedBox(height: TSizes.spaceBtwInputFields),
           TextFormField(
               obscureText: true,
