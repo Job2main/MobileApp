@@ -58,16 +58,21 @@ class ModifyAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Modify Account'),
+        title: const Text('Parametres'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          ..._accountInformation(context),
-          const SizedBox(height: 20),
-          ..._accountGestion(context),
-        ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+            ..._accountInformation(context),
+            const SizedBox(height: 20),
+            ..._accountGestion(context),
+            ],
+          ),
+        ),
       ),
     );
   }

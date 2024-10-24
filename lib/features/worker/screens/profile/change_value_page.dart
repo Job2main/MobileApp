@@ -3,11 +3,17 @@ import 'package:flutter/widgets.dart';
 import 'package:job2main/common/widgets/comfirmation_popup.dart';
 import 'package:job2main/features/worker/controllers/user.dart';
 
-class ChangeValuePage extends StatelessWidget {
+class ChangeValuePage extends StatefulWidget {
   final User user;
   final Map<String, dynamic> toUpdates;
+  const ChangeValuePage({super.key, required this.user, required this.toUpdates});
+
+  @override
+  _ChangeValuePageState createState() => _ChangeValuePageState();
+}
+
+class _ChangeValuePageState extends State<ChangeValuePage> {
   final Map<String, dynamic> updatedList = {};
-  ChangeValuePage({super.key, required this.user, required this.toUpdates});
 
   Widget _save(BuildContext context) {
     return IconButton(
@@ -26,9 +32,11 @@ class ChangeValuePage extends StatelessWidget {
       'Voulez-vous sauvegarder les modifications?',
       'Oui',
       () {
-        user.updateUserProfile(updatedList);
-        Navigator.of(context).pop();
-        Navigator.of(context).pop();
+        setState(() {
+          widget.user.updateUserProfile(updatedList);
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        });
       },
       'Non',
       () {
@@ -43,7 +51,7 @@ class ChangeValuePage extends StatelessWidget {
 
   List<Widget> _createInputs(BuildContext context) {
     List<Widget> inputs = [];
-    toUpdates.forEach((key, value) {
+    widget.toUpdates.forEach((key, value) {
       inputs.addAll([
         getGooDWidg(context, key, value),
         const SizedBox(height: 20),
@@ -64,10 +72,9 @@ class ChangeValuePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Row(
-        children: [
-          Expanded(
+        children: [          Expanded(
             child: TextFormField(
-              initialValue: user.getAsMap()[key],
+              initialValue: widget.user.getAsMap()[key],
               onChanged: (newValue) {
                 onChanged(key, newValue);
               },

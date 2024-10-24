@@ -3,8 +3,8 @@ import 'package:job2main/features/worker/controllers/user.dart';
 import '../../controllers/profile_page_controller.dart';
 import 'parameters.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+class ProfilePage extends StatefulWidget {
+  ProfilePage({super.key});
   final User user = User(
     name: 'John',
     familyName: 'Doe',
@@ -20,6 +20,33 @@ class ProfileScreen extends StatelessWidget {
     notation: 4,
   );
 
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool _isEditing = false;
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.user.profileDescription);
+  }
+
+  void _toggleEdit() {
+    setState(() {
+      _isEditing = !_isEditing;
+    });
+  }
+
+  void _saveDescription() {
+    setState(() {
+      widget.user.profileDescription = _controller.text;
+      _isEditing = false;
+    });
+  }
+
   Widget _buildDescription() {
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -28,17 +55,68 @@ class ProfileScreen extends StatelessWidget {
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: Text(
-        user.profileDescription,
-        style: const TextStyle(
-          fontSize: 16,
-          color: Colors.black87,
-          fontWeight: FontWeight.w400,
-          fontStyle: FontStyle.italic,
-          letterSpacing: 0.5,
+      child: _isEditing ? _buildEditDescription() : _buildDisplayDescription(),
+    );
+  }
+
+  Widget _buildEditDescription() {
+    return Column(
+      children: [
+        TextField(
+          controller: _controller,
+          maxLines: null,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: 'Editer la description',
+          ),
         ),
-        textAlign: TextAlign.center,
-      ),
+        const SizedBox(height: 8),
+        ElevatedButton(
+          onPressed: _saveDescription,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            textStyle: const TextStyle(fontSize: 14),
+          ),
+          child: const Text('Sauvegarder'),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDisplayDescription() {
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: _toggleEdit,
+          child: Container(
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Text(
+              widget.user.profileDescription,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.black87,
+                fontWeight: FontWeight.w400,
+                fontStyle: FontStyle.italic,
+                letterSpacing: 0.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: -15,
+          left: -15,
+          child: IconButton(
+            icon: const Icon(Icons.edit, color: Colors.black87, size: 20),
+            onPressed: _toggleEdit,
+          ),
+        ),
+      ],
     );
   }
 
@@ -48,7 +126,7 @@ class ProfileScreen extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ParametersPage(user: user)),
+          MaterialPageRoute(builder: (context) => ParametersPage(user: widget.user)),
         );
       },
     );
@@ -57,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
   Widget _buildProfilePicture() {
     return CircleAvatar(
       radius: 50,
-      backgroundImage: NetworkImage(user.profilePictureUrl),
+      backgroundImage: NetworkImage(widget.user.profilePictureUrl),
       backgroundColor: Colors.grey.shade200,
       child: Container(
         decoration: BoxDecoration(
@@ -79,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${user.name} ${user.familyName}',
+          '${widget.user.name} ${widget.user.familyName}',
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -89,8 +167,8 @@ class ProfileScreen extends StatelessWidget {
         Row(
           children: List.generate(5, (index) {
             return Icon(
-              index < user.notation ? Icons.star : Icons.star_border,
-              color: index < user.notation ? Colors.yellow : Colors.grey,
+              index < widget.user.notation ? Icons.star : Icons.star_border,
+              color: index < widget.user.notation ? Colors.yellow : Colors.grey,
             );
           }),
         ),
@@ -100,18 +178,18 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _buildAdditionnalInfo() {
     return _buildInfo("Information additionel", [
-      _buildInfoRow(Icons.work, '${user.totalJobsDone} travaux effectués'),
-      _buildInfoRow(Icons.work, '${user.totalHoursWorked} heures travaillées'),
-      _buildInfoRow(Icons.work, 'Membre depuis ${user.memberSince.year}')
+      _buildInfoRow(Icons.work, '${widget.user.totalJobsDone} travaux effectués'),
+      _buildInfoRow(Icons.work, '${widget.user.totalHoursWorked} heures travaillées'),
+      _buildInfoRow(Icons.work, 'Membre depuis ${widget.user.memberSince.year}')
     ]);
   }
 
   Widget _buildContactlInfo() {
     return _buildInfo("Information du contact", [
-      _buildInfoRow(Icons.person, '${user.age} ans'),
-      _buildInfoRow(Icons.phone, '+${user.phoneNumber}'),
-      _buildInfoRow(Icons.email, user.email),
-      _buildInfoRow(Icons.location_on, '${user.city}, ${user.country}'),
+      _buildInfoRow(Icons.person, '${widget.user.age} ans'),
+      _buildInfoRow(Icons.phone, '+${widget.user.phoneNumber}'),
+      _buildInfoRow(Icons.email, widget.user.email),
+      _buildInfoRow(Icons.location_on, '${widget.user.city}, ${widget.user.country}'),
     ]);
   }
 
