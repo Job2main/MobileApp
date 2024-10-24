@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../controllers/profile_controller.dart';
+import 'package:job2main/features/worker/controllers/user.dart';
+import '../../controllers/profile_page_controller.dart';
 import 'parameters.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
-  final ProfileController controller = ProfileController(
+  final User user = User(
     name: 'John',
     familyName: 'Doe',
     email: 'john.doe@example.com',
     profilePictureUrl: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-    phoneNumber: '+1 234 567 890',
+    phoneNumber: '1 234 567 890',
     city: 'Toronto',
     country: 'Canada',
     age: 22,
@@ -18,45 +19,6 @@ class ProfileScreen extends StatelessWidget {
     profileDescription: 'This is a description of the user. It can be a long text that describes the user in more details.',
     notation: 4,
   );
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PROFILE'),
-        centerTitle: false,
-        actions: [
-          _paramsButton(context),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
-          child: Container(
-            color: Colors.black,
-            height: 1.0,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _buildProfilePicture(),
-              const SizedBox(height: 20),
-              _buildUserNameNotation(),
-              const SizedBox(height: 0),
-              _buildDescription(),
-              const SizedBox(height: 22),
-              _buildContactlInfo(),
-              const SizedBox(height: 16),
-              _buildAdditionnalInfo(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget _buildDescription() {
     return Container(
@@ -67,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Text(
-        controller.profileDescription,
+        user.profileDescription,
         style: const TextStyle(
           fontSize: 16,
           color: Colors.black87,
@@ -86,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const ParametersPage()),
+          MaterialPageRoute(builder: (context) => ParametersPage(user: user)),
         );
       },
     );
@@ -95,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
   Widget _buildProfilePicture() {
     return CircleAvatar(
       radius: 50,
-      backgroundImage: NetworkImage(controller.profilePictureUrl),
+      backgroundImage: NetworkImage(user.profilePictureUrl),
       backgroundColor: Colors.grey.shade200,
       child: Container(
         decoration: BoxDecoration(
@@ -117,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${controller.name} ${controller.familyName}',
+          '${user.name} ${user.familyName}',
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -127,8 +89,8 @@ class ProfileScreen extends StatelessWidget {
         Row(
           children: List.generate(5, (index) {
             return Icon(
-              index < controller.notation ? Icons.star : Icons.star_border,
-              color: index < controller.notation ? Colors.yellow : Colors.grey,
+              index < user.notation ? Icons.star : Icons.star_border,
+              color: index < user.notation ? Colors.yellow : Colors.grey,
             );
           }),
         ),
@@ -137,18 +99,19 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildAdditionnalInfo() {
-    return _buildInfo("Additional Information", [
-      _buildInfoRow(Icons.work, '${controller.totalJobsDone} jobs done'),
-      _buildInfoRow(Icons.work, '${controller.totalHoursWorked} hours worked'),
+    return _buildInfo("Information additionel", [
+      _buildInfoRow(Icons.work, '${user.totalJobsDone} travaux effectués'),
+      _buildInfoRow(Icons.work, '${user.totalHoursWorked} heures travaillées'),
+      _buildInfoRow(Icons.work, 'Membre depuis ${user.memberSince.year}')
     ]);
   }
 
   Widget _buildContactlInfo() {
-    return _buildInfo("Contact Information", [
-      _buildInfoRow(Icons.person, '${controller.age} years old'),
-      _buildInfoRow(Icons.phone, controller.phoneNumber),
-      _buildInfoRow(Icons.email, controller.email),
-      _buildInfoRow(Icons.location_on, '${controller.city}, ${controller.country}'),
+    return _buildInfo("Information du contact", [
+      _buildInfoRow(Icons.person, '${user.age} ans'),
+      _buildInfoRow(Icons.phone, '+${user.phoneNumber}'),
+      _buildInfoRow(Icons.email, user.email),
+      _buildInfoRow(Icons.location_on, '${user.city}, ${user.country}'),
     ]);
   }
 
@@ -195,6 +158,45 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('PROFILE'),
+        centerTitle: false,
+        actions: [
+          _paramsButton(context),
+        ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1.0),
+          child: Container(
+            color: Colors.black,
+            height: 1.0,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _buildProfilePicture(),
+              const SizedBox(height: 20),
+              _buildUserNameNotation(),
+              const SizedBox(height: 0),
+              _buildDescription(),
+              const SizedBox(height: 22),
+              _buildContactlInfo(),
+              const SizedBox(height: 16),
+              _buildAdditionnalInfo(),
+            ],
+          ),
+        ),
       ),
     );
   }
