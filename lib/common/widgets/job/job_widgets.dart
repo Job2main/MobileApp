@@ -1,6 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+Widget displayJobStatus(String status) {
+
+  const colorsList = {
+    'completed': Colors.green,
+    'comfirmed': Colors.green,
+    'refused': Colors.red,
+    'pending': Colors.grey,
+  };
+
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const SizedBox(height: 8.0),
+      Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        decoration: BoxDecoration(
+          color: colorsList[status] ?? Colors.grey,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          status,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
 class JobTitle extends StatelessWidget {
   final String title;
 
