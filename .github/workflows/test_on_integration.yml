@@ -3,7 +3,7 @@ name: Test on Main Branches
 on:
   push:
     branches:
-      - 3-Testing+CI/CD
+      - 3-testing-ci-cd
       - main
 
 jobs:
