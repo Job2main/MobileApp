@@ -9,7 +9,8 @@ enum FilterStatus {
   comfirmed,
   refused,
   completed,
-  pending 
+  pending,
+  requested,
 }
 
 class MyJobsScreen extends StatefulWidget {

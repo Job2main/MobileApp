@@ -3,6 +3,7 @@ enum JobStatus {
   pending,
   refused,
   completed,
+  requested,
 }
 
 class Job {
