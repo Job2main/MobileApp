@@ -1,3 +1,10 @@
+enum JobStatus {
+  comfirmed,
+  pending,
+  refused,
+  completed,
+}
+
 class Job {
   int id;
   String title;
@@ -11,6 +18,7 @@ class Job {
   int totalNumberOfHours;
   String contactName;
   String location;
+  JobStatus status = JobStatus.pending;
 
   Job({
     required this.id,
@@ -25,6 +33,7 @@ class Job {
     required this.endHour,
     required this.contactName,
     required this.location,
+    required this.status,
   });
 }
 
@@ -46,7 +55,9 @@ class JobController {
       String location,
       String contactName,
       String startHour,
-      String endHour) {
+      String endHour,
+      {JobStatus status = JobStatus.pending}
+  ) {
     Job newJob = Job(
         id: id,
         title: title,
@@ -59,7 +70,9 @@ class JobController {
         endHour: endHour,
         totalNumberOfHours: 0,
         contactName: contactName,
-        location: location);
+        location: location,
+        status: status
+    );
     jobs.add(newJob);
   }
 
@@ -75,6 +88,7 @@ class JobController {
     job.location = updates['location'] ?? job.location;
     job.company = updates['company'] ?? job.company;
     job.contactName = updates['contactName'] ?? job.contactName;
+    job.status = updates['status'] ?? job.status;
   }
 
   void deleteJob(int id) {
