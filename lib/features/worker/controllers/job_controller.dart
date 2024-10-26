@@ -3,9 +3,13 @@ class Job {
   String title;
   String description;
   String company;
-  DateTime date;
+  DateTime startDate;
+  DateTime endDate;
   int wageRange;
-  int numberOfHours;
+  String startHour;
+  String endHour;
+  int totalNumberOfHours;
+  String contactName;
   String location;
 
   Job({
@@ -13,9 +17,13 @@ class Job {
     required this.title,
     required this.description,
     required this.company,
-    required this.date,
+    required this.startDate,
+    required this.endDate,
     required this.wageRange,
-    required this.numberOfHours,
+    required this.totalNumberOfHours,
+    required this.startHour,
+    required this.endHour,
+    required this.contactName,
     required this.location,
   });
 }
@@ -27,8 +35,31 @@ class JobController {
     return jobs.firstWhere((job) => job.id == id);
   }
 
-  void createJob(int id, String title, String description, String company, DateTime date, int wageRange, int numberOfHours, String location) {
-    Job newJob = Job(id: id, title: title, description: description, company: company, date: date, wageRange: wageRange, numberOfHours: numberOfHours, location: location);
+  void createJob(
+      int id,
+      String title,
+      String description,
+      String company,
+      DateTime startDate,
+      DateTime endDate,
+      int wageRange,
+      String location,
+      String contactName,
+      String startHour,
+      String endHour) {
+    Job newJob = Job(
+        id: id,
+        title: title,
+        description: description,
+        company: company,
+        startDate: startDate,
+        endDate: endDate,
+        wageRange: wageRange,
+        startHour: startHour,
+        endHour: endHour,
+        totalNumberOfHours: 0,
+        contactName: contactName,
+        location: location);
     jobs.add(newJob);
   }
 
@@ -36,11 +67,14 @@ class JobController {
     Job job = getJob(id);
     job.title = updates['title'] ?? job.title;
     job.description = updates['description'] ?? job.description;
-    job.date = updates['date'] ?? job.date;
+    job.startDate = updates['date'] ?? job.startDate;
     job.wageRange = updates['wageRange'] ?? job.wageRange;
-    job.numberOfHours = updates['numberOfHours'] ?? job.numberOfHours;
+    job.startHour = updates['startHour'] ?? job.startHour;
+    job.endHour = updates['endHour'] ?? job.endHour;
+    job.totalNumberOfHours = 0; //(job.startDate.difference(job.endDate).inDays * (int.parse(job.endHour) - int.parse(job.startHour))).abs().toInt();
     job.location = updates['location'] ?? job.location;
     job.company = updates['company'] ?? job.company;
+    job.contactName = updates['contactName'] ?? job.contactName;
   }
 
   void deleteJob(int id) {

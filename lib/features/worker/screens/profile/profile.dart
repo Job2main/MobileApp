@@ -249,12 +249,9 @@ class _ProfilePageState extends State<ProfilePage> {
         actions: [
           _paramsButton(context),
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
-          child: Container(
-            color: Colors.black,
-            height: 1.0,
-          ),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(color: Colors.black12),
         ),
       ),
       body: SingleChildScrollView(
