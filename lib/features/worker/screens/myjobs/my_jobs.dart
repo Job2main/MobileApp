@@ -6,7 +6,7 @@ import './job_display.dart';
 
 enum FilterStatus { 
   all,
-  confirmed,
+  comfirmed,
   refused,
   completed,
   pending 
