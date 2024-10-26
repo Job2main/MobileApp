@@ -1,0 +1,112 @@
+\hypertarget{classTPricingCalculator}{}\doxysection{TPricing\+Calculator Class Reference}
+\label{classTPricingCalculator}\index{TPricingCalculator@{TPricingCalculator}}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{classTPricingCalculator_aa7624806c87d668fd40c15355fec987b}{calculate\+Total\+Price}} (double product\+Price, String location)
+\begin{DoxyCompactList}\small\item\em -- Calculate Price based on tax and shipping \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classTPricingCalculator_a76b9a9e2e41913864bec8ce88a684488}{calculate\+Shipping\+Cost}} (double product\+Price, String location)
+\begin{DoxyCompactList}\small\item\em -- Calculate shipping cost \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classTPricingCalculator_a18faa77a29d676ce12d84d43173928e6}{calculate\+Tax}} (double product\+Price, String location)
+\begin{DoxyCompactList}\small\item\em -- Calculate tax \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{classTPricingCalculator_aa2a266f685c14fedcf0bb60d212102d9}{get\+Tax\+Rate\+For\+Location}} (String location)
+\item 
+static double \mbox{\hyperlink{classTPricingCalculator_a34dbe99c1642dd24ef995d67839baa15}{get\+Shipping\+Cost}} (String location)
+\item 
+static double \mbox{\hyperlink{classTPricingCalculator_ab25c8592fbb0a7c801c3e735f86cbea5}{calculate\+Cart\+Total}} (Cart\+Model cart)
+\begin{DoxyCompactList}\small\item\em -- Sum all cart values and return total amount \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTPricingCalculator_ab25c8592fbb0a7c801c3e735f86cbea5}\label{classTPricingCalculator_ab25c8592fbb0a7c801c3e735f86cbea5}} 
+\index{TPricingCalculator@{TPricingCalculator}!calculateCartTotal@{calculateCartTotal}}
+\index{calculateCartTotal@{calculateCartTotal}!TPricingCalculator@{TPricingCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateCartTotal()}{calculateCartTotal()}}
+{\footnotesize\ttfamily static double TPricing\+Calculator\+::calculate\+Cart\+Total (\begin{DoxyParamCaption}\item[{Cart\+Model}]{cart }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+-- Sum all cart values and return total amount 
+
+\mbox{\Hypertarget{classTPricingCalculator_a76b9a9e2e41913864bec8ce88a684488}\label{classTPricingCalculator_a76b9a9e2e41913864bec8ce88a684488}} 
+\index{TPricingCalculator@{TPricingCalculator}!calculateShippingCost@{calculateShippingCost}}
+\index{calculateShippingCost@{calculateShippingCost}!TPricingCalculator@{TPricingCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateShippingCost()}{calculateShippingCost()}}
+{\footnotesize\ttfamily static String TPricing\+Calculator\+::calculate\+Shipping\+Cost (\begin{DoxyParamCaption}\item[{double}]{product\+Price,  }\item[{String}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+-- Calculate shipping cost 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTPricingCalculator_a76b9a9e2e41913864bec8ce88a684488_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTPricingCalculator_a18faa77a29d676ce12d84d43173928e6}\label{classTPricingCalculator_a18faa77a29d676ce12d84d43173928e6}} 
+\index{TPricingCalculator@{TPricingCalculator}!calculateTax@{calculateTax}}
+\index{calculateTax@{calculateTax}!TPricingCalculator@{TPricingCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateTax()}{calculateTax()}}
+{\footnotesize\ttfamily static String TPricing\+Calculator\+::calculate\+Tax (\begin{DoxyParamCaption}\item[{double}]{product\+Price,  }\item[{String}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+-- Calculate tax 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTPricingCalculator_a18faa77a29d676ce12d84d43173928e6_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTPricingCalculator_aa7624806c87d668fd40c15355fec987b}\label{classTPricingCalculator_aa7624806c87d668fd40c15355fec987b}} 
+\index{TPricingCalculator@{TPricingCalculator}!calculateTotalPrice@{calculateTotalPrice}}
+\index{calculateTotalPrice@{calculateTotalPrice}!TPricingCalculator@{TPricingCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateTotalPrice()}{calculateTotalPrice()}}
+{\footnotesize\ttfamily static double TPricing\+Calculator\+::calculate\+Total\+Price (\begin{DoxyParamCaption}\item[{double}]{product\+Price,  }\item[{String}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+-- Calculate Price based on tax and shipping 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTPricingCalculator_aa7624806c87d668fd40c15355fec987b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTPricingCalculator_a34dbe99c1642dd24ef995d67839baa15}\label{classTPricingCalculator_a34dbe99c1642dd24ef995d67839baa15}} 
+\index{TPricingCalculator@{TPricingCalculator}!getShippingCost@{getShippingCost}}
+\index{getShippingCost@{getShippingCost}!TPricingCalculator@{TPricingCalculator}}
+\doxysubsubsection{\texorpdfstring{getShippingCost()}{getShippingCost()}}
+{\footnotesize\ttfamily static double TPricing\+Calculator\+::get\+Shipping\+Cost (\begin{DoxyParamCaption}\item[{String}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTPricingCalculator_a34dbe99c1642dd24ef995d67839baa15_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTPricingCalculator_aa2a266f685c14fedcf0bb60d212102d9}\label{classTPricingCalculator_aa2a266f685c14fedcf0bb60d212102d9}} 
+\index{TPricingCalculator@{TPricingCalculator}!getTaxRateForLocation@{getTaxRateForLocation}}
+\index{getTaxRateForLocation@{getTaxRateForLocation}!TPricingCalculator@{TPricingCalculator}}
+\doxysubsubsection{\texorpdfstring{getTaxRateForLocation()}{getTaxRateForLocation()}}
+{\footnotesize\ttfamily static double TPricing\+Calculator\+::get\+Tax\+Rate\+For\+Location (\begin{DoxyParamCaption}\item[{String}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTPricingCalculator_aa2a266f685c14fedcf0bb60d212102d9_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/utils/helpers/\mbox{\hyperlink{pricing__calculator_8dart}{pricing\+\_\+calculator.\+dart}}\end{DoxyCompactItemize}

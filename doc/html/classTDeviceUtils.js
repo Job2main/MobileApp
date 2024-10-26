@@ -1,0 +1,25 @@
+var classTDeviceUtils =
+[
+    [ "getAppBarHeight", "classTDeviceUtils.html#a2869fb8756a2d3b26f0f442674face6d", null ],
+    [ "getBottomNavigationBarHeight", "classTDeviceUtils.html#a840d561bf0a128db5c7dab315467f9f9", null ],
+    [ "getKeyboardHeight", "classTDeviceUtils.html#a65aabb06e7036e1afa12b6c0b6caf496", null ],
+    [ "getPixelRatio", "classTDeviceUtils.html#a929f28fe6537aae4a9e67bea2a89c4ba", null ],
+    [ "getScreenHeight", "classTDeviceUtils.html#a05fbff75316868c816195ba0a3229423", null ],
+    [ "getScreenWidth", "classTDeviceUtils.html#afaceb4ed99312470b396b6ce2ccae4a2", null ],
+    [ "getStatusBarHeight", "classTDeviceUtils.html#a13626816fa02ebe372542b2f1bbee897", null ],
+    [ "hasInternetConnection", "classTDeviceUtils.html#ae736e35c67674c98780516364a344ff7", null ],
+    [ "hideKeyboard", "classTDeviceUtils.html#aa01a1a1401fc0ecd41574f5dd707cc8c", null ],
+    [ "hideStatusBar", "classTDeviceUtils.html#ae8b76b455861c3aeda0eb7937efa8a6a", null ],
+    [ "isAndroid", "classTDeviceUtils.html#aeb97f26c41709d97e9aa1c9eaf6d2766", null ],
+    [ "isIOS", "classTDeviceUtils.html#a23d1276a3ac53af0e71353bbc20eb992", null ],
+    [ "isKeyboardVisible", "classTDeviceUtils.html#a13e75b75994409a71d252dc40b9fced0", null ],
+    [ "isLandscapeOrientation", "classTDeviceUtils.html#a041588f9c5443f3c98f0216223d0479b", null ],
+    [ "isPhysicalDevice", "classTDeviceUtils.html#a3c3c528fff66d895bb25cbd09798cbee", null ],
+    [ "isPortraitOrientation", "classTDeviceUtils.html#ae563455afa15de6f1d4f9c2ca39ae40d", null ],
+    [ "launchUrl", "classTDeviceUtils.html#a7533918a138e7d3bf2cc4a7dd710b098", null ],
+    [ "setFullScreen", "classTDeviceUtils.html#aed720c2d088fd3fef16ee62f2e5170be", null ],
+    [ "setPreferredOrientations", "classTDeviceUtils.html#a0953522f0c2064ad6edfa2d780f068b3", null ],
+    [ "setStatusBarColor", "classTDeviceUtils.html#ae0335c4021d9a80993e7ef08864cd45e", null ],
+    [ "showStatusBar", "classTDeviceUtils.html#adcaad42607d89d3ac7f560f10f867115", null ],
+    [ "vibrate", "classTDeviceUtils.html#a3db7c3eeda849062bd6b13bb23c3652b", null ]
+];

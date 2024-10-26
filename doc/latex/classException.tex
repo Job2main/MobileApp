@@ -1,0 +1,202 @@
+\hypertarget{classException}{}\doxysection{Exception Class Reference}
+\label{classException}\index{Exception@{Exception}}
+
+
+\mbox{\hyperlink{classException}{Exception}} class for handling various errors.  
+
+
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classException_a0dd3e2d10c30dbe2199f62dd34f9521e}{TExceptions}} (\mbox{[}this.\+message=\textquotesingle{}An unexpected error occurred. Please try again.\textquotesingle{}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Default constructor with a generic error message. \end{DoxyCompactList}\item 
+factory \mbox{\hyperlink{classException_a0dd3e2d10c30dbe2199f62dd34f9521e}{TExceptions}} \mbox{\hyperlink{classException_a872ba4d47ea5472fbb617464e1e672f1}{from\+Code}} (String \mbox{\hyperlink{classException_a0d123e01c1503ecbcb7364fab8c1f16f}{code}})
+\begin{DoxyCompactList}\small\item\em Create an authentication exception from a Firebase authentication exception code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classException_a8121099c98f5320eeaefd23974dfff55}{TFirebase\+Auth\+Exception}} (this.\+code)
+\begin{DoxyCompactList}\small\item\em Constructor that takes an error code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classException_a98dc9466ffe2abf1aba2c998e0de8e34}{TFirebase\+Exception}} (this.\+code)
+\begin{DoxyCompactList}\small\item\em Constructor that takes an error code. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classException_a04d275bef52a9364e2946a3ecd2a920a}{TFormat\+Exception}} (\mbox{[}this.\+message=\textquotesingle{}An unexpected format error occurred. Please check your input.\textquotesingle{}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Default constructor with a generic error message. \end{DoxyCompactList}\item 
+factory \mbox{\hyperlink{classException_a04d275bef52a9364e2946a3ecd2a920a}{TFormat\+Exception}} \mbox{\hyperlink{classException_a704db84713fc5cc1788dd6697a243430}{from\+Message}} (String \mbox{\hyperlink{classException_a54d53c978320c8b3fa6178b1e210712f}{message}})
+\begin{DoxyCompactList}\small\item\em Create a format exception from a specific error message. \end{DoxyCompactList}\item 
+factory \mbox{\hyperlink{classException_a04d275bef52a9364e2946a3ecd2a920a}{TFormat\+Exception}} \mbox{\hyperlink{classException_aa06dd3a3184ba47fbcb74b7df3d4970c}{from\+Code}} (String \mbox{\hyperlink{classException_a0d123e01c1503ecbcb7364fab8c1f16f}{code}})
+\begin{DoxyCompactList}\small\item\em Create a format exception from a specific error code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classException_a487f61a87eeda52ebb4f63985fa74e3f}{TPlatform\+Exception}} (this.\+code)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final String \mbox{\hyperlink{classException_a54d53c978320c8b3fa6178b1e210712f}{message}}
+\begin{DoxyCompactList}\small\item\em The associated error message. \end{DoxyCompactList}\item 
+final String \mbox{\hyperlink{classException_a0d123e01c1503ecbcb7364fab8c1f16f}{code}}
+\begin{DoxyCompactList}\small\item\em The error code associated with the exception. \end{DoxyCompactList}\item 
+String get \mbox{\hyperlink{classException_a4901ccad2f7ffda7d4a896edede44d68}{formatted\+Message}} =$>$ \mbox{\hyperlink{classException_a54d53c978320c8b3fa6178b1e210712f}{message}}
+\begin{DoxyCompactList}\small\item\em Get the corresponding error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classException}{Exception}} class for handling various errors. 
+
+\mbox{\hyperlink{classException}{Exception}} class for handling various platform-\/related errors.
+
+Custom exception class to handle various format-\/related errors.
+
+Custom exception class to handle various Firebase-\/related errors.
+
+Custom exception class to handle various Firebase authentication-\/related errors. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classException_a872ba4d47ea5472fbb617464e1e672f1}\label{classException_a872ba4d47ea5472fbb617464e1e672f1}} 
+\index{Exception@{Exception}!fromCode@{fromCode}}
+\index{fromCode@{fromCode}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{fromCode()}{fromCode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily factory \mbox{\hyperlink{classException_a0dd3e2d10c30dbe2199f62dd34f9521e}{TExceptions}} Exception\+::from\+Code (\begin{DoxyParamCaption}\item[{String}]{code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Create an authentication exception from a Firebase authentication exception code. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classException_a872ba4d47ea5472fbb617464e1e672f1_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classException_aa06dd3a3184ba47fbcb74b7df3d4970c}\label{classException_aa06dd3a3184ba47fbcb74b7df3d4970c}} 
+\index{Exception@{Exception}!fromCode@{fromCode}}
+\index{fromCode@{fromCode}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{fromCode()}{fromCode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily factory \mbox{\hyperlink{classException_a04d275bef52a9364e2946a3ecd2a920a}{TFormat\+Exception}} Exception\+::from\+Code (\begin{DoxyParamCaption}\item[{String}]{code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Create a format exception from a specific error code. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classException_aa06dd3a3184ba47fbcb74b7df3d4970c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classException_a704db84713fc5cc1788dd6697a243430}\label{classException_a704db84713fc5cc1788dd6697a243430}} 
+\index{Exception@{Exception}!fromMessage@{fromMessage}}
+\index{fromMessage@{fromMessage}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{fromMessage()}{fromMessage()}}
+{\footnotesize\ttfamily factory \mbox{\hyperlink{classException_a04d275bef52a9364e2946a3ecd2a920a}{TFormat\+Exception}} Exception\+::from\+Message (\begin{DoxyParamCaption}\item[{String}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Create a format exception from a specific error message. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classException_a704db84713fc5cc1788dd6697a243430_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classException_a0dd3e2d10c30dbe2199f62dd34f9521e}\label{classException_a0dd3e2d10c30dbe2199f62dd34f9521e}} 
+\index{Exception@{Exception}!TExceptions@{TExceptions}}
+\index{TExceptions@{TExceptions}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{TExceptions()}{TExceptions()}}
+{\footnotesize\ttfamily const Exception\+::\+TExceptions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Default constructor with a generic error message. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classException_a0dd3e2d10c30dbe2199f62dd34f9521e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classException_a8121099c98f5320eeaefd23974dfff55}\label{classException_a8121099c98f5320eeaefd23974dfff55}} 
+\index{Exception@{Exception}!TFirebaseAuthException@{TFirebaseAuthException}}
+\index{TFirebaseAuthException@{TFirebaseAuthException}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{TFirebaseAuthException()}{TFirebaseAuthException()}}
+{\footnotesize\ttfamily Exception\+::\+TFirebase\+Auth\+Exception (\begin{DoxyParamCaption}\item[{this.}]{code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Constructor that takes an error code. 
+
+\mbox{\Hypertarget{classException_a98dc9466ffe2abf1aba2c998e0de8e34}\label{classException_a98dc9466ffe2abf1aba2c998e0de8e34}} 
+\index{Exception@{Exception}!TFirebaseException@{TFirebaseException}}
+\index{TFirebaseException@{TFirebaseException}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{TFirebaseException()}{TFirebaseException()}}
+{\footnotesize\ttfamily Exception\+::\+TFirebase\+Exception (\begin{DoxyParamCaption}\item[{this.}]{code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Constructor that takes an error code. 
+
+\mbox{\Hypertarget{classException_a04d275bef52a9364e2946a3ecd2a920a}\label{classException_a04d275bef52a9364e2946a3ecd2a920a}} 
+\index{Exception@{Exception}!TFormatException@{TFormatException}}
+\index{TFormatException@{TFormatException}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{TFormatException()}{TFormatException()}}
+{\footnotesize\ttfamily const Exception\+::\+TFormat\+Exception (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Default constructor with a generic error message. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classException_a04d275bef52a9364e2946a3ecd2a920a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classException_a487f61a87eeda52ebb4f63985fa74e3f}\label{classException_a487f61a87eeda52ebb4f63985fa74e3f}} 
+\index{Exception@{Exception}!TPlatformException@{TPlatformException}}
+\index{TPlatformException@{TPlatformException}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{TPlatformException()}{TPlatformException()}}
+{\footnotesize\ttfamily Exception\+::\+TPlatform\+Exception (\begin{DoxyParamCaption}\item[{this.}]{code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classException_a0d123e01c1503ecbcb7364fab8c1f16f}\label{classException_a0d123e01c1503ecbcb7364fab8c1f16f}} 
+\index{Exception@{Exception}!code@{code}}
+\index{code@{code}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{code}{code}}
+{\footnotesize\ttfamily final String Exception\+::code\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The error code associated with the exception. 
+
+\mbox{\Hypertarget{classException_a4901ccad2f7ffda7d4a896edede44d68}\label{classException_a4901ccad2f7ffda7d4a896edede44d68}} 
+\index{Exception@{Exception}!formattedMessage@{formattedMessage}}
+\index{formattedMessage@{formattedMessage}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{formattedMessage}{formattedMessage}}
+{\footnotesize\ttfamily String get Exception\+::formatted\+Message =$>$ \mbox{\hyperlink{classException_a54d53c978320c8b3fa6178b1e210712f}{message}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Get the corresponding error message. 
+
+\mbox{\Hypertarget{classException_a54d53c978320c8b3fa6178b1e210712f}\label{classException_a54d53c978320c8b3fa6178b1e210712f}} 
+\index{Exception@{Exception}!message@{message}}
+\index{message@{message}!Exception@{Exception}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily final String Exception\+::message\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The associated error message. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/utils/exceptions/\mbox{\hyperlink{exceptions_8dart}{exceptions.\+dart}}\item 
+lib/utils/exceptions/\mbox{\hyperlink{firebase__auth__exceptions_8dart}{firebase\+\_\+auth\+\_\+exceptions.\+dart}}\item 
+lib/utils/exceptions/\mbox{\hyperlink{firebase__exceptions_8dart}{firebase\+\_\+exceptions.\+dart}}\item 
+lib/utils/exceptions/\mbox{\hyperlink{format__exceptions_8dart}{format\+\_\+exceptions.\+dart}}\item 
+lib/utils/exceptions/\mbox{\hyperlink{platform__exceptions_8dart}{platform\+\_\+exceptions.\+dart}}\end{DoxyCompactItemize}

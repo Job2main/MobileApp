@@ -1,0 +1,65 @@
+\hypertarget{classTCloudHelperFunctions}{}\doxysection{TCloud\+Helper\+Functions Class Reference}
+\label{classTCloudHelperFunctions}\index{TCloudHelperFunctions@{TCloudHelperFunctions}}
+
+
+Helper functions for cloud-\/related operations.  
+
+
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Widget \mbox{\hyperlink{classTCloudHelperFunctions_a000e5fc96a4d8bcd0c6e7a31412e1c22}{check\+Single\+Record\+State}} (Async\+Snapshot$<$ T $>$ snapshot)
+\item 
+static Widget \mbox{\hyperlink{classTCloudHelperFunctions_ae3384a072bb3d76c932eec9d5e1f5962}{check\+Multi\+Record\+State}} (\{required Async\+Snapshot$<$ List$<$ T $>$$>$ snapshot, Widget? loader, Widget? error, Widget? nothing\+Found\})
+\item 
+static Future$<$ String $>$ \mbox{\hyperlink{classTCloudHelperFunctions_a9835adc13c4b027c68a295d2ffc1da0d}{get\+URLFrom\+File\+Path\+And\+Name}} (String path) async
+\begin{DoxyCompactList}\small\item\em Create a reference with an initial file path and name and retrieve the download URL. \end{DoxyCompactList}\item 
+static Future$<$ String $>$ \mbox{\hyperlink{classTCloudHelperFunctions_a5ceea3e85aa780882419fe244b8c1da3}{get\+URLFrom\+URI}} (String url) async
+\begin{DoxyCompactList}\small\item\em Retrieve the download URL from a given storage URI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for cloud-\/related operations. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTCloudHelperFunctions_ae3384a072bb3d76c932eec9d5e1f5962}\label{classTCloudHelperFunctions_ae3384a072bb3d76c932eec9d5e1f5962}} 
+\index{TCloudHelperFunctions@{TCloudHelperFunctions}!checkMultiRecordState@{checkMultiRecordState}}
+\index{checkMultiRecordState@{checkMultiRecordState}!TCloudHelperFunctions@{TCloudHelperFunctions}}
+\doxysubsubsection{\texorpdfstring{checkMultiRecordState()}{checkMultiRecordState()}}
+{\footnotesize\ttfamily static Widget TCloud\+Helper\+Functions\+::check\+Multi\+Record\+State (\begin{DoxyParamCaption}\item[{\{required Async\+Snapshot$<$ List$<$ T $>$$>$ snapshot, Widget? loader, Widget? error, Widget? nothing\+Found\}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+Helper function to check the state of multiple (list) database records.
+
+Returns a Widget based on the state of the snapshot. If data is still loading, it returns a Circular\+Progress\+Indicator. If no data is found, it returns a generic \char`\"{}\+No Data Found\char`\"{} message or a custom nothing\+Found\+Widget if provided. If an error occurs, it returns a generic error message. Otherwise, it returns null. \mbox{\Hypertarget{classTCloudHelperFunctions_a000e5fc96a4d8bcd0c6e7a31412e1c22}\label{classTCloudHelperFunctions_a000e5fc96a4d8bcd0c6e7a31412e1c22}} 
+\index{TCloudHelperFunctions@{TCloudHelperFunctions}!checkSingleRecordState@{checkSingleRecordState}}
+\index{checkSingleRecordState@{checkSingleRecordState}!TCloudHelperFunctions@{TCloudHelperFunctions}}
+\doxysubsubsection{\texorpdfstring{checkSingleRecordState()}{checkSingleRecordState()}}
+{\footnotesize\ttfamily static Widget TCloud\+Helper\+Functions\+::check\+Single\+Record\+State (\begin{DoxyParamCaption}\item[{Async\+Snapshot$<$ T $>$}]{snapshot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+Helper function to check the state of a single database record.
+
+Returns a Widget based on the state of the snapshot. If data is still loading, it returns a Circular\+Progress\+Indicator. If no data is found, it returns a generic \char`\"{}\+No Data Found\char`\"{} message. If an error occurs, it returns a generic error message. Otherwise, it returns null. \mbox{\Hypertarget{classTCloudHelperFunctions_a9835adc13c4b027c68a295d2ffc1da0d}\label{classTCloudHelperFunctions_a9835adc13c4b027c68a295d2ffc1da0d}} 
+\index{TCloudHelperFunctions@{TCloudHelperFunctions}!getURLFromFilePathAndName@{getURLFromFilePathAndName}}
+\index{getURLFromFilePathAndName@{getURLFromFilePathAndName}!TCloudHelperFunctions@{TCloudHelperFunctions}}
+\doxysubsubsection{\texorpdfstring{getURLFromFilePathAndName()}{getURLFromFilePathAndName()}}
+{\footnotesize\ttfamily static Future$<$String$>$ TCloud\+Helper\+Functions\+::get\+URLFrom\+File\+Path\+And\+Name (\begin{DoxyParamCaption}\item[{String}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Create a reference with an initial file path and name and retrieve the download URL. 
+
+\mbox{\Hypertarget{classTCloudHelperFunctions_a5ceea3e85aa780882419fe244b8c1da3}\label{classTCloudHelperFunctions_a5ceea3e85aa780882419fe244b8c1da3}} 
+\index{TCloudHelperFunctions@{TCloudHelperFunctions}!getURLFromURI@{getURLFromURI}}
+\index{getURLFromURI@{getURLFromURI}!TCloudHelperFunctions@{TCloudHelperFunctions}}
+\doxysubsubsection{\texorpdfstring{getURLFromURI()}{getURLFromURI()}}
+{\footnotesize\ttfamily static Future$<$String$>$ TCloud\+Helper\+Functions\+::get\+URLFrom\+URI (\begin{DoxyParamCaption}\item[{String}]{url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Retrieve the download URL from a given storage URI. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/utils/helpers/\mbox{\hyperlink{cloud__helper__functions_8dart}{cloud\+\_\+helper\+\_\+functions.\+dart}}\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\hypertarget{classTCheckboxTheme}{}\doxysection{TCheckbox\+Theme Class Reference}
+\label{classTCheckboxTheme}\index{TCheckboxTheme@{TCheckboxTheme}}
+
+
+Custom Class for Light \& Dark Text Themes.  
+
+
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTCheckboxTheme}{TCheckbox\+Theme}} \mbox{\hyperlink{classTCheckboxTheme_acd560d056429e13da29484321d4a5f9c}{\+\_\+}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Checkbox\+Theme\+Data \mbox{\hyperlink{classTCheckboxTheme_a52fc35f924b06005801768d10b20b08c}{light\+Checkbox\+Theme}}
+\begin{DoxyCompactList}\small\item\em Customizable Light Text Theme. \end{DoxyCompactList}\item 
+static Checkbox\+Theme\+Data \mbox{\hyperlink{classTCheckboxTheme_ade88651ed83f0657a02cd2cc6c15a79e}{dark\+Checkbox\+Theme}}
+\begin{DoxyCompactList}\small\item\em Customizable Dark Text Theme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Custom Class for Light \& Dark Text Themes. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTCheckboxTheme_acd560d056429e13da29484321d4a5f9c}\label{classTCheckboxTheme_acd560d056429e13da29484321d4a5f9c}} 
+\index{TCheckboxTheme@{TCheckboxTheme}!\_@{\_}}
+\index{\_@{\_}!TCheckboxTheme@{TCheckboxTheme}}
+\doxysubsubsection{\texorpdfstring{\_()}{\_()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTCheckboxTheme}{TCheckbox\+Theme}} TCheckbox\+Theme\+::\+\_\+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classTCheckboxTheme_ade88651ed83f0657a02cd2cc6c15a79e}\label{classTCheckboxTheme_ade88651ed83f0657a02cd2cc6c15a79e}} 
+\index{TCheckboxTheme@{TCheckboxTheme}!darkCheckboxTheme@{darkCheckboxTheme}}
+\index{darkCheckboxTheme@{darkCheckboxTheme}!TCheckboxTheme@{TCheckboxTheme}}
+\doxysubsubsection{\texorpdfstring{darkCheckboxTheme}{darkCheckboxTheme}}
+{\footnotesize\ttfamily Checkbox\+Theme\+Data TCheckbox\+Theme\+::dark\+Checkbox\+Theme\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= CheckboxThemeData(}
+\DoxyCodeLine{    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(\mbox{\hyperlink{classTSizes}{TSizes}}.\mbox{\hyperlink{classTSizes_a70bf765826e6717d7817ec26a5dbaad0}{xs}})),}
+\DoxyCodeLine{    checkColor: WidgetStateProperty.resolveWith((states) \{}
+\DoxyCodeLine{      if (states.contains(WidgetState.selected)) \{}
+\DoxyCodeLine{        return TColors.white;}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        return TColors.black;}
+\DoxyCodeLine{      \}}
+\DoxyCodeLine{    \}),}
+\DoxyCodeLine{    fillColor: WidgetStateProperty.resolveWith((states) \{}
+\DoxyCodeLine{      if (states.contains(WidgetState.selected)) \{}
+\DoxyCodeLine{        return TColors.primary;}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        return Colors.transparent;}
+\DoxyCodeLine{      \}}
+\DoxyCodeLine{    \}),}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+
+
+Customizable Dark Text Theme. 
+
+\mbox{\Hypertarget{classTCheckboxTheme_a52fc35f924b06005801768d10b20b08c}\label{classTCheckboxTheme_a52fc35f924b06005801768d10b20b08c}} 
+\index{TCheckboxTheme@{TCheckboxTheme}!lightCheckboxTheme@{lightCheckboxTheme}}
+\index{lightCheckboxTheme@{lightCheckboxTheme}!TCheckboxTheme@{TCheckboxTheme}}
+\doxysubsubsection{\texorpdfstring{lightCheckboxTheme}{lightCheckboxTheme}}
+{\footnotesize\ttfamily Checkbox\+Theme\+Data TCheckbox\+Theme\+::light\+Checkbox\+Theme\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= CheckboxThemeData(}
+\DoxyCodeLine{    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(\mbox{\hyperlink{classTSizes}{TSizes}}.\mbox{\hyperlink{classTSizes_a70bf765826e6717d7817ec26a5dbaad0}{xs}})),}
+\DoxyCodeLine{    checkColor: WidgetStateProperty.resolveWith((states) \{}
+\DoxyCodeLine{      if (states.contains(WidgetState.selected)) \{}
+\DoxyCodeLine{        return TColors.white;}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        return TColors.black;}
+\DoxyCodeLine{      \}}
+\DoxyCodeLine{    \}),}
+\DoxyCodeLine{    fillColor: WidgetStateProperty.resolveWith((states) \{}
+\DoxyCodeLine{      if (states.contains(WidgetState.selected)) \{}
+\DoxyCodeLine{        return TColors.primary;}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{        return Colors.transparent;}
+\DoxyCodeLine{      \}}
+\DoxyCodeLine{    \}),}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+
+
+Customizable Light Text Theme. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/utils/theme/widget\+\_\+themes/\mbox{\hyperlink{checkbox__theme_8dart}{checkbox\+\_\+theme.\+dart}}\end{DoxyCompactItemize}

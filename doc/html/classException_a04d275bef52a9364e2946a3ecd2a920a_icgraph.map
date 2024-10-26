@@ -1,0 +1,5 @@
+<map id="Exception::TFormatException" name="Exception::TFormatException">
+<area shape="rect" id="node1" title="Default constructor with a generic error message." alt="" coords="236,31,448,57"/>
+<area shape="rect" id="node2" href="$classException.html#aa06dd3a3184ba47fbcb74b7df3d4970c" title="Create a format exception from a specific error code." alt="" coords="17,5,176,32"/>
+<area shape="rect" id="node3" href="$classException.html#a704db84713fc5cc1788dd6697a243430" title="Create a format exception from a specific error message." alt="" coords="5,56,188,83"/>
+</map>

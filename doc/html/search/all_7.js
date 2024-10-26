@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['getappbarheight_122',['getAppBarHeight',['../classTDeviceUtils.html#a2869fb8756a2d3b26f0f442674face6d',1,'TDeviceUtils']]],
+  ['getbottomnavigationbarheight_123',['getBottomNavigationBarHeight',['../classTDeviceUtils.html#a840d561bf0a128db5c7dab315467f9f9',1,'TDeviceUtils']]],
+  ['getcolor_124',['getColor',['../classTHelperFunctions.html#aa823bd95763137b0ed67095ebc355452',1,'THelperFunctions']]],
+  ['getdividercolor_125',['getDividerColor',['../classTAnyMode.html#a5273433ec4f7c396b513d128ea0944bb',1,'TAnyMode']]],
+  ['getformatteddate_126',['getFormattedDate',['../classTHelperFunctions.html#ab721b7f316df610c0b40f803fc0b9a54',1,'THelperFunctions']]],
+  ['getkeyboardheight_127',['getKeyboardHeight',['../classTDeviceUtils.html#a65aabb06e7036e1afa12b6c0b6caf496',1,'TDeviceUtils']]],
+  ['getlogo_128',['getLogo',['../classTAnyMode.html#a60577c8902eee0d122cebcf61136da90',1,'TAnyMode']]],
+  ['getpixelratio_129',['getPixelRatio',['../classTDeviceUtils.html#a929f28fe6537aae4a9e67bea2a89c4ba',1,'TDeviceUtils']]],
+  ['getscreenheight_130',['getScreenHeight',['../classTDeviceUtils.html#a05fbff75316868c816195ba0a3229423',1,'TDeviceUtils']]],
+  ['getscreenwidth_131',['getScreenWidth',['../classTDeviceUtils.html#afaceb4ed99312470b396b6ce2ccae4a2',1,'TDeviceUtils']]],
+  ['getshippingcost_132',['getShippingCost',['../classTPricingCalculator.html#a34dbe99c1642dd24ef995d67839baa15',1,'TPricingCalculator']]],
+  ['getstatusbarheight_133',['getStatusBarHeight',['../classTDeviceUtils.html#a13626816fa02ebe372542b2f1bbee897',1,'TDeviceUtils']]],
+  ['gettaxrateforlocation_134',['getTaxRateForLocation',['../classTPricingCalculator.html#aa2a266f685c14fedcf0bb60d212102d9',1,'TPricingCalculator']]],
+  ['geturlfromfilepathandname_135',['getURLFromFilePathAndName',['../classTCloudHelperFunctions.html#a9835adc13c4b027c68a295d2ffc1da0d',1,'TCloudHelperFunctions']]],
+  ['geturlfromuri_136',['getURLFromURI',['../classTCloudHelperFunctions.html#a5ceea3e85aa780882419fe244b8c1da3',1,'TCloudHelperFunctions']]],
+  ['getxcontroller_137',['GetxController',['../classGetxController.html',1,'']]],
+  ['google_138',['google',['../classTImages.html#aa6ab20e226e9cfa5a0890cf6a2cda68b',1,'TImages']]],
+  ['googlepay_139',['googlePay',['../enums_8dart.html#a1ae9271c9a433544e4ce861ce8e624ac',1,'enums.dart']]],
+  ['grey_140',['grey',['../classTColors.html#abcfc4d848af20b8f2d576a7ccc6a0d25',1,'TColors']]],
+  ['gridviewspacing_141',['gridViewSpacing',['../classTSizes.html#ab472884e2c0c35f763945fcae854a0cb',1,'TSizes']]]
+];

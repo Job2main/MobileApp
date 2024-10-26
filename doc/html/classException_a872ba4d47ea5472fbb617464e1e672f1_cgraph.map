@@ -1,0 +1,4 @@
+<map id="Exception::fromCode" name="Exception::fromCode">
+<area shape="rect" id="node1" title="Create an authentication exception from a Firebase authentication exception code." alt="" coords="5,5,164,32"/>
+<area shape="rect" id="node2" href="$classException.html#a0dd3e2d10c30dbe2199f62dd34f9521e" title="Default constructor with a generic error message." alt="" coords="212,5,385,32"/>
+</map>

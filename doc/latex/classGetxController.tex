@@ -1,0 +1,179 @@
+\hypertarget{classGetxController}{}\doxysection{Getx\+Controller Class Reference}
+\label{classGetxController}\index{GetxController@{GetxController}}
+
+
+Manages the network connectivity status and provides methods to check and handle connectivity changes.  
+
+
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGetxController_a820bceceaebcb12d32316a0a5fabf5a8}{On\+Boarding\+Controller}} (\{required this.\+page\+Count\})
+\item 
+void \mbox{\hyperlink{classGetxController_a7fedcea3b6db8704b60bc51c177fa50b}{update\+Page\+Indicator}} (int index)
+\item 
+void \mbox{\hyperlink{classGetxController_a5e3ee91daa412a69657b344a062b76f3}{dot\+Navigation\+Click}} (int index)
+\item 
+void \mbox{\hyperlink{classGetxController_ae237fb66eb78cf6dd4ebeb027e0892ff}{next\+Page}} ()
+\item 
+void \mbox{\hyperlink{classGetxController_ae7aad092c438b3eb33288781c5381335}{skip\+Page}} ()
+\item 
+override void \mbox{\hyperlink{classGetxController_a5cb38c496a63e5a2fd427ae31153462d}{on\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the network manager and set up a stream to continually check the connection status. \end{DoxyCompactList}\item 
+Future$<$ void $>$ \mbox{\hyperlink{classGetxController_ab3f690bcf7004b9ae51410e3d0d70720}{\+\_\+update\+Connection\+Status}} (Connectivity\+Result result) async
+\begin{DoxyCompactList}\small\item\em Update the connection status based on changes in connectivity and show a relevant popup for no internet connection. \end{DoxyCompactList}\item 
+Future$<$ bool $>$ \mbox{\hyperlink{classGetxController_a932359c0753a70945df8cbc54eceb147}{is\+Connected}} () async
+\item 
+override void \mbox{\hyperlink{classGetxController_a92ad726aa262942f08bbb2773ff92cff}{on\+Close}} ()
+\begin{DoxyCompactList}\small\item\em Dispose or close the active connectivity stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Page\+Controller \mbox{\hyperlink{classGetxController_a098b82ab333e50dc3e1b409b058b8a1f}{page\+Controller}} = Page\+Controller()
+\item 
+final Rx\+Int \mbox{\hyperlink{classGetxController_a1ac5e0d79460dad7a2e9152aaebae1ef}{current\+Page\+Index}} = 0.obs
+\item 
+final int \mbox{\hyperlink{classGetxController_a2e256452dc3429c475a5112bec71a4a1}{page\+Count}}
+\item 
+final Connectivity \mbox{\hyperlink{classGetxController_a50a01f52fcb10c632e5f9409f71ed859}{\+\_\+connectivity}} = Connectivity()
+\item 
+late Stream\+Subscription$<$ Connectivity\+Result $>$ \mbox{\hyperlink{classGetxController_a75a14209027e8a900055819bb6f81a72}{\+\_\+connectivity\+Subscription}}
+\item 
+final Rx$<$ Connectivity\+Result $>$ \mbox{\hyperlink{classGetxController_a26aa7d65b046f23e3762db2a4ffdd400}{\+\_\+connection\+Status}} = Connectivity\+Result.\+none.\+obs
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classGetxController_a820bceceaebcb12d32316a0a5fabf5a8}{On\+Boarding\+Controller}} get \mbox{\hyperlink{classGetxController_a67a54e17eff926a2dfa59b7cb52c7369}{instance}} =$>$ Get.\+find()
+\item 
+static Network\+Manager get \mbox{\hyperlink{classGetxController_a780649805d6a803036298e4090f99f6b}{instance}} =$>$ Get.\+find()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the network connectivity status and provides methods to check and handle connectivity changes. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGetxController_ab3f690bcf7004b9ae51410e3d0d70720}\label{classGetxController_ab3f690bcf7004b9ae51410e3d0d70720}} 
+\index{GetxController@{GetxController}!\_updateConnectionStatus@{\_updateConnectionStatus}}
+\index{\_updateConnectionStatus@{\_updateConnectionStatus}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{\_updateConnectionStatus()}{\_updateConnectionStatus()}}
+{\footnotesize\ttfamily Future$<$void$>$ Getx\+Controller\+::\+\_\+update\+Connection\+Status (\begin{DoxyParamCaption}\item[{Connectivity\+Result}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Update the connection status based on changes in connectivity and show a relevant popup for no internet connection. 
+
+\mbox{\Hypertarget{classGetxController_a5e3ee91daa412a69657b344a062b76f3}\label{classGetxController_a5e3ee91daa412a69657b344a062b76f3}} 
+\index{GetxController@{GetxController}!dotNavigationClick@{dotNavigationClick}}
+\index{dotNavigationClick@{dotNavigationClick}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{dotNavigationClick()}{dotNavigationClick()}}
+{\footnotesize\ttfamily void Getx\+Controller\+::dot\+Navigation\+Click (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a932359c0753a70945df8cbc54eceb147}\label{classGetxController_a932359c0753a70945df8cbc54eceb147}} 
+\index{GetxController@{GetxController}!isConnected@{isConnected}}
+\index{isConnected@{isConnected}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{isConnected()}{isConnected()}}
+{\footnotesize\ttfamily Future$<$bool$>$ Getx\+Controller\+::is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Check the internet connection status. Returns {\ttfamily true} if connected, {\ttfamily false} otherwise. \mbox{\Hypertarget{classGetxController_ae237fb66eb78cf6dd4ebeb027e0892ff}\label{classGetxController_ae237fb66eb78cf6dd4ebeb027e0892ff}} 
+\index{GetxController@{GetxController}!nextPage@{nextPage}}
+\index{nextPage@{nextPage}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{nextPage()}{nextPage()}}
+{\footnotesize\ttfamily void Getx\+Controller\+::next\+Page (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a820bceceaebcb12d32316a0a5fabf5a8}\label{classGetxController_a820bceceaebcb12d32316a0a5fabf5a8}} 
+\index{GetxController@{GetxController}!OnBoardingController@{OnBoardingController}}
+\index{OnBoardingController@{OnBoardingController}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{OnBoardingController()}{OnBoardingController()}}
+{\footnotesize\ttfamily Getx\+Controller\+::\+On\+Boarding\+Controller (\begin{DoxyParamCaption}\item[{\{required this.\+page\+Count\}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a92ad726aa262942f08bbb2773ff92cff}\label{classGetxController_a92ad726aa262942f08bbb2773ff92cff}} 
+\index{GetxController@{GetxController}!onClose@{onClose}}
+\index{onClose@{onClose}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{onClose()}{onClose()}}
+{\footnotesize\ttfamily override void Getx\+Controller\+::on\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Dispose or close the active connectivity stream. 
+
+\mbox{\Hypertarget{classGetxController_a5cb38c496a63e5a2fd427ae31153462d}\label{classGetxController_a5cb38c496a63e5a2fd427ae31153462d}} 
+\index{GetxController@{GetxController}!onInit@{onInit}}
+\index{onInit@{onInit}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{onInit()}{onInit()}}
+{\footnotesize\ttfamily override void Getx\+Controller\+::on\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Initialize the network manager and set up a stream to continually check the connection status. 
+
+\mbox{\Hypertarget{classGetxController_ae7aad092c438b3eb33288781c5381335}\label{classGetxController_ae7aad092c438b3eb33288781c5381335}} 
+\index{GetxController@{GetxController}!skipPage@{skipPage}}
+\index{skipPage@{skipPage}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{skipPage()}{skipPage()}}
+{\footnotesize\ttfamily void Getx\+Controller\+::skip\+Page (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a7fedcea3b6db8704b60bc51c177fa50b}\label{classGetxController_a7fedcea3b6db8704b60bc51c177fa50b}} 
+\index{GetxController@{GetxController}!updatePageIndicator@{updatePageIndicator}}
+\index{updatePageIndicator@{updatePageIndicator}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{updatePageIndicator()}{updatePageIndicator()}}
+{\footnotesize\ttfamily void Getx\+Controller\+::update\+Page\+Indicator (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGetxController_a26aa7d65b046f23e3762db2a4ffdd400}\label{classGetxController_a26aa7d65b046f23e3762db2a4ffdd400}} 
+\index{GetxController@{GetxController}!\_connectionStatus@{\_connectionStatus}}
+\index{\_connectionStatus@{\_connectionStatus}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{\_connectionStatus}{\_connectionStatus}}
+{\footnotesize\ttfamily final Rx$<$Connectivity\+Result$>$ Getx\+Controller\+::\+\_\+connection\+Status = Connectivity\+Result.\+none.\+obs\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a50a01f52fcb10c632e5f9409f71ed859}\label{classGetxController_a50a01f52fcb10c632e5f9409f71ed859}} 
+\index{GetxController@{GetxController}!\_connectivity@{\_connectivity}}
+\index{\_connectivity@{\_connectivity}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{\_connectivity}{\_connectivity}}
+{\footnotesize\ttfamily final Connectivity Getx\+Controller\+::\+\_\+connectivity = Connectivity()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a75a14209027e8a900055819bb6f81a72}\label{classGetxController_a75a14209027e8a900055819bb6f81a72}} 
+\index{GetxController@{GetxController}!\_connectivitySubscription@{\_connectivitySubscription}}
+\index{\_connectivitySubscription@{\_connectivitySubscription}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{\_connectivitySubscription}{\_connectivitySubscription}}
+{\footnotesize\ttfamily late Stream\+Subscription$<$Connectivity\+Result$>$ Getx\+Controller\+::\+\_\+connectivity\+Subscription\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a1ac5e0d79460dad7a2e9152aaebae1ef}\label{classGetxController_a1ac5e0d79460dad7a2e9152aaebae1ef}} 
+\index{GetxController@{GetxController}!currentPageIndex@{currentPageIndex}}
+\index{currentPageIndex@{currentPageIndex}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{currentPageIndex}{currentPageIndex}}
+{\footnotesize\ttfamily final Rx\+Int Getx\+Controller\+::current\+Page\+Index = 0.obs\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a67a54e17eff926a2dfa59b7cb52c7369}\label{classGetxController_a67a54e17eff926a2dfa59b7cb52c7369}} 
+\index{GetxController@{GetxController}!instance@{instance}}
+\index{instance@{instance}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{instance}{instance}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGetxController_a820bceceaebcb12d32316a0a5fabf5a8}{On\+Boarding\+Controller}} get Getx\+Controller\+::instance =$>$ Get.\+find()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a780649805d6a803036298e4090f99f6b}\label{classGetxController_a780649805d6a803036298e4090f99f6b}} 
+\index{GetxController@{GetxController}!instance@{instance}}
+\index{instance@{instance}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{instance}{instance}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Network\+Manager get Getx\+Controller\+::instance =$>$ Get.\+find()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a098b82ab333e50dc3e1b409b058b8a1f}\label{classGetxController_a098b82ab333e50dc3e1b409b058b8a1f}} 
+\index{GetxController@{GetxController}!pageController@{pageController}}
+\index{pageController@{pageController}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{pageController}{pageController}}
+{\footnotesize\ttfamily final Page\+Controller Getx\+Controller\+::page\+Controller = Page\+Controller()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGetxController_a2e256452dc3429c475a5112bec71a4a1}\label{classGetxController_a2e256452dc3429c475a5112bec71a4a1}} 
+\index{GetxController@{GetxController}!pageCount@{pageCount}}
+\index{pageCount@{pageCount}!GetxController@{GetxController}}
+\doxysubsubsection{\texorpdfstring{pageCount}{pageCount}}
+{\footnotesize\ttfamily final int Getx\+Controller\+::page\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/features/authentication/controllers/\mbox{\hyperlink{onboarding__controller_8dart}{onboarding\+\_\+controller.\+dart}}\item 
+lib/utils/helpers/\mbox{\hyperlink{network__manager_8dart}{network\+\_\+manager.\+dart}}\end{DoxyCompactItemize}

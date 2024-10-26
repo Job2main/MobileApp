@@ -1,0 +1,4 @@
+<map id="Exception::fromMessage" name="Exception::fromMessage">
+<area shape="rect" id="node1" title="Create a format exception from a specific error message." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$classException.html#a04d275bef52a9364e2946a3ecd2a920a" title="Default constructor with a generic error message." alt="" coords="236,5,448,32"/>
+</map>
