@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:job2main/common/widgets/buttons/default_button.dart';
 import '../../controllers/job_controller.dart';
 
 class JobDisplay extends StatelessWidget {
@@ -7,40 +8,48 @@ class JobDisplay extends StatelessWidget {
   const JobDisplay({super.key, required this.job});
 
   Widget _buildJobInfo() {
-    return _buildCard([Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildRow(Icons.business, 'Company', job.company),
-        _buildRow(Icons.date_range, 'Date', DateFormat('yyyy-MM-dd').format(job.date)),
-        _buildRow(Icons.attach_money, 'Wage', '\$${job.wageRange}/hour'),
-        _buildRow(Icons.access_time, 'Hours', '${job.numberOfHours} hours'),
-        _buildRow(Icons.location_on, 'Location', job.location),
-      ],
-    )]);
+    return _buildCard(
+      [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildRow(Icons.business, 'Company', job.company),
+            _buildRow(Icons.date_range, 'Start Date', DateFormat('MM-dd').format(job.startDate)),
+            _buildRow(Icons.date_range, 'End Date', DateFormat('MM-dd').format(job.endDate)),
+            _buildRow(Icons.attach_money, 'Wage', '\$${job.wageRange}/hour'),
+            _buildRow(Icons.access_time, 'Hours', '${job.startHour} - ${job.endHour}'),
+            _buildRow(Icons.location_on, 'Location', job.location),
+            _buildRow(Icons.person, 'Contact', job.contactName),
+          ],
+        ),
+      ], "Information Additionnelle",
+    );
   }
 
   Widget _buildRow(IconData icon, String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.black),
-          const SizedBox(width: 8),
-          Text(
-            '$label: ',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: Colors.black,
+          Icon(icon, color: Colors.black54),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              '$label: ',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+                color: Colors.black87,
+              ),
             ),
           ),
           Expanded(
             child: Text(
               value,
               style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black,
+                fontSize: 14,
+                color: Colors.black54,
               ),
             ),
           ),
@@ -50,71 +59,45 @@ class JobDisplay extends StatelessWidget {
   }
 
   Widget _buildDescriptionBox() {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      margin: const EdgeInsets.symmetric(vertical: 16.0),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200,
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Text(
-        job.description,
-        style: const TextStyle(
-          fontSize: 16,
-          color: Colors.black87,
-          fontWeight: FontWeight.w400,
-          fontStyle: FontStyle.italic,
-          letterSpacing: 0.5,
+    return _buildCard(
+      [
+        SizedBox(
+          width: double.infinity,
+          child: Text(
+              job.description,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.black87,
+              ),
+            ),
         ),
-        textAlign: TextAlign.center,
-      ),
+      ], "Description",
     );
   }
 
-  Widget _buildCard(List<Widget> children) {
+  Widget _buildCard(List<Widget> children, String title) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(12.0),
       ),
       elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Additional Info',
-              style: TextStyle(
+            Text(
+              title,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                color: Color.fromARGB(255, 0, 0, 0),
+                color: Colors.black,
               ),
             ),
             const SizedBox(height: 8),
             ...children,
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMessageButton() {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: ElevatedButton.icon(
-        onPressed: () {
-          // Handle message button press
-          print('Message button pressed');
-        },
-        icon: const Icon(Icons.message),
-        label: const Text('Message'),
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-          backgroundColor: Colors.black,
-          textStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
         ),
       ),
     );
@@ -130,10 +113,14 @@ class JobDisplay extends StatelessWidget {
           child: Column(
             children: [
               _buildDescriptionBox(),
-              const SizedBox(height: 16),
               _buildJobInfo(),
               const SizedBox(height: 16),
-              _buildMessageButton(),
+              defaultButton(Icons.message, const Text('Message'), () {
+                print('Message button pressed');
+              }),
+              defaultButton(Icons.description, const Text("Voir le contrat"), () {
+                print('Contract button pressed');
+              }),
             ],
           ),
         ),
@@ -145,12 +132,10 @@ class JobDisplay extends StatelessWidget {
     return AppBar(
       title: Text(job.title),
       centerTitle: false,
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(1.0),
-        child: Container(
-          color: Colors.black,
-          height: 1.0,
-        ),
+      elevation: 0,
+      bottom: const PreferredSize(
+        preferredSize: Size.fromHeight(1.0),
+        child: Divider(color: Colors.black12),
       ),
     );
   }
