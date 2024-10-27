@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/common/widgets/job/job_card.dart';
 import 'package:job2main/common/widgets/job/job_widgets.dart';
-import '../../controllers/job_controller.dart';
+import '../../../../common/models/job_controller.dart';
 import './job_display.dart';
 
 enum FilterStatus { 

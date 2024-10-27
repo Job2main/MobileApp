@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/job/job_widgets.dart';
-import '../../controllers/job_controller.dart';
+import '../../../../common/models/job_controller.dart';
 
 class JobDisplay extends StatelessWidget {
   final Job job;

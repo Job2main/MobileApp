@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:job2main/common/widgets/comfirmation_popup.dart';
-import 'package:job2main/features/worker/controllers/user.dart';
+import 'package:job2main/common/models/user.dart';
 
 class ChangeValuePage extends StatefulWidget {
   final User user;

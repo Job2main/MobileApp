@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/features/worker/controllers/user.dart';
+import 'package:job2main/common/models/user.dart';
 import '../../controllers/profile_page_controller.dart';
 import 'parameters.dart';
 

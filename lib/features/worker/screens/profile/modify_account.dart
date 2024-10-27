@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/features/worker/controllers/user.dart';
+import 'package:job2main/common/models/user.dart';
 import 'package:job2main/features/worker/screens/profile/change_value_page.dart';
 import 'package:job2main/features/worker/screens/profile/widgets/parameter_widgets.dart';
 
