@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  mobile:
+    privileged: true
+    image: mobile:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - apk-volume:/apk
+    command: ["tail", "-f", "/dev/null"]
+
+
+volumes:
+  apk-volume:
