@@ -9,20 +9,27 @@ enum FilterStatus {
   location,
   company,
   contactName,
+  minWage,
+  maxWage,
 }
+
+const Map<FilterStatus, String> filterStatusMap = {
+  FilterStatus.maxWage: 'wageRange',
+  FilterStatus.minWage: 'wageRange',
+};
 
 class ListJobs extends StatefulWidget {
   final JobController controller = JobController();
 
   ListJobs({super.key}) {
     controller.createJob(1, 'Job 1', 'Description of job 1', 'Restaurant 1', DateTime.now(),
-        DateTime.now().add(const Duration(days: 2)), 22, 'Toronto', 'John Doe', "10:10", "15:00");
+        DateTime.now().add(const Duration(days: 2)), 21, 'Toronto', 'John Doe', "10:10", "15:00");
     controller.createJob(2, 'Job 2', 'Description of job 2', 'Restaurant 2', DateTime.now(),
         DateTime.now().add(const Duration(days: 6)), 22, 'Toronto', 'John Doe', "10:10", "15:00");
     controller.createJob(3, 'Job 3', 'Description of job 3', 'Restaurant 3', DateTime.now(),
-        DateTime.now().add(const Duration(days: 9)), 22, 'Vancouver', 'John Doe', "10:10", "15:00");
+        DateTime.now().add(const Duration(days: 9)), 24, 'Vancouver', 'John Doe', "10:10", "15:00");
     controller.createJob(4, 'Job 4', 'Description of job 4', 'Restaurant 4', DateTime.now(),
-        DateTime.now().add(const Duration(days: 4)), 22, 'Toronto', 'John Doe', "10:10", "15:00");
+        DateTime.now().add(const Duration(days: 4)), 25, 'Toronto', 'John Doe', "10:10", "15:00");
   }
 
   @override
@@ -79,18 +86,21 @@ class _ListJobsState extends State<ListJobs> {
     return Row(
       children: [
         Expanded(
-          child: Wrap(
-            spacing: 8.0,
-            children: activeFilters.entries.map((entry) {
-              return Chip(
-                label: Text("${entry.key.toString().split('.').last}: ${entry.value}"),
-                onDeleted: () {
-                  setState(() {
-                    activeFilters.remove(entry.key);
-                  });
-                },
-              );
-            }).toList(),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 9.0),
+            child: Wrap(
+              spacing: 8.0,
+              children: activeFilters.entries.map((entry) {
+                return Chip(
+                  label: Text("${entry.key.toString().split('.').last}: ${entry.value}"),
+                  onDeleted: () {
+                    setState(() {
+                      activeFilters.remove(entry.key);
+                    });
+                  },
+                );
+              }).toList(),
+            ),
           ),
         ),
         IconButton(
@@ -100,6 +110,7 @@ class _ListJobsState extends State<ListJobs> {
       ],
     );
   }
+
 
   void _showFilterSelectionDropdown() async {
     FilterStatus? selected = await showDialog<FilterStatus>(
@@ -118,8 +129,26 @@ class _ListJobsState extends State<ListJobs> {
     );
 
     if (selected != null) {
-      _showFilterDialog(selected); // Show input dialog if a filter is selected
+      _showFilterDialog(selected);
     }
+  }
+
+  bool returnValue(String filterValue, String jobValue, String filterKey) {
+    switch (filterKey) {
+      case 'minWage':
+        return double.parse(filterValue) <= double.parse(jobValue);
+      case 'maxWage':
+        return double.parse(filterValue) >= double.parse(jobValue);
+      default:
+        return filterValue == jobValue;
+    }
+  }
+
+  String getFilterName(FilterStatus status) {
+    if (filterStatusMap[status] != null) {
+      return filterStatusMap[status]!;
+    }
+    return status.toString().split('.').last;
   }
 
   List<Job> _filterJobs() {
@@ -128,11 +157,12 @@ class _ListJobsState extends State<ListJobs> {
     if (activeFilters.isNotEmpty) {
       filteredJobs = filteredJobs.where((job) {
         return activeFilters.entries.every((entry) {
-          final filterKey = entry.key.toString().split('.').last;
+          final filterKey = getFilterName(entry.key);
           final filterValue = entry.value.toLowerCase();
-          final jobValue = job.getAsMap()[filterKey]?.toLowerCase() ?? '';
+          if (job.getAsMap()[filterKey] == null) return false;
+          final jobValue = job.getAsMap()[filterKey]?.toString().toLowerCase() ?? '';
 
-          return filterValue == jobValue;
+          return returnValue(filterValue, jobValue, entry.key.toString().split('.').last);
         });
       }).toList();
     }
