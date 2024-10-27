@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:job2main/features/worker/screens/listjobs/list_jobs.dart';
 import 'package:job2main/features/worker/screens/myjobs/my_jobs.dart';
 import 'package:job2main/features/worker/screens/profile/profile.dart';
 import 'package:job2main/utils/helpers/helper_functions.dart';
@@ -9,13 +10,13 @@ class WorkerNavigation extends StatelessWidget {
   WorkerNavigation({super.key});
 
   final Map<String, IconData> bar = const {
-    'Home': Iconsax.home,
+    'Jobs': Iconsax.home,
     'MyJobs': Iconsax.briefcase,
     'Profile': Iconsax.user,
   };
 
   final List<Widget> pages = [
-    Container(color: Colors.green),
+    const ListJobs(),
     MyJobsScreen(),
     ProfilePage(),
   ];
