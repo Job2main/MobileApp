@@ -8,6 +8,7 @@ import 'package:job2main/features/worker/screens/myjobs/job_display.dart';
 enum FilterStatus {
   location,
   company,
+  contactName,
 }
 
 class ListJobs extends StatefulWidget {
