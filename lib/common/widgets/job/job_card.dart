@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/common/widgets/job/job_widgets.dart';
-import 'package:job2main/features/worker/controllers/job_controller.dart';
+import 'package:job2main/common/models/job_controller.dart';
 
 class JobCard extends StatelessWidget {
   final Job job;

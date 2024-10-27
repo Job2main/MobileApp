@@ -10,7 +10,7 @@ class WorkerNavigation extends StatelessWidget {
 
   final Map<String, IconData> bar = const {
     'Home': Iconsax.home,
-    'Search': Iconsax.shop,
+    'MyJobs': Iconsax.briefcase,
     'Profile': Iconsax.user,
   };
 

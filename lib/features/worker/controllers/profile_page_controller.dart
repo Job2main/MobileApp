@@ -1,4 +1,4 @@
-import './user.dart';
+import '../../../common/models/user.dart';
 
 class ProfilePageController {
   
