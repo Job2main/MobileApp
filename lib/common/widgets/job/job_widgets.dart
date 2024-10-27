@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:job2main/common/models/job_controller.dart';
 
 Widget displayJobStatus(String status) {
-
   const colorsList = {
     'completed': Colors.green,
     'comfirmed': Colors.green,
@@ -50,30 +50,6 @@ class JobTitle extends StatelessWidget {
   }
 }
 
-class JobCreator extends StatelessWidget {
-  final String creator;
-
-  const JobCreator({super.key, required this.creator});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Icon(Icons.person, color: Colors.teal, size: 20), // Icon color
-        const SizedBox(width: 8.0),
-        Text(
-          creator,
-          style: const TextStyle(
-            fontSize: 16,
-            color: Colors.black54, // Softer color for creator text
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class JobDescription extends StatelessWidget {
   final String description;
 
@@ -89,7 +65,7 @@ class JobDescription extends StatelessWidget {
           description,
           style: const TextStyle(
             fontSize: 16,
-            color: Colors.black54, // Softer color for description text
+            color: Colors.black54,
           ),
         ),
         const SizedBox(height: 8.0),
@@ -110,13 +86,19 @@ class JobSchedule extends StatelessWidget {
   final DateTime startDate;
   final DateTime endDate;
 
-  const JobSchedule({super.key, required this.startHour, required this.endHour, required this.startDate, required this.endDate});
+  const JobSchedule(
+      {super.key,
+      required this.startHour,
+      required this.endHour,
+      required this.startDate,
+      required this.endDate});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 8.0),
         _buildScheduleRow(),
         const SizedBox(height: 8.0),
         _buildDateRow(),
@@ -125,12 +107,37 @@ class JobSchedule extends StatelessWidget {
   }
 
   Widget _buildScheduleRow() {
+    return JobLine(text: '$startHour - $endHour', icon: Icons.access_time);
+  }
+
+  Widget _buildDateRow() {
     return Row(
       children: [
-        const Icon(Icons.access_time, color: Colors.black, size: 20),
+        JobLine(text: '${_buildDateText(startDate)} - ${_buildDateText(endDate)}', icon: Icons.date_range),
+        const SizedBox(width: 8.0),
+      ],
+    );
+  }
+
+  String _buildDateText(DateTime date) {
+    return '${date.day} ${getMonthName(date.month.toString())}';
+  }
+}
+
+class JobLine extends StatelessWidget {
+  final String text;
+  final IconData icon;
+
+  const JobLine({super.key, required this.text, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon, color: Colors.black, size: 20),
         const SizedBox(width: 8.0),
         Text(
-          '$startHour - $endHour',
+          text,
           style: const TextStyle(
             fontSize: 16,
             color: Colors.black54,
@@ -140,39 +147,26 @@ class JobSchedule extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildDateRow() {
-    return Row(
-      children: [
-        const Icon(Icons.calendar_today, color: Colors.black, size: 20),
-        const SizedBox(width: 8.0),
-        _buildDateText(startDate),
-        const Padding(
-          padding: EdgeInsets.only(right: 16.0),
-          child: Text(
-            '-',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black54,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-        _buildDateText(endDate),
-      ],
-    );
-  }
+class AlignJob extends StatelessWidget {
+  final Job job;
 
-  Widget _buildDateText(DateTime date) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16.0),
-      child: Text(
-        '${date.day} ${getMonthName(date.month.toString())}',
-        style: const TextStyle(
-          fontSize: 16,
-          color: Colors.black54,
-          fontWeight: FontWeight.w500,
-        ),
+  const AlignJob({super.key, required this.job});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => (const Scaffold()),
+              ));
+        },
+        child: const Text('More Information'),
       ),
     );
   }
