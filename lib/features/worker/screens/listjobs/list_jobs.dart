@@ -5,8 +5,9 @@ import 'package:job2main/common/widgets/job/job_widgets.dart';
 import 'package:job2main/common/widgets/search_bar.dart';
 import 'package:job2main/features/worker/screens/myjobs/job_display.dart';
 
-enum FilterStatus { 
-  all,
+enum FilterStatus {
+  location,
+  company,
 }
 
 class ListJobs extends StatefulWidget {
@@ -18,7 +19,7 @@ class ListJobs extends StatefulWidget {
     controller.createJob(2, 'Job 2', 'Description of job 2', 'Restaurant 2', DateTime.now(),
         DateTime.now().add(const Duration(days: 6)), 22, 'Toronto', 'John Doe', "10:10", "15:00");
     controller.createJob(3, 'Job 3', 'Description of job 3', 'Restaurant 3', DateTime.now(),
-        DateTime.now().add(const Duration(days: 9)), 22, 'Toronto', 'John Doe', "10:10", "15:00");
+        DateTime.now().add(const Duration(days: 9)), 22, 'Vancouver', 'John Doe', "10:10", "15:00");
     controller.createJob(4, 'Job 4', 'Description of job 4', 'Restaurant 4', DateTime.now(),
         DateTime.now().add(const Duration(days: 4)), 22, 'Toronto', 'John Doe', "10:10", "15:00");
   }
@@ -28,8 +29,8 @@ class ListJobs extends StatefulWidget {
 }
 
 class _ListJobsState extends State<ListJobs> {
-  FilterStatus selectedFilter = FilterStatus.all;
   String searchQuery = '';
+  Map<FilterStatus, String> activeFilters = {}; // Stores active filters
 
   void _onJobTap(BuildContext context, Job job) {
     Navigator.of(context).push(
@@ -39,40 +40,107 @@ class _ListJobsState extends State<ListJobs> {
     );
   }
 
-  Widget _buildFilterDropdown() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: DropdownButton<FilterStatus>(
-        hint: const Text("Filter by Status"),
-        value: selectedFilter,
-        icon: const Icon(Icons.filter_list, color: Colors.black),
-        isExpanded: true,
-        items: FilterStatus.values.map((status) {
-          return DropdownMenuItem<FilterStatus>(
-            value: status,
-            child: Text(status == FilterStatus.all ? "All" : status.toString().split('.').last),
-          );
-        }).toList(),
-        onChanged: (status) {
-          setState(() {
-            selectedFilter = status!;
-          });
-        },
-      ),
+  void _showFilterDialog(FilterStatus status) {
+    TextEditingController inputController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Set Filter for ${status.toString().split('.').last}"),
+          content: TextField(
+            controller: inputController,
+            decoration: const InputDecoration(labelText: 'Enter filter criteria'),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Close"),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  activeFilters[status] = inputController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
     );
+  }
+
+  Widget _buildFilterBox() {
+    return Row(
+      children: [
+        Expanded(
+          child: Wrap(
+            spacing: 8.0,
+            children: activeFilters.entries.map((entry) {
+              return Chip(
+                label: Text("${entry.key.toString().split('.').last}: ${entry.value}"),
+                onDeleted: () {
+                  setState(() {
+                    activeFilters.remove(entry.key);
+                  });
+                },
+              );
+            }).toList(),
+          ),
+        ),
+        IconButton(
+          icon: const Icon(Icons.add, color: Colors.blue),
+          onPressed: _showFilterSelectionDropdown,
+        ),
+      ],
+    );
+  }
+
+  void _showFilterSelectionDropdown() async {
+    FilterStatus? selected = await showDialog<FilterStatus>(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text("Select a filter"),
+          children: FilterStatus.values
+              .map((status) => SimpleDialogOption(
+                    onPressed: () => Navigator.pop(context, status),
+                    child: Text(status.toString().split('.').last),
+                  ))
+              .toList(),
+        );
+      },
+    );
+
+    if (selected != null) {
+      _showFilterDialog(selected); // Show input dialog if a filter is selected
+    }
   }
 
   List<Job> _filterJobs() {
     var filteredJobs = widget.controller.jobs;
 
-    if (selectedFilter != FilterStatus.all) {
-      filteredJobs = filteredJobs.where((job) => job.status.toString().split('.').last == selectedFilter.toString().split('.').last).toList();
+    if (activeFilters.isNotEmpty) {
+      filteredJobs = filteredJobs.where((job) {
+        return activeFilters.entries.every((entry) {
+          final filterKey = entry.key.toString().split('.').last;
+          final filterValue = entry.value.toLowerCase();
+          final jobValue = job.getAsMap()[filterKey]?.toLowerCase() ?? '';
+
+          return filterValue == jobValue;
+        });
+      }).toList();
     }
 
     if (searchQuery.isNotEmpty) {
-      filteredJobs = filteredJobs.where((job) => job.title.toLowerCase().contains(searchQuery.toLowerCase())).toList();
+      filteredJobs = filteredJobs
+          .where((job) => job.title.toLowerCase().contains(searchQuery.toLowerCase()))
+          .toList();
     }
-
     return filteredJobs;
   }
 
@@ -98,7 +166,11 @@ class _ListJobsState extends State<ListJobs> {
         JobLine(text: "${job.wageRange}/h", icon: Icons.attach_money),
         const SizedBox(height: 8.0),
         JobLine(text: job.location, icon: Icons.location_on),
-        JobSchedule(startHour: job.startHour, endHour: job.endHour, startDate: job.startDate, endDate: job.endDate),
+        JobSchedule(
+            startHour: job.startHour,
+            endHour: job.endHour,
+            startDate: job.startDate,
+            endDate: job.endDate),
       ],
       onTap: () => _onJobTap(context, job),
     );
@@ -115,7 +187,7 @@ class _ListJobsState extends State<ListJobs> {
               searchQuery = query;
             });
           }),
-          _buildFilterDropdown(),
+          _buildFilterBox(),
           Expanded(
             child: SingleChildScrollView(
               child: _buildJobCards(context),
