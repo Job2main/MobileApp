@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:job2main/features/authentication/screens/login/login.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 
