@@ -16,7 +16,7 @@ class WorkerNavigation extends StatelessWidget {
   };
 
   final List<Widget> pages = [
-    const ListJobs(),
+    ListJobs(),
     MyJobsScreen(),
     ProfilePage(),
   ];
