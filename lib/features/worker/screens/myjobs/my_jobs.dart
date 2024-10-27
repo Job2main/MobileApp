@@ -49,7 +49,7 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
       child: DropdownButton<FilterStatus>(
         hint: const Text("Filter by Status"),
         value: selectedStatus,
-        icon: const Icon(Icons.filter_list, color: Colors.teal),
+        icon: const Icon(Icons.filter_list, color: Colors.black),
         isExpanded: true,
         items: FilterStatus.values.map((status) {
           return DropdownMenuItem<FilterStatus>(
@@ -83,7 +83,8 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
       jobWidgets: [
         JobTitle(title: job.title),
         JobDescription(description: job.description),
-        JobSchedule(startHour: job.startHour, endHour: job.endHour, startDate: job.startDate, endDates: job.endDate),
+        JobSchedule(startHour: job.startHour, endHour: job.endHour, startDate: job.startDate, endDate: job.endDate),
+        const SizedBox(height: 8.0),
         displayJobStatus(job.status.toString().split('.').last),
       ],
       onTap: () => _onJobTap(context, job),
