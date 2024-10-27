@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:job2main/features/worker/messages/chat_bubble.dart';
-import 'package:job2main/features/worker/messages/widgets/text_field.dart';
+import 'package:job2main/features/worker/messages/widget/text_field.dart';
 
 class MessagePage extends StatefulWidget {
   final String receiveEmail;

@@ -13,7 +13,6 @@ Widget displayJobStatus(String status) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const SizedBox(height: 8.0),
       Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         decoration: BoxDecoration(
@@ -99,13 +98,19 @@ class JobDescription extends StatelessWidget {
   }
 }
 
+String getMonthName(String monthNumber, {bool fullName = false}) {
+  final DateTime date = DateTime(0, int.parse(monthNumber));
+  final DateFormat formatter = DateFormat(fullName ? 'MMMM' : 'MMM');
+  return formatter.format(date);
+}
+
 class JobSchedule extends StatelessWidget {
   final String startHour;
   final String endHour;
   final DateTime startDate;
-  final DateTime endDates;
+  final DateTime endDate;
 
-  const JobSchedule({super.key, required this.startHour, required this.endHour, required this.startDate, required this.endDates});
+  const JobSchedule({super.key, required this.startHour, required this.endHour, required this.startDate, required this.endDate});
 
   @override
   Widget build(BuildContext context) {
@@ -153,15 +158,9 @@ class JobSchedule extends StatelessWidget {
             ),
           ),
         ),
-        _buildDateText(endDates),
+        _buildDateText(endDate),
       ],
     );
-  }
-
-  String getMonthName(String monthNumber, {bool fullName = false}) {
-    final DateTime date = DateTime(0, int.parse(monthNumber));
-    final DateFormat formatter = DateFormat(fullName ? 'MMMM' : 'MMM');
-    return formatter.format(date);
   }
 
   Widget _buildDateText(DateTime date) {
