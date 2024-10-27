@@ -20,16 +20,18 @@ class LoginFormButtons extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-                onPressed: () {
-                  if (userTypeController.userType.value == UserType.employer) {
-                    Get.to(() => const EmployerHomeScreen());
-                  } else {
-                    Get.to(() => const NavigationMenu());
-                  }
-                },
-                child: const Text(TTexts.signIn))),
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              if (userTypeController.userType.value == UserType.employer) {
+                Get.to(() => EmployerNavigation());
+              } else {
+                Get.to(() => WorkerNavigation());
+              }
+            },
+            child: const Text(TTexts.signIn)
+          )
+        ),
         const SizedBox(height: TSizes.spaceBtwItems),
         SizedBox(
             width: double.infinity,
