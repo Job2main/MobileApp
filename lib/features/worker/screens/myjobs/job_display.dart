@@ -6,7 +6,8 @@ import '../../../../common/models/job_controller.dart';
 
 class JobDisplay extends StatelessWidget {
   final Job job;
-  const JobDisplay({super.key, required this.job});
+  final List<Widget> children;
+  const JobDisplay({super.key, required this.job, required this.children});
 
   Widget _buildJobInfo() {
     return _buildCard(
@@ -120,12 +121,7 @@ class JobDisplay extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Adjust alignment as needed
                 children: [
-                  defaultButton(Icons.description, const Text("Voir le contrat"), () {
-                    print('Contract button pressed');
-                  }),
-                  defaultButton(Icons.message, const Text('Message'), () {
-                    print('Message button pressed');
-                  }),
+                  ...children,
                 ],
               ),
             ],
