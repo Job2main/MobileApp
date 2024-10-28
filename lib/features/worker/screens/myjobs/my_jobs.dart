@@ -82,7 +82,8 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
       job: job,
       jobWidgets: [
         JobTitle(title: job.title),
-        JobDescription(description: job.description),
+        const SizedBox(height: 13.0),
+        JobLine(text: job.location, icon: Icons.location_on),
         JobSchedule(startHour: job.startHour, endHour: job.endHour, startDate: job.startDate, endDate: job.endDate),
         const SizedBox(height: 8.0),
         displayJobStatus(job.status.toString().split('.').last),

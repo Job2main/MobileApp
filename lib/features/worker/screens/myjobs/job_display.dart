@@ -117,12 +117,17 @@ class JobDisplay extends StatelessWidget {
               _buildDescriptionBox(),
               _buildJobInfo(),
               const SizedBox(height: 16),
-              defaultButton(Icons.message, const Text('Message'), () {
-                print('Message button pressed');
-              }),
-              defaultButton(Icons.description, const Text("Voir le contrat"), () {
-                print('Contract button pressed');
-              }),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Adjust alignment as needed
+                children: [
+                  defaultButton(Icons.description, const Text("Voir le contrat"), () {
+                    print('Contract button pressed');
+                  }),
+                  defaultButton(Icons.message, const Text('Message'), () {
+                    print('Message button pressed');
+                  }),
+                ],
+              ),
             ],
           ),
         ),
