@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget defaultButton(IconData message, Text text, Function() onPressed) {
+Widget defaultButton(IconData message, Text text, Function() onPressed, {Color backgroundColor = Colors.black}) {
     return Align(
       alignment: Alignment.centerRight,
       child: ElevatedButton.icon(
@@ -9,7 +9,7 @@ Widget defaultButton(IconData message, Text text, Function() onPressed) {
         label: text,
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-          backgroundColor: Colors.black,
+          backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),

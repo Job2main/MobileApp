@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/job/job_card.dart';
 import 'package:job2main/common/widgets/job/job_widgets.dart';
 import '../../../../common/models/job_controller.dart';
@@ -27,13 +28,24 @@ class MyJobsScreen extends StatefulWidget {
   _MyJobsScreenState createState() => _MyJobsScreenState();
 }
 
+List<Widget> jobDisplayWidgets() {
+  return [
+    defaultButton(Icons.description, const Text("Voir le contrat"), () {
+      print('Contract button pressed');
+    }),
+    defaultButton(Icons.message, const Text('Message'), () {
+      print('Message button pressed');
+    }),
+  ];
+}
+
 class _MyJobsScreenState extends State<MyJobsScreen> {
   FilterStatus selectedStatus = FilterStatus.all;
 
   void _onJobTap(BuildContext context, Job job) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => JobDisplay(job: job),
+        builder: (context) => JobDisplay(job: job, children: jobDisplayWidgets()),
       ),
     );
   }
