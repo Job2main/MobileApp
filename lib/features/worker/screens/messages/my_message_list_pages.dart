@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job2main/features/worker/screens/messages/message_page.dart';
 
 class MyMessageListPages extends StatelessWidget {
-  MyMessageListPages({super.key});
+  const MyMessageListPages({super.key});
   // final MessageService messageService = MessageService();
   // final User? user = Auth().currentUser;
 

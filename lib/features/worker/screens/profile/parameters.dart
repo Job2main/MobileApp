@@ -5,7 +5,6 @@ import 'package:job2main/common/widgets/snack_bar.dart';
 import 'package:job2main/common/models/user.dart';
 import 'package:job2main/features/worker/screens/profile/modify_account.dart';
 import 'package:job2main/features/worker/screens/profile/widgets/parameter_widgets.dart';
-import 'package:job2main/utils/theme/theme.dart';
 
 class ParametersPage extends StatelessWidget {
   final User user;
