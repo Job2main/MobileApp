@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/features/worker/messages/message_page.dart';
+import 'package:job2main/features/worker/screens/messages/message_page.dart';
 
 class MyMessageListPages extends StatelessWidget {
   MyMessageListPages({super.key});
