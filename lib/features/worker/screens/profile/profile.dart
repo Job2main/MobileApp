@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/common/models/user.dart';
-import '../../controllers/profile_page_controller.dart';
 import 'parameters.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -16,7 +15,8 @@ class ProfilePage extends StatefulWidget {
     age: 22,
     totalHoursWorked: 100,
     totalJobsDone: 10,
-    profileDescription: 'This is a description of the user. It can be a long text that describes the user in more details.',
+    profileDescription:
+        'This is a description of the user. It can be a long text that describes the user in more details.',
     notation: 4,
   );
 
