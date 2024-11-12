@@ -27,8 +27,8 @@ jobs:
         run: flutter pub get
 
       # Step 4: Run tests (On standby while the test are not working)
-    #   - name: Run tests
-    #     run: flutter test
+      - name: Run tests
+        run: flutter test
 
       # Optional Step 5: Capture test results
       - name: Archive test results
