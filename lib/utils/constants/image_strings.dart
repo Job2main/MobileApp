@@ -4,6 +4,7 @@
 class TImages {
   static const String darkLogo = 'assets/logos/darkmode.png';
   static const String lightLogo = 'assets/logos/lightmode.png';
+  static const String svgLogo = 'assets/logos/logo.svg';
 
   static const String onboarding1 = 'assets/images/OnBoarding/Onboarding1.png';
   static const String onboarding2 = 'assets/images/OnBoarding/Onboarding2.png';
