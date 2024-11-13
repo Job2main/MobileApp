@@ -1,5 +1,1 @@
-import '../../../common/models/user.dart';
-
-class ProfilePageController {
-  
-}
+class ProfilePageController {}
