@@ -1,39 +1,56 @@
-name: Test on Main Branches
+name: Test, Merge, and Deploy to Mirror Repository
 
 on:
   push:
     branches:
-      - 3-testing-ci-cd
-      - main
+      - '**'
+  pull_request:
+    branches: [master, main]
+
+env:
+  MIRROR_URL: git@github.com:EpitechPromo2026/G-EIP-700-BAR-7-1-eip-valentin.py.git
 
 jobs:
-  flutter-tests:
+  # Job 1: Run Unit Tests on Branch Pushes and PRs
+  unit_test:
     name: Run Flutter Tests
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.24.4'
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # Step 4: Run tests (On standby while the test are not working)
       - name: Run tests
         run: flutter test
 
-      # Optional Step 5: Capture test results
       - name: Archive test results
         if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: test-results
           path: build/test-results
+
+  # Job 2: Mirror the Repository on Successful Merge to Main
+  publish:
+    name: Mirror Repository to School Repo
+    runs-on: ubuntu-latest
+    needs: unit_test
+    if: github.ref == 'refs/heads/main' && success()
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: ${{ env.MIRROR_URL }}
+          ssh_private_key: ${{ secrets.SSH_KEY_JOB2MAIN_MIRROR_TO_EPITECH }}
