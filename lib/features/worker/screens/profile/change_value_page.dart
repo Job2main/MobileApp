@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:job2main/common/widgets/comfirmation_popup.dart';
 import 'package:job2main/common/models/user.dart';
 
@@ -72,20 +71,21 @@ class _ChangeValuePageState extends State<ChangeValuePage> {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Row(
-        children: [          Expanded(
+        children: [
+          Expanded(
             child: TextFormField(
               initialValue: widget.user.getAsMap()[key],
               onChanged: (newValue) {
                 onChanged(key, newValue);
               },
               decoration: const InputDecoration(
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-            ),
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+              ),
             ),
           ),
           IconButton(
