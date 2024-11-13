@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
+import 'package:job2main/common/widgets/job/job_card.dart';
+import 'package:job2main/common/widgets/job/job_widgets.dart';
+import 'package:job2main/features/worker/screens/myjobs/contract_viewer.dart';
 import '../../../../common/models/job_controller.dart';
 import './job_display.dart';
 
@@ -61,7 +65,7 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
   List<Widget> jobDisplayWidgets() {
     return [
       defaultButton(Icons.description, const Text("Voir le contrat"), () {
-        print('Contract button pressed');
+        Get.to(() => const ContractViewer());
       }),
       defaultButton(Icons.message, const Text('Message'), () {
         print('Message button pressed');
