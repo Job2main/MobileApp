@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/common/models/job_controller.dart';
+import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
+import 'package:job2main/common/widgets/filters.dart';
 import 'package:job2main/common/widgets/job/job_card.dart';
 import 'package:job2main/common/widgets/job/job_widgets.dart';
+import 'package:job2main/common/widgets/job/new_job_card.dart';
+import 'package:job2main/common/widgets/job/new_job_widgests.dart';
 import 'package:job2main/common/widgets/search_bar.dart';
 import 'package:job2main/features/worker/screens/myjobs/job_display.dart';
+import 'package:job2main/utils/formatters/formatter.dart';
 
 enum FilterStatus {
   location,
@@ -60,88 +65,41 @@ class _ListJobsState extends State<ListJobs> {
     );
   }
 
-  void _showFilterDialog(FilterStatus status) {
-    TextEditingController inputController = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Set Filter for ${status.toString().split('.').last}"),
-          content: TextField(
-            controller: inputController,
-            decoration: const InputDecoration(labelText: 'Enter filter criteria'),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("Close"),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  activeFilters[status] = inputController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text("OK"),
-            ),
-          ],
-        );
-      },
-    );
+  void _onDeleted(Object status) {
+    setState(() {
+      activeFilters.remove(status as FilterStatus);
+    });
   }
 
-  Widget _buildFilterBox() {
-    return Row(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Wrap(
-              spacing: 8.0,
-              children: activeFilters.entries.map((entry) {
-                return Chip(
-                  label: Text("${entry.key.toString().split('.').last}: ${entry.value}"),
-                  onDeleted: () {
-                    setState(() {
-                      activeFilters.remove(entry.key);
-                    });
-                  },
-                );
-              }).toList(),
-            ),
-          ),
-        ),
-        IconButton(
-          icon: const Icon(Icons.add, color: Colors.blue),
-          onPressed: _showFilterSelectionDropdown,
-        ),
-      ],
-    );
+  void _addFilter(FilterStatus status, String value) {
+    setState(() {
+      activeFilters[status] = value;
+    });
   }
-
 
   void _showFilterSelectionDropdown() async {
     FilterStatus? selected = await showDialog<FilterStatus>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (BuildContext dialogContext) {
         return SimpleDialog(
           title: const Text("Select a filter"),
-          children: FilterStatus.values
-              .map((status) => SimpleDialogOption(
-                    onPressed: () => Navigator.pop(context, status),
-                    child: Text(status.toString().split('.').last),
-                  ))
-              .toList(),
+          children: [
+            ...FilterStatus.values.map(
+              (status) => SimpleDialogOption(
+                onPressed: () => Navigator.pop(dialogContext, status),
+                child: Text(status.toString().split('.').last),
+              ),
+            ),
+            buildFilterBox(activeFilters, _onDeleted),
+          ],
         );
       },
     );
 
-    if (selected != null) {
-      _showFilterDialog(selected);
+    if (selected != null && mounted) {
+      showFilterDialog(context, selected, (value) {
+        _addFilter(selected, value);
+      });
     }
   }
 
@@ -152,7 +110,7 @@ class _ListJobsState extends State<ListJobs> {
       case 'maxWage':
         return double.parse(filterValue) >= double.parse(jobValue);
       default:
-        return filterValue == jobValue;
+        return jobValue.contains(filterValue);
     }
   }
 
@@ -187,67 +145,100 @@ class _ListJobsState extends State<ListJobs> {
     return filteredJobs;
   }
 
-  Widget _buildJobCards(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Center(
-        child: Column(
-          children: _filterJobs().map((job) => _getJobCard(job, context)).toList(),
-        ),
-      ),
+  Widget _getDate(Job job) {
+    String jobStatus = job.status.toString().split('.').last.toLowerCase();
+    String date = "${job.startDate.weekdayToString()}, ${job.startHour}";
+    if (jobStatus == JobFilterStatus.pending.toString().split('.').last.toLowerCase()) {
+      date = '${job.startHour} - ${job.endHour}h';
+    }
+    return jobLine(date, color: Colors.white, fontWeight: FontWeight.bold);
+  }
+
+  Widget _getBottomBar(Job job) {
+    return buildJobCardBottomBar(
+        job,
+        [
+          _getDate(job),
+          getJobWageRange(job),
+        ],
+        statusList,
+        defaultColor: Colors.blueAccent);
+  }
+
+  Widget _getSubTitle(BuildContext context, Job job) {
+    return buildJobCardSubtitle(
+      job,
+      [
+        jobLine(job.company),
+        const SizedBox(width: 5),
+        buildBubble(job.location, icon: Icons.location_on),
+      ],
     );
   }
 
-  Widget _getJobCard(Job job, BuildContext context) {
-    return JobCard(
-      job: job,
-      jobWidgets: [
-        JobTitle(title: job.title),
-        JobDescription(description: job.description),
-        JobLine(text: job.company, icon: Icons.business),
-        const SizedBox(height: 8.0),
-        JobLine(text: "${job.wageRange}/h", icon: Icons.attach_money),
-        const SizedBox(height: 8.0),
-        JobLine(text: job.location, icon: Icons.location_on),
-        JobSchedule(
-            startHour: job.startHour,
-            endHour: job.endHour,
-            startDate: job.startDate,
-            endDate: job.endDate),
+  Widget _getCardContent(BuildContext context, Job job) {
+    return buildJobCardContent(
+      job,
+      context,
+      _getSubTitle(context, job),
+      topBar: [
+        Align(
+          alignment: Alignment.topRight,
+          child: getJobCompletedOn(job),
+        ),
       ],
       onTap: () => _onJobTap(context, job),
+    );
+  }
+
+  List<Widget> _caller(BuildContext context) {
+    return _filterJobs()
+        .map((job) => buildJobCard(
+              job,
+              context,
+              [_getCardContent(context, job), const SizedBox(height: 3), _getBottomBar(job)],
+            ))
+        .toList();
+  }
+
+  Widget _buildTop(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 48,
+          child: buildFilter(_showFilterSelectionDropdown),
+        ),
+        Expanded(
+          child: buildSearchBar("Search", (query) {
+            setState(() {
+              searchQuery = query;
+            });
+          }, context),
+        ),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: const BuildAppBar(name: "Hannad", profileImageUrl: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250",),
       body: Column(
         children: [
-          buildSearchBar("Search", (query) {
-            setState(() {
-              searchQuery = query;
-            });
-          }),
-          _buildFilterBox(),
+          const SizedBox(height: 16),
+          _buildTop(context),
           Expanded(
             child: SingleChildScrollView(
-              child: _buildJobCards(context),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: _caller(context),
+                ),
+              ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: const Text('JOBS'),
-      centerTitle: false,
-      bottom: const PreferredSize(
-        preferredSize: Size.fromHeight(1.0),
-        child: Divider(color: Colors.black12),
       ),
     );
   }

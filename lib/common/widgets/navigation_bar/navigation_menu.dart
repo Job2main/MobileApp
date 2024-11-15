@@ -64,26 +64,38 @@ class NavigationMenu extends StatelessWidget {
 
   Widget _buildNavigationBar(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
+
     return Obx(
-      () => NavigationBar(
-        height: 80,
-        elevation: 0,
-        selectedIndex: selectedIndex.value,
-        onDestinationSelected: (index) => selectedIndex.value = index,
-        backgroundColor: darkMode ? Colors.black : Colors.white,
-        indicatorColor: darkMode
-            ? Colors.white.withOpacity(0.1)
-            : Colors.black.withOpacity(0.1),
-        destinations: bar.entries
-            .map(
-              (item) => NavigationDestination(
-                icon: Icon(item.value),
-                selectedIcon: Icon(item.value, color: Colors.blue),
-                label: item.key,
-              ),
-            )
-            .toList(),
+      () => Container(
+        decoration: const BoxDecoration(
+          color: Colors.blueAccent, // Set blue background
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), // Rounded corners at the top
+            topRight: Radius.circular(20),
+          ),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: NavigationBar(
+          height: 60,
+          elevation: 0,
+          selectedIndex: selectedIndex.value,
+          onDestinationSelected: (index) => selectedIndex.value = index,
+          backgroundColor: Colors.transparent, // Transparent to show blue from parent
+          indicatorColor: darkMode
+              ? Colors.white.withOpacity(0.1)
+              : Colors.black.withOpacity(0.1),
+          destinations: bar.entries
+              .map(
+                (item) => NavigationDestination(
+                  icon: Icon(item.value),
+                  selectedIcon: Icon(item.value, color: Colors.black),
+                  label: item.key,
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }
+
 }
