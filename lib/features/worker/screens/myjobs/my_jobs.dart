@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
-import 'package:job2main/common/widgets/job/job_card.dart';
-import 'package:job2main/common/widgets/job/job_widgets.dart';
 import 'package:job2main/features/worker/screens/myjobs/contract_viewer.dart';
+import 'package:job2main/common/widgets/job/new_job_card.dart';
+import 'package:job2main/common/widgets/job/new_job_widgests.dart';
+import 'package:job2main/utils/formatters/formatter.dart';
 import '../../../../common/models/job_controller.dart';
 import './job_display.dart';
-
-enum FilterStatus {
-  pending,
-  completed,
-  refused,
-  requested,
-}
-
-const statusList = {
-  'pending': [FilterStatus.pending, Colors.blue],
-  'completed': [FilterStatus.completed, Colors.orange],
-  'refused': [FilterStatus.refused, Colors.red],
-  'requested': [FilterStatus.requested, Colors.yellow],
-};
 
 class MyJobsScreen extends StatefulWidget {
   final JobController controller = JobController();
@@ -44,7 +32,7 @@ class MyJobsScreen extends StatefulWidget {
 }
 
 class _MyJobsScreenState extends State<MyJobsScreen> {
-  FilterStatus selectedStatus = FilterStatus.pending;
+  JobFilterStatus selectedStatus = JobFilterStatus.pending;
 
   void _onJobTap(BuildContext context, Job job) {
     Navigator.of(context).push(
@@ -73,47 +61,7 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
     ];
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: const Text('Hello, Hannah', style: TextStyle(color: Colors.black)),
-      backgroundColor: Colors.white,
-      centerTitle: false,
-      elevation: 0,
-      actions: const [
-        CircleAvatar(
-          backgroundImage: NetworkImage('https://via.placeholder.com/150'),
-          radius: 20,
-        ),
-        SizedBox(width: 16),
-      ],
-      bottom: const PreferredSize(
-        preferredSize: Size.fromHeight(1.0),
-        child: Divider(color: Colors.black12),
-      ),
-    );
-  }
-
-  Widget _buildStatusTabs() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 16), // Adjust left padding as needed
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (final entry in statusList.entries)
-              _buildStatusTab(
-                entry.value[0] as FilterStatus,
-                entry.key.toUpperCase(),
-                entry.value[1] as Color,
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildStatusTab(FilterStatus status, String text, Color color) {
+  Widget _buildStatusTab(JobFilterStatus status, String text, Color color) {
     final bool isSelected = selectedStatus == status;
     return GestureDetector(
       onTap: () {
@@ -138,36 +86,36 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
     );
   }
 
-  Widget _buildJobCard(Job job, BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          elevation: 4,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _buildJobCardContent(job, context),
-              _buildJobCardBottomBar(job),
-            ],
-          ),
-        ),
-        const SizedBox(height: 8)
-      ],
-    );
-  }
+  // Widget _buildJobCard(Job job, BuildContext context) {
+  //   return Column(
+  //     children: [
+  //       Card(
+  //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+  //         elevation: 4,
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.stretch,
+  //           children: [
+  //             _buildJobCardContent(job, context),
+  //             _buildJobCardBottomBar(job),
+  //           ],
+  //         ),
+  //       ),
+  //       const SizedBox(height: 8)
+  //     ],
+  //   );
+  // }
 
-  Widget _buildJobCardContent(Job job, BuildContext context) {
-    return ListTile(
-      leading: const CircleAvatar(backgroundImage: AssetImage('assets/images/job_placeholder.png')),
-      title: Text(
-        job.title,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-      subtitle: _buildJobCardSubtitle(job),
-      onTap: () => _onJobTap(context, job),
-    );
-  }
+  // Widget _buildJobCardContent(Job job, BuildContext context) {
+  //   return ListTile(
+  //     leading: const CircleAvatar(backgroundImage: AssetImage('assets/images/job_placeholder.png')),
+  //     title: Text(
+  //       job.title,
+  //       style: const TextStyle(fontWeight: FontWeight.bold),
+  //     ),
+  //     subtitle: _buildJobCardSubtitle(job),
+  //     onTap: () => _onJobTap(context, job),
+  //   );
+  // }
 
   // Widget _getSquaredPicture(String picturePath) {
   //   return ListTile(
@@ -187,89 +135,92 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
   //   );
   // }
 
-  Widget _buildJobCardSubtitle(Job job) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(job.company),
-        const SizedBox(height: 4),
-        Text(
-          'Completed on ${job.startDate.toString().split(' ')[0]}, ${job.startHour}',
-          style: const TextStyle(color: Colors.grey),
-        ),
+  Widget _getDate(Job job) {
+    String jobStatus = job.status.toString().split('.').last.toLowerCase();
+    String date = "${job.startDate.weekdayToString()}, ${job.startHour}";
+    if (jobStatus == JobFilterStatus.pending.toString().split('.').last.toLowerCase()) {
+      date = '${job.startHour} - ${job.endHour}h';
+    }
+    return jobLine(date, color: Colors.white, fontWeight: FontWeight.bold);
+  }
+
+  Widget _getBottomBar(Job job) {
+    return buildJobCardBottomBar(
+      job,
+      [
+        _getDate(job),
+        getJobWageRange(job),
+      ],
+      statusList,
+      selectedStatus: selectedStatus,
+    );
+  }
+
+  Widget _getSubTitle(BuildContext context, Job job) {
+    return buildJobCardSubtitle(
+      job,
+      [
+        jobLine(job.company),
       ],
     );
   }
 
-  Widget _buildJobCardBottomBar(Job job) {
-    Color statusColor =
-        statusList[selectedStatus.toString().split('.').last.toLowerCase()]?[1] as Color? ??
-            Colors.grey;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: statusColor,
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(10),
-          bottomRight: Radius.circular(10),
+  Widget _getCardContent(BuildContext context, Job job) {
+    return buildJobCardContent(
+      job,
+      context,
+      _getSubTitle(context, job),
+      topBar: [
+        Align(
+          alignment: Alignment.topRight,
+          child: getJobCompletedOn(job),
         ),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '${job.startDate.toString().split(' ')[0]}, ${job.startHour}',
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            '${job.wageRange} \$ / h',
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+      ],
+      onTap: selectedStatus != JobFilterStatus.refused ? () => _onJobTap(context, job) : () {},
     );
   }
 
-// Helper function to convert weekday number to name
-// extension WeekdayString on DateTime {
-//   String weekdayToString() {
-//     switch (weekday) {
-//       case DateTime.monday:
-//         return 'Monday';
-//       case DateTime.tuesday:
-//         return 'Tuesday';
-//       case DateTime.wednesday:
-//         return 'Wednesday';
-//       case DateTime.thursday:
-//         return 'Thursday';
-//       case DateTime.friday:
-//         return 'Friday';
-//       case DateTime.saturday:
-//         return 'Saturday';
-//       case DateTime.sunday:
-//         return 'Sunday';
-//       default:
-//         return '';
-//     }
-//   }
-// }
+  List<Widget> _caller(BuildContext context) {
+    return _filterJobs()
+        .map((job) => buildJobCard(
+              job,
+              context,
+              [_getCardContent(context, job), const SizedBox(height: 3), _getBottomBar(job)],
+            ))
+        .toList();
+  }
+
+  Widget _getStatusTabs() {
+    return buildStatusTabs(
+      [
+        for (final entry in statusList.entries)
+          _buildStatusTab(
+            entry.value[0] as JobFilterStatus,
+            entry.key.toUpperCase(),
+            entry.value[1] as Color,
+          ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: const BuildAppBar(
+        name: "Hannad",
+        profileImageUrl: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250",
+      ),
       body: Column(
         children: [
-          const SizedBox(height: 6),
-          _buildStatusTabs(),
+          const SizedBox(height: 16),
+          _getStatusTabs(),
           const SizedBox(height: 4),
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
-                  children: _filterJobs().map((job) => _buildJobCard(job, context)).toList(),
+                  children: _caller(context),
                 ),
               ),
             ),
