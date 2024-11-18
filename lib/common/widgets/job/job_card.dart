@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/common/widgets/job/job_widgets.dart';
 import 'package:job2main/common/models/job_controller.dart';
 
 class JobCard extends StatelessWidget {
@@ -8,7 +7,12 @@ class JobCard extends StatelessWidget {
   final clickable;
   final Function() onTap;
 
-  const JobCard({super.key, required this.job, required this.jobWidgets, required this.onTap, this.clickable = true});
+  const JobCard(
+      {super.key,
+      required this.job,
+      required this.jobWidgets,
+      required this.onTap,
+      this.clickable = true});
 
   @override
   Widget build(BuildContext context) {
