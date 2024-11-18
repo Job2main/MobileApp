@@ -71,6 +71,7 @@ class _ListJobsState extends State<ListJobs> {
     });
   }
 
+
   void _addFilter(FilterStatus status, String value) {
     setState(() {
       activeFilters[status] = value;
@@ -81,27 +82,37 @@ class _ListJobsState extends State<ListJobs> {
     FilterStatus? selected = await showDialog<FilterStatus>(
       context: context,
       builder: (BuildContext dialogContext) {
-        return SimpleDialog(
-          title: const Text("Select a filter"),
-          children: [
-            ...FilterStatus.values.map(
-              (status) => SimpleDialogOption(
-                onPressed: () => Navigator.pop(dialogContext, status),
-                child: Text(status.toString().split('.').last),
-              ),
-            ),
-            buildFilterBox(activeFilters, _onDeleted),
-          ],
+        return StatefulBuilder(
+          builder: (BuildContext dialogContext, void Function(void Function()) setState) {
+            return SimpleDialog(
+              title: const Text("Select a filter"),
+              children: [
+                ...FilterStatus.values.map(
+                  (status) => SimpleDialogOption(
+                    onPressed: () => Navigator.pop(dialogContext, status),
+                    child: Text(status.toString().split('.').last),
+                  ),
+                ),
+                buildFilterBox(activeFilters, (status) {
+                  setState(() {
+                    activeFilters.remove(status as FilterStatus);
+                  });
+                  _onDeleted(status);
+                }),
+              ],
+            );
+          },
         );
       },
     );
 
     if (selected != null && mounted) {
       showFilterDialog(context, selected, (value) {
-        _addFilter(selected, value);
+        if (value.isNotEmpty) _addFilter(selected, value);
       });
     }
   }
+
 
   bool returnValue(String filterValue, String jobValue, String filterKey) {
     switch (filterKey) {
