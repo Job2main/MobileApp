@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/job/job_widgets.dart';
 import '../../../../common/models/job_controller.dart';
 
@@ -16,8 +15,10 @@ class JobDisplay extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildRow(Icons.business, 'Company', job.company),
-            _buildRow(Icons.date_range, 'Start Date', "${DateFormat('dd').format(job.startDate)} ${getMonthName(job.startDate.month.toString())}"),
-            _buildRow(Icons.date_range, 'End Date', "${DateFormat('dd').format(job.startDate)} ${getMonthName(job.endDate.month.toString())}"),
+            _buildRow(Icons.date_range, 'Start Date',
+                "${DateFormat('dd').format(job.startDate)} ${getMonthName(job.startDate.month.toString())}"),
+            _buildRow(Icons.date_range, 'End Date',
+                "${DateFormat('dd').format(job.startDate)} ${getMonthName(job.endDate.month.toString())}"),
             _buildRow(Icons.attach_money, 'Wage', '\$${job.wageRange}/hour'),
             _buildRow(Icons.access_time, 'Hours', '${job.startHour} - ${job.endHour}'),
             _buildRow(Icons.location_on, 'Location', job.location),
@@ -25,7 +26,8 @@ class JobDisplay extends StatelessWidget {
             displayJobStatus(job.status.toString().split('.').last),
           ],
         ),
-      ], "Information Additionnelle",
+      ],
+      "Information Additionnelle",
     );
   }
 
@@ -67,14 +69,15 @@ class JobDisplay extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: Text(
-              job.description,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black87,
-              ),
+            job.description,
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.black87,
             ),
+          ),
         ),
-      ], "Description",
+      ],
+      "Description",
     );
   }
 
@@ -136,7 +139,6 @@ class JobDisplay extends StatelessWidget {
       title: Text(job.title),
       centerTitle: false,
       elevation: 0,
-      
       bottom: const PreferredSize(
         preferredSize: Size.fromHeight(1.0),
         child: Divider(color: Colors.black12),

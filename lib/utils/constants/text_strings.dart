@@ -11,16 +11,16 @@ class TTexts {
   // -- OnBoarding Texts
   static const String onBoardingWorker = "Job Seeker";
   static const String onBoardingEmployer = "Employer";
-  static const String onBoardingTitle1 = "Choose your product";
-  static const String onBoardingTitle2 = "Select Payment Method";
-  static const String onBoardingTitle3 = "Deliver at your door step";
+  static const String onBoardingChoiceTitle = "Choose your role";
+  static const String onBoardingChoiceSubTitle = "Are you a job seeker or an employer?";
+  static const String onBoardingTitle1 = "The platform for job seekers";
+  static const String onBoardingTitle2 = "Find the job fitting to your needs";
+  static const String onBoardingTitle3 = "Get the job you deserve";
 
   static const String onBoardingSubTitle1 =
-      "Welcome to a World of Limitless Choices - Your Perfect Product Awaits!";
-  static const String onBoardingSubTitle2 =
-      "For Seamless Transactions, Choose Your Payment Path - Your Convenience, Our Priority!";
-  static const String onBoardingSubTitle3 =
-      "From Our Doorstep to Yours - Swift, Secure, and Contactless Delivery!";
+      "Welcome to a World of Limitless Choices - Your Perfect Job Awaits!";
+  static const String onBoardingSubTitle2 = "Work When You Want, Where You Want, and How You Want!";
+  static const String onBoardingSubTitle3 = "Get remunerated for missions you complete!";
 
   // -- Authentication Forms
   static const String firstName = "First Name";
@@ -45,7 +45,7 @@ class TTexts {
 
   // -- Authentication Headings
   static const String loginTitle = "Welcome back,";
-  static const String loginSubTitle = "Discover Limitless Choices and Unmatched Convenience.";
+  static const String loginSubTitle = "Login to your account";
   static const String signupTitle = "Let’s create your account";
   static const String forgetPasswordTitle = "Forget password";
   static const String forgetPasswordSubTitle =
