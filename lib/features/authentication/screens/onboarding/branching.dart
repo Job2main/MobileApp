@@ -22,7 +22,8 @@ class BranchingScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            THeader(title: TTexts.onBoardingChoiceTitle, subtitle: TTexts.onBoardingChoiceSubTitle),
+            const THeader(
+                title: TTexts.onBoardingChoiceTitle, subtitle: TTexts.onBoardingChoiceSubTitle),
             const SizedBox(height: TSizes.spaceBtwSections),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
