@@ -4,6 +4,9 @@ import 'package:iconsax/iconsax.dart';
 import 'package:job2main/features/worker/screens/listjobs/list_jobs.dart';
 import 'package:job2main/features/worker/screens/myjobs/my_jobs.dart';
 import 'package:job2main/features/worker/screens/profile/profile.dart';
+import 'package:job2main/features/employer/screens/company_jobs/company_jobs.dart';
+import 'package:job2main/features/employer/screens/search/search.dart';
+import 'package:job2main/features/employer/screens/profile/profile.dart';
 import 'package:job2main/utils/helpers/helper_functions.dart';
 
 class WorkerNavigation extends StatelessWidget {
@@ -37,8 +40,9 @@ class EmployerNavigation extends StatelessWidget {
   };
 
   final List<Widget> pages = [
-    Container(color: Colors.green),
-    //JEREMY: Add your screen here
+    CompanyJobs(),
+    JobStatusFilterScreen(),
+    ProfilePageEmployee(),
   ];
 
   @override
