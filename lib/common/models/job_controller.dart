@@ -6,6 +6,7 @@ enum JobStatus {
   requested,
 }
 
+
 class Job {
   int id;
   String title;
