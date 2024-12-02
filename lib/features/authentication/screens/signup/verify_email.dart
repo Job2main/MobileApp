@@ -8,7 +8,8 @@ import 'package:job2main/utils/constants/text_strings.dart';
 import 'package:job2main/utils/helpers/helper_functions.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+  final String email;
+  const VerifyEmailScreen({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class VerifyEmailScreen extends StatelessWidget {
               Text(TTexts.confirmEmail,
                   style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwItems),
-              Text('anemail@gmail.com',
+              Text(email,
                   style: Theme.of(context).textTheme.labelLarge, textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwItems),
               Text(TTexts.confirmEmailSubTitle,

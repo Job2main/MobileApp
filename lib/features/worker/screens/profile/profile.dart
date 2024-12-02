@@ -5,6 +5,7 @@ import 'parameters.dart';
 class ProfilePage extends StatefulWidget {
   ProfilePage({super.key});
   final User user = User(
+    uid: "1",
     name: 'John',
     familyName: 'Doe',
     email: 'john.doe@example.com',

@@ -1,15 +1,43 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:job2main/common/widgets/ui_utils.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/features/authentication/screens/signup/verify_email.dart';
 import 'package:job2main/features/authentication/screens/signup/widgets/term_and_condition_checkbox.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
+import 'package:job2main/utils/firebase/auth.dart';
 
 class SignupForm extends StatelessWidget {
-  const SignupForm({
+  SignupForm({
     super.key,
   });
+
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _firstName = TextEditingController();
+  final TextEditingController _lastName = TextEditingController();
+  final TextEditingController _phoneNumber = TextEditingController();
+  final TextEditingController _userName = TextEditingController();
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      if (_email.text.isEmpty || _password.text.isEmpty || _firstName.text.isEmpty || _lastName.text.isEmpty || _phoneNumber.text.isEmpty || _userName.text.isEmpty) {
+        Get.snackbar(TTexts.error, TTexts.allFieldsRequired);
+        return;
+      }
+      final auth = Auth();
+      final UserCredential = await auth.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
+      Get.to(() => VerifyEmailScreen(email: _email.text));
+    } on FirebaseAuthException catch (e) {
+      printError(info: e.toString());
+      Get.snackbar(TTexts.error, e.message!);
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,47 +47,29 @@ class SignupForm extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: TextFormField(
-                    expands: false,
-                    decoration: const InputDecoration(
-                        labelText: TTexts.firstName, prefixIcon: Icon(Iconsax.user))),
+                child: getFormField(_firstName, TTexts.firstName, Iconsax.user),
               ),
               const SizedBox(width: TSizes.spaceBtwInputFields),
               Expanded(
-                child: TextFormField(
-                    expands: false,
-                    decoration: const InputDecoration(
-                        labelText: TTexts.lastName, prefixIcon: Icon(Iconsax.user))),
+                child: getFormField(_lastName, TTexts.lastName, Iconsax.user),
               )
             ],
           ),
           const SizedBox(height: TSizes.spaceBtwInputFields),
-          TextFormField(
-              expands: false,
-              decoration: const InputDecoration(
-                  labelText: TTexts.username, prefixIcon: Icon(Iconsax.user_edit))),
+          getFormField(_userName, TTexts.username, Iconsax.user),
           const SizedBox(height: TSizes.spaceBtwInputFields),
-          TextFormField(
-              decoration:
-                  const InputDecoration(labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct))),
+          getFormField(_email, TTexts.email, Iconsax.direct),
           const SizedBox(height: TSizes.spaceBtwInputFields),
-          TextFormField(
-              decoration:
-                  const InputDecoration(labelText: TTexts.phoneNo, prefixIcon: Icon(Iconsax.call))),
+          getFormField(_phoneNumber, TTexts.phoneNo, Iconsax.call),
           const SizedBox(height: TSizes.spaceBtwInputFields),
-          TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                  labelText: TTexts.password,
-                  prefixIcon: Icon(Iconsax.password_check),
-                  suffixIcon: Icon(Iconsax.eye_slash))),
+          getFormField(_password, TTexts.password, Iconsax.password_check, suffixIcon: Iconsax.eye_slash),
           const SizedBox(height: TSizes.spaceBtwSections),
           const TermAndConditionCheckbox(),
           const SizedBox(height: TSizes.spaceBtwSections),
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () => Get.to(() => const VerifyEmailScreen()),
+                  onPressed: createUserWithEmailAndPassword,
                   child: const Text(TTexts.createAccount))),
         ],
       ),

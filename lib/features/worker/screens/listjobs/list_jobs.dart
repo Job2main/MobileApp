@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/common/models/job_controller.dart';
+import 'package:job2main/common/controllers/job_controller.dart';
+import 'package:job2main/common/models/job.dart';
 import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/filters.dart';
