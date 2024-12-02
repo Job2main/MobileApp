@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
                       image: TAnyMode.getLogo(context),
                       title: TTexts.loginTitle,
                       subtitle: TTexts.loginSubTitle),
-                  const TLoginForm(),
+                  TLoginForm(),
                   const TFormDivider(),
                   const SizedBox(height: TSizes.spaceBtwSections),
                   const TSocialButton()

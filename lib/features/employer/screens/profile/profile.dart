@@ -5,6 +5,7 @@ import 'package:job2main/features/employer/screens/profile/company_profile.dart'
 class ProfilePageEmployee extends StatefulWidget {
   ProfilePageEmployee({super.key});
   final User user = User(
+    uid: '1',
     name: 'John',
     familyName: 'Doe',
     email: 'john.doe@example.com',

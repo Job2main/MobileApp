@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:job2main/common/styles/spacing_styles.dart';
 import 'package:job2main/features/authentication/controllers/usertype_controller.dart';
 import 'package:job2main/features/authentication/screens/common/header.dart';
+import 'package:job2main/features/authentication/screens/login/login.dart';
+import 'package:job2main/features/authentication/screens/login/widgets/login_form.dart';
 import 'package:job2main/features/authentication/screens/login/widgets/login_header.dart';
 import 'package:job2main/features/authentication/screens/signup/signup.dart';
 import 'package:job2main/utils/constants/colors.dart';
@@ -33,7 +35,7 @@ class BranchingScreen extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         userTypeController.setUserType(UserType.employer);
-                        Get.to(() => const SignupScreen());
+                        Get.to(() => const LoginScreen());
                       },
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: const Text(TTexts.onBoardingEmployer)),
@@ -43,7 +45,7 @@ class BranchingScreen extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         userTypeController.setUserType(UserType.worker);
-                        Get.to(() => const SignupScreen());
+                        Get.to(() => const LoginScreen());
                       },
                       style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
                             backgroundColor: WidgetStateProperty.all<Color>(TColors.custom4),

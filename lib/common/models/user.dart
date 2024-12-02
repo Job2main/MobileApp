@@ -1,4 +1,5 @@
 class User {
+  final String uid;
   String name;
   String familyName;
   String email;
@@ -11,9 +12,10 @@ class User {
   final int totalJobsDone;
   String profileDescription;
   final int notation;
-  final DateTime memberSince = DateTime.now();
+  DateTime memberSince = DateTime.now();
 
   User({
+    required this.uid,
     required this.name,
     required this.familyName,
     required this.email,
@@ -42,6 +44,7 @@ class User {
 
   Map<String, dynamic> getAsMap() {
     return {
+      'uid': uid,
       'name': name,
       'familyName': familyName,
       'email': email,
@@ -56,6 +59,24 @@ class User {
       'notation': notation,
       'memberSince': memberSince,
     };
+  }
+
+   factory User.fromFirestore(Map<String, dynamic> data, String uid) {
+    return User(
+      uid: uid,
+      name: data['name'],
+      familyName: data['familyName'],
+      email: data['email'],
+      profilePictureUrl: data['profilePictureUrl'],
+      phoneNumber: data['phoneNumber'],
+      city: data['city'],
+      country: data['country'],
+      age: data['age'],
+      totalHoursWorked: data['totalHoursWorked'],
+      totalJobsDone: data['totalJobsDone'],
+      profileDescription: data['profileDescription'],
+      notation: data['notation'],
+    );
   }
 
   String getKeyName(dynamic value) {

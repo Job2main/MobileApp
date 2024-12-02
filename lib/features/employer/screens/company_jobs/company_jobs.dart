@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/common/models/job_controller.dart';
+import 'package:job2main/common/controllers/job_controller.dart';
+import 'package:job2main/common/models/job.dart';
 import 'package:job2main/features/employer/screens/company_jobs/job_detail_screen.dart';
 
 class CompanyJobs extends StatefulWidget {

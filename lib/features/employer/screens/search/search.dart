@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/common/models/job_controller.dart';
+import 'package:job2main/common/controllers/job_controller.dart';
+import 'package:job2main/common/models/job.dart';
 import 'package:job2main/features/employer/screens/search/comfirmed_jobs_page.dart';
 import 'package:job2main/features/employer/screens/search/completed_jobs_page.dart';
 import 'package:job2main/features/employer/screens/search/pending_jobs_page.dart';
