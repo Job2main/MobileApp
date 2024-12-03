@@ -4,7 +4,7 @@ import 'package:job2main/features/worker/screens/profile/change_value_page.dart'
 import 'package:job2main/features/worker/screens/profile/widgets/parameter_widgets.dart';
 
 class ModifyAccount extends StatelessWidget {
-  final User user;
+  final UserModel user;
   const ModifyAccount({super.key, required this.user});
 
   void _redirectFun(BuildContext context, Map<String, dynamic> toUpdates) {

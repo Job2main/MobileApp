@@ -26,12 +26,16 @@ class Auth {
   }
 
   Future<Map<String, dynamic>?> getUserData(String uid) async {
-    DocumentSnapshot doc = await _firestore.collection('users').doc(uid).get();
+    DocumentSnapshot doc = await _firestore.collection('Users').doc(uid).get();
     return doc.exists ? doc.data() as Map<String, dynamic> : null;
   }
 
   Future<void> updateUser(String uid, Map<String, dynamic> data) async {
-    await _firestore.collection('users').doc(uid).update(data);
+    await _firestore.collection('Users').doc(uid).update(data);
+  }
+
+  Future<void> createUser(String uid, Map<String, dynamic> data) async {
+    await _firestore.collection('Users').doc(uid).set(data);
   }
   
 }

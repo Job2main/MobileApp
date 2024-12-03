@@ -3,7 +3,7 @@ import 'package:job2main/common/widgets/comfirmation_popup.dart';
 import 'package:job2main/common/models/user.dart';
 
 class ChangeValuePage extends StatefulWidget {
-  final User user;
+  final UserModel user;
   final Map<String, dynamic> toUpdates;
   const ChangeValuePage({super.key, required this.user, required this.toUpdates});
 

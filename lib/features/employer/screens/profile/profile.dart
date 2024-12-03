@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/models/user.dart';
 import 'package:job2main/features/employer/screens/profile/company_profile.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePageEmployee extends StatefulWidget {
   ProfilePageEmployee({super.key});
-  final User user = User(
-    uid: '1',
-    name: 'John',
-    familyName: 'Doe',
-    email: 'john.doe@example.com',
-    profilePictureUrl: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-    phoneNumber: '1 234 567 890',
-    city: 'Toronto',
-    country: 'Canada',
-    age: 22,
-    totalHoursWorked: 100,
-    totalJobsDone: 10,
-    profileDescription:
-        'I am a passionate and dedicated worker with extensive experience in customer service and team collaboration. I love working with people and contributing to my company’s success.',
-    notation: 4,
-  );
+  late UserModel userModel;
+  late UserController userController;
 
   @override
   _ProfilePageEmployeeState createState() => _ProfilePageEmployeeState();
 }
 
 class _ProfilePageEmployeeState extends State<ProfilePageEmployee> {
+  @override
+  void initState() {
+    super.initState();
+    widget.userController = Provider.of<UserController>(context, listen: false);
+    widget.userModel = widget.userController.userModel!;
+  }
+
   Widget _buildCompanyProfileButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
@@ -66,11 +61,11 @@ class _ProfilePageEmployeeState extends State<ProfilePageEmployee> {
             children: [
               CircleAvatar(
                 radius: 50,
-                backgroundImage: NetworkImage(widget.user.profilePictureUrl),
+                backgroundImage: NetworkImage(widget.userModel.profilePictureUrl),
               ),
               const SizedBox(height: 20),
               Text(
-                '${widget.user.name} ${widget.user.familyName}',
+                '${widget.userModel.name} ${widget.userModel.familyName}',
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
@@ -78,14 +73,14 @@ class _ProfilePageEmployeeState extends State<ProfilePageEmployee> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(5, (index) {
                   return Icon(
-                    index < widget.user.notation ? Icons.star : Icons.star_border,
-                    color: index < widget.user.notation ? Colors.yellow : Colors.grey,
+                    index < widget.userModel.notation ? Icons.star : Icons.star_border,
+                    color: index < widget.userModel.notation ? Colors.yellow : Colors.grey,
                   );
                 }),
               ),
               const SizedBox(height: 16),
               Text(
-                widget.user.profileDescription,
+                widget.userModel.profileDescription,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16, color: Colors.black87),
               ),
