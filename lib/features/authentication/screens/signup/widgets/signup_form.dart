@@ -41,7 +41,7 @@ class SignupForm extends StatelessWidget {
 
       final auth = Auth();
       final User? userCredential = await auth.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
-      auth.createUser(userCredential!.uid ?? '', getData());
+      await auth.createUser(userCredential!.uid ?? '', getData());
       Get.to(() => VerifyEmailScreen(email: _email.text));
     } on FirebaseAuthException catch (e) {
       printError(info: e.toString());

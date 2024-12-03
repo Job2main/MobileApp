@@ -15,6 +15,10 @@ class UserController extends ChangeNotifier {
   Map<String, dynamic>? get userData => _userData;
   UserModel? get userModel => _userModel;
 
+  UserModel? getUserModel() {
+    return _userModel;
+  }
+
   Future<void> initialize() async {
     _authService.authStateChanges().listen((user) async {
       if (_currentUser != null) {
@@ -36,6 +40,7 @@ class UserController extends ChangeNotifier {
     await _authService.signOut();
     _currentUser = null;
     _userData = null;
+    _userModel = null;
     notifyListeners();
   }
 
@@ -45,6 +50,7 @@ class UserController extends ChangeNotifier {
       if (data != null) {
         _userData = data;
         _userModel = UserModel.fromFirestore(data, _currentUser!.uid);
+        print(_userModel?.getAsMap().toString());
         notifyListeners();
       }
     }
