@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/models/user.dart';
+import 'package:provider/provider.dart';
 import 'parameters.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({super.key});
-  final User user = User(
-    uid: "1",
-    name: 'John',
-    familyName: 'Doe',
-    email: 'john.doe@example.com',
-    profilePictureUrl: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-    phoneNumber: '1 234 567 890',
-    city: 'Toronto',
-    country: 'Canada',
-    age: 22,
-    totalHoursWorked: 100,
-    totalJobsDone: 10,
-    profileDescription:
-        'This is a description of the user. It can be a long text that describes the user in more details.',
-    notation: 4,
-  );
+  late UserModel userModel;
+  late UserController userController;
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -32,7 +20,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.user.profileDescription);
+    widget.userController = Provider.of<UserController>(context, listen: false);
+    widget.userModel = widget.userController.userModel!;
+    _controller = TextEditingController(text: widget.userModel.profileDescription);
   }
 
   void _toggleEdit() {
@@ -43,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _saveDescription() {
     setState(() {
-      widget.user.profileDescription = _controller.text;
+      widget.userModel.profileDescription = _controller.text;
       _isEditing = false;
     });
   }
@@ -97,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Text(
-              widget.user.profileDescription,
+              widget.userModel.profileDescription,
               style: const TextStyle(
                 fontSize: 16,
                 color: Colors.black87,
@@ -127,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ParametersPage(user: widget.user)),
+          MaterialPageRoute(builder: (context) => ParametersPage(user: widget.userModel)),
         );
       },
     );
@@ -136,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _buildProfilePicture() {
     return CircleAvatar(
       radius: 50,
-      backgroundImage: NetworkImage(widget.user.profilePictureUrl),
+      backgroundImage: NetworkImage(widget.userModel.profilePictureUrl),
       backgroundColor: Colors.grey.shade200,
       child: Container(
         decoration: BoxDecoration(
@@ -158,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${widget.user.name} ${widget.user.familyName}',
+          '${widget.userModel.name} ${widget.userModel.familyName}',
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -168,8 +158,8 @@ class _ProfilePageState extends State<ProfilePage> {
         Row(
           children: List.generate(5, (index) {
             return Icon(
-              index < widget.user.notation ? Icons.star : Icons.star_border,
-              color: index < widget.user.notation ? Colors.yellow : Colors.grey,
+              index < widget.userModel.notation ? Icons.star : Icons.star_border,
+              color: index < widget.userModel.notation ? Colors.yellow : Colors.grey,
             );
           }),
         ),
@@ -179,18 +169,18 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildAdditionnalInfo() {
     return _buildInfo("Information additionel", [
-      _buildInfoRow(Icons.work, '${widget.user.totalJobsDone} travaux effectués'),
-      _buildInfoRow(Icons.work, '${widget.user.totalHoursWorked} heures travaillées'),
-      _buildInfoRow(Icons.work, 'Membre depuis ${widget.user.memberSince.year}')
+      _buildInfoRow(Icons.work, '${widget.userModel.totalJobsDone} travaux effectués'),
+      _buildInfoRow(Icons.work, '${widget.userModel.totalHoursWorked} heures travaillées'),
+      _buildInfoRow(Icons.work, 'Membre depuis ${widget.userModel.memberSince.year}')
     ]);
   }
 
   Widget _buildContactlInfo() {
     return _buildInfo("Information du contact", [
-      _buildInfoRow(Icons.person, '${widget.user.age} ans'),
-      _buildInfoRow(Icons.phone, '+${widget.user.phoneNumber}'),
-      _buildInfoRow(Icons.email, widget.user.email),
-      _buildInfoRow(Icons.location_on, '${widget.user.city}, ${widget.user.country}'),
+      _buildInfoRow(Icons.person, '${widget.userModel.age} ans'),
+      _buildInfoRow(Icons.phone, '+${widget.userModel.phoneNumber}'),
+      _buildInfoRow(Icons.email, widget.userModel.email),
+      _buildInfoRow(Icons.location_on, '${widget.userModel.city}, ${widget.userModel.country}'),
     ]);
   }
 

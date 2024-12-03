@@ -23,14 +23,25 @@ class SignupForm extends StatelessWidget {
   final TextEditingController _phoneNumber = TextEditingController();
   final TextEditingController _userName = TextEditingController();
 
+  Map<String, dynamic> getData() => {
+        'email': _email.text,
+        'password': _password.text,
+        'firstName': _firstName.text,
+        'lastName': _lastName.text,
+        'phoneNumber': _phoneNumber.text,
+        'userName': _userName.text,
+  };
+
   Future<void> createUserWithEmailAndPassword() async {
     try {
       if (_email.text.isEmpty || _password.text.isEmpty || _firstName.text.isEmpty || _lastName.text.isEmpty || _phoneNumber.text.isEmpty || _userName.text.isEmpty) {
         Get.snackbar(TTexts.error, TTexts.allFieldsRequired);
         return;
       }
+
       final auth = Auth();
-      final UserCredential = await auth.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
+      final User? userCredential = await auth.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
+      auth.createUser(userCredential!.uid ?? '', getData());
       Get.to(() => VerifyEmailScreen(email: _email.text));
     } on FirebaseAuthException catch (e) {
       printError(info: e.toString());

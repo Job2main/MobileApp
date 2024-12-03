@@ -7,7 +7,7 @@ import 'package:job2main/features/employer/screens/profile/modify_account.dart';
 import 'package:job2main/features/employer/screens/profile/widgets/parameter_widgets.dart';
 
 class ParametersPage extends StatelessWidget {
-  final User user;
+  final UserModel user;
   const ParametersPage({super.key, required this.user});
 
   void yesAction(BuildContext context) {
