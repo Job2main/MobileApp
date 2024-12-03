@@ -18,10 +18,10 @@ class _ProfilePageState extends State<ProfilePage> {
   late TextEditingController _controller;
 
   @override
-  void initState() {
-    super.initState();
-    widget.userController = Provider.of<UserController>(context, listen: false);
-    widget.userModel = widget.userController.userModel!;
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    widget.userController = Provider.of<UserController>(context);
+    widget.userModel = widget.userController.getUserModel()!;
     _controller = TextEditingController(text: widget.userModel.profileDescription);
   }
 
@@ -53,12 +53,16 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _buildEditDescription() {
     return Column(
       children: [
-        TextField(
-          controller: _controller,
-          maxLines: null,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Editer la description',
+        SizedBox(
+          width: double.infinity, // Take the maximum width of the screen
+          // height: 150.0, // Set the desired fixed height
+          child: TextField(
+            controller: _controller,
+            maxLines: null,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Editer la description',
+            ),
           ),
         ),
         const SizedBox(height: 8),
@@ -117,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ParametersPage(user: widget.userModel)),
+          MaterialPageRoute(builder: (context) => ParametersPage(user: widget.userModel, userController: widget.userController)),
         );
       },
     );

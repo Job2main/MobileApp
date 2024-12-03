@@ -15,8 +15,8 @@ class ProfilePageEmployee extends StatefulWidget {
 
 class _ProfilePageEmployeeState extends State<ProfilePageEmployee> {
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     widget.userController = Provider.of<UserController>(context, listen: false);
     widget.userModel = widget.userController.userModel!;
   }
