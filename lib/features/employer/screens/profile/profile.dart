@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/common/models/user.dart';
+import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/features/employer/screens/profile/company_profile.dart';
 
 class ProfilePageEmployee extends StatefulWidget {
@@ -24,21 +25,21 @@ class ProfilePageEmployee extends StatefulWidget {
   _ProfilePageEmployeeState createState() => _ProfilePageEmployeeState();
 }
 
+// defaultButton(Icons.description, const Text("Postuler"), backgroundColor: Colors.green, () {
+//         print('Postuler button pressed');
+        
 class _ProfilePageEmployeeState extends State<ProfilePageEmployee> {
   Widget _buildCompanyProfileButton(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
+    return centerButton(
+      Icons.business, // Icon for the button
+      const Text('View Company Profile'), // Text label for the button
+      () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => CompanyProfilePage()),
         );
       },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blueAccent,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-      ),
-      child: const Text('View Company Profile'),
+      backgroundColor: Colors.blueAccent, // Button background color
     );
   }
 

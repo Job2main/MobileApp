@@ -21,3 +21,24 @@ Widget defaultButton(IconData message, Text text, Function() onPressed, {Color b
       ),
     );
   }
+
+Widget centerButton(IconData message, Text text, Function() onPressed, {Color backgroundColor = Colors.black}) {
+  return Center(
+    child: ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(message),
+      label: text,
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+        backgroundColor: backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  );
+}
