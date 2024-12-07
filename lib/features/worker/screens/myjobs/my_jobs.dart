@@ -86,36 +86,36 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
     );
   }
 
-  Widget _buildJobCard(Job job, BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          elevation: 4,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _buildJobCardContent(job, context),
-              _buildJobCardBottomBar(job),
-            ],
-          ),
-        ),
-        const SizedBox(height: 8)
-      ],
-    );
-  }
+  // Widget _buildJobCard(Job job, BuildContext context) {
+  //   return Column(
+  //     children: [
+  //       Card(
+  //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+  //         elevation: 4,
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.stretch,
+  //           children: [
+  //             _buildJobCardContent(job, context),
+  //             _buildJobCardBottomBar(job),
+  //           ],
+  //         ),
+  //       ),
+  //       const SizedBox(height: 8)
+  //     ],
+  //   );
+  // }
 
-  Widget _buildJobCardContent(Job job, BuildContext context) {
-    return ListTile(
-      leading: const CircleAvatar(backgroundImage: AssetImage('assets/images/job_placeholder.png')),
-      title: Text(
-        job.title,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-      subtitle: _buildJobCardSubtitle(job),
-      onTap: () => _onJobTap(context, job),
-    );
-  }
+  // Widget _buildJobCardContent(Job job, BuildContext context) {
+  //   return ListTile(
+  //     leading: const CircleAvatar(backgroundImage: AssetImage('assets/images/job_placeholder.png')),
+  //     title: Text(
+  //       job.title,
+  //       style: const TextStyle(fontWeight: FontWeight.bold),
+  //     ),
+  //     subtitle: _buildJobCardSubtitle(job),
+  //     onTap: () => _onJobTap(context, job),
+  //   );
+  // }
 
   // Widget _getSquaredPicture(String picturePath) {
   //   return ListTile(
