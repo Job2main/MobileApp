@@ -3,8 +3,6 @@ import 'package:job2main/common/models/job_controller.dart';
 import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/filters.dart';
-import 'package:job2main/common/widgets/job/job_card.dart';
-import 'package:job2main/common/widgets/job/job_widgets.dart';
 import 'package:job2main/common/widgets/job/new_job_card.dart';
 import 'package:job2main/common/widgets/job/new_job_widgests.dart';
 import 'package:job2main/common/widgets/search_bar.dart';
@@ -71,7 +69,6 @@ class _ListJobsState extends State<ListJobs> {
     });
   }
 
-
   void _addFilter(FilterStatus status, String value) {
     setState(() {
       activeFilters[status] = value;
@@ -112,7 +109,6 @@ class _ListJobsState extends State<ListJobs> {
       });
     }
   }
-
 
   bool returnValue(String filterValue, String jobValue, String filterKey) {
     switch (filterKey) {
@@ -234,7 +230,10 @@ class _ListJobsState extends State<ListJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BuildAppBar(name: "Hannad", profileImageUrl: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250",),
+      appBar: const BuildAppBar(
+        name: "Hannad",
+        profileImageUrl: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250",
+      ),
       body: Column(
         children: [
           const SizedBox(height: 16),
