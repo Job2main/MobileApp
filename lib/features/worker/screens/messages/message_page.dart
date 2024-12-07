@@ -8,7 +8,7 @@ class MessagePage extends StatefulWidget {
   final List<String> members;
   final String reveiveId;
   final String receiveFirstNameName;
-  MessagePage(
+  const MessagePage(
       {super.key,
       required this.receiveEmail,
       required this.reveiveId,
@@ -22,7 +22,7 @@ class MessagePage extends StatefulWidget {
 class _MessagePageState extends State<MessagePage> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _messageController = TextEditingController();
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -51,56 +51,53 @@ class _MessagePageState extends State<MessagePage> {
 
   void sendMessage() async {
     if (_messageController.text.isNotEmpty) {}
-
-
   }
 
   Widget _buildMessageItem() {
-      bool isCurrentUser = true;
-      var alignment = isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
-      return Container(
-          alignment: alignment,
-          child: Column(
-            crossAxisAlignment: isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-            children: [ChatBubble(message: "fssdfsd", isCurrentUser: isCurrentUser)],
-          ));
-    }
+    bool isCurrentUser = true;
+    var alignment = isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+    return Container(
+        alignment: alignment,
+        child: Column(
+          crossAxisAlignment: isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          children: [ChatBubble(message: "fssdfsd", isCurrentUser: isCurrentUser)],
+        ));
+  }
 
-    Widget _buildUserInput() {
-      return Padding(
-        padding: const EdgeInsets.all(50.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: MyTextfield(
-                controller: _messageController,
-                focusNode: _focusNode,
-                hintText: 'Type a message...',
-                obscureText: false,
-              ),
+  Widget _buildUserInput() {
+    return Padding(
+      padding: const EdgeInsets.all(50.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: MyTextfield(
+              controller: _messageController,
+              focusNode: _focusNode,
+              hintText: 'Type a message...',
+              obscureText: false,
             ),
-            Container(
-              decoration:
-                  BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(50)),
-              margin: const EdgeInsets.only(left: 0.0),
-              child: IconButton(
-                  onPressed: sendMessage, icon: const Icon(Icons.send, color: Colors.white)),
-            )
-          ],
-        ),
-      );
-    }
-  
+          ),
+          Container(
+            decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(50)),
+            margin: const EdgeInsets.only(left: 0.0),
+            child: IconButton(
+                onPressed: sendMessage, icon: const Icon(Icons.send, color: Colors.white)),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-          appBar: AppBar(
-              title: Text(widget.receiveFirstNameName, style: const TextStyle(color: Colors.black)),
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.grey,
-              elevation: 0),
-          body: Column(children: [
-            _buildUserInput(),
-          ]));
-    }
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text(widget.receiveFirstNameName, style: const TextStyle(color: Colors.black)),
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.grey,
+            elevation: 0),
+        body: Column(children: [
+          _buildUserInput(),
+        ]));
+  }
 }
