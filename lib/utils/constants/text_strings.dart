@@ -68,4 +68,19 @@ class TTexts {
   // -- Home
   static const String homeAppbarTitle = "Good day for shopping";
   static const String homeAppbarSubTitle = "Taimoor Sikander";
+
+
+  // -- Error Messages
+  static const String error = "Error";
+  static const String allFieldsRequired = "All fields are required";
+  static const String invalidEmail = "Invalid Email";
+  static const String invalidPassword = "Invalid Password";
+  static const String invalidPhoneNumber = "Invalid Phone Number";
+  static const String invalidUsername = "Invalid Username";
+  static const String invalidFirstName = "Invalid First Name";
+  static const String invalidLastName = "Invalid Last Name";
+  static const String invalidVerificationCode = "Invalid Verification Code";
+  static const String invalidPasswordLength = "Password must be at least 6 characters long";
+  static const String invalidPasswordMatch = "Passwords do not match";
+  static const String invalidCredentials = "Invalid Credentials";
 }

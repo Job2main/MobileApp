@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/common/models/job_controller.dart';
+import 'package:job2main/common/models/job.dart';
 import 'package:job2main/features/employer/screens/search/applicant_detail_page.dart';
 
 class PendingJobsPage extends StatelessWidget {

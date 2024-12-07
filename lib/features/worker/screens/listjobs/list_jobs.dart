@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/common/models/job_controller.dart';
+import 'package:job2main/common/controllers/job_controller.dart';
+import 'package:job2main/common/controllers/user_controller.dart';
+import 'package:job2main/common/models/job.dart';
+import 'package:job2main/common/controllers/job_controller.dart';
+import 'package:job2main/common/controllers/user_controller.dart';
+import 'package:job2main/common/models/job.dart';
 import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/filters.dart';
+import 'package:job2main/common/widgets/job/job_card.dart';
+import 'package:job2main/common/widgets/job/job_widgets.dart';
 import 'package:job2main/common/widgets/job/new_job_card.dart';
 import 'package:job2main/common/widgets/job/new_job_widgests.dart';
 import 'package:job2main/common/widgets/search_bar.dart';
 import 'package:job2main/features/worker/screens/myjobs/job_display.dart';
 import 'package:job2main/utils/formatters/formatter.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 enum FilterStatus {
   location,
@@ -229,10 +238,11 @@ class _ListJobsState extends State<ListJobs> {
 
   @override
   Widget build(BuildContext context) {
+    UserController userController = Provider.of<UserController>(context);
     return Scaffold(
-      appBar: const BuildAppBar(
-        name: "Hannad",
-        profileImageUrl: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250",
+      appBar: BuildAppBar(
+        name: userController.userModel!.name,
+        profileImageUrl: userController.userModel!.profilePictureUrl,
       ),
       body: Column(
         children: [
