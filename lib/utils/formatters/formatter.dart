@@ -54,13 +54,20 @@ class TFormatter {
     return formattedNumber.toString();
   }
 
-
-
-
 }
 
-
-/*
-*
-*
-* */
+extension WeekdayString on DateTime {
+  String weekdayToString() {
+    const weekdays = [
+      '', // Placeholder for index 0, as DateTime.weekday is 1-based
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
+    return weekdays[weekday];
+  }
+}
