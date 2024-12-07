@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:get/get.dart';
-import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/job/new_job_card.dart';
 import 'package:job2main/common/widgets/job/new_job_widgests.dart';
 import 'package:job2main/utils/formatters/formatter.dart';
 import 'package:job2main/features/worker/screens/myjobs/contract_viewer.dart';
-import 'package:job2main/common/widgets/job/new_job_card.dart';
-import 'package:job2main/common/widgets/job/new_job_widgests.dart';
-import 'package:job2main/utils/formatters/formatter.dart';
 import '../../../../common/models/job_controller.dart';
 import './job_display.dart';
 
