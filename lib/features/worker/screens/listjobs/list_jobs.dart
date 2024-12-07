@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:job2main/common/controllers/job_controller.dart';
 import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/models/job.dart';
+import 'package:job2main/common/controllers/job_controller.dart';
+import 'package:job2main/common/controllers/user_controller.dart';
+import 'package:job2main/common/models/job.dart';
 import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/filters.dart';
@@ -12,6 +15,7 @@ import 'package:job2main/common/widgets/job/new_job_widgests.dart';
 import 'package:job2main/common/widgets/search_bar.dart';
 import 'package:job2main/features/worker/screens/myjobs/job_display.dart';
 import 'package:job2main/utils/formatters/formatter.dart';
+import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 
 enum FilterStatus {
