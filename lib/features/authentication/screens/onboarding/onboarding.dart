@@ -15,15 +15,15 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final pageViewChildren = [
       const OnBoardingPage(
-          image: TImages.onboarding1,
+          image: TImages.lightLogo,
           title: TTexts.onBoardingTitle1,
           subTitle: TTexts.onBoardingSubTitle1),
       const OnBoardingPage(
-          image: TImages.onboarding2,
+          image: TImages.lightLogo,
           title: TTexts.onBoardingTitle2,
           subTitle: TTexts.onBoardingSubTitle2),
       const OnBoardingPage(
-          image: TImages.onboarding1,
+          image: TImages.lightLogo,
           title: TTexts.onBoardingTitle3,
           subTitle: TTexts.onBoardingSubTitle3),
     ];
