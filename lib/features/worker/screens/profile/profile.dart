@@ -121,7 +121,9 @@ class _ProfilePageState extends State<ProfilePage> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ParametersPage(user: widget.userModel, userController: widget.userController)),
+          MaterialPageRoute(
+              builder: (context) =>
+                  ParametersPage(user: widget.userModel, userController: widget.userController)),
         );
       },
     );
