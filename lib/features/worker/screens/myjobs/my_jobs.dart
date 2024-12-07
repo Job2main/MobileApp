@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:get/get.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
-import 'package:job2main/common/widgets/job/job_card.dart';
-import 'package:job2main/common/widgets/job/job_widgets.dart';
 import 'package:job2main/common/widgets/job/new_job_card.dart';
 import 'package:job2main/common/widgets/job/new_job_widgests.dart';
 import 'package:job2main/utils/formatters/formatter.dart';
@@ -131,7 +127,8 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
 
   Widget _getSubTitle(BuildContext context, Job job) {
     return buildJobCardSubtitle(
-      job,[
+      job,
+      [
         jobLine(job.company),
       ],
     );
@@ -145,7 +142,7 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
       topBar: [
         Align(
           alignment: Alignment.topRight,
-          child:getJobCompletedOn(job),
+          child: getJobCompletedOn(job),
         ),
       ],
       onTap: selectedStatus != JobFilterStatus.refused ? () => _onJobTap(context, job) : () {},
@@ -153,13 +150,13 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
   }
 
   List<Widget> _caller(BuildContext context) {
-    return _filterJobs().map((job) => buildJobCard(job, context,
-      [
-        _getCardContent(context, job),
-        const SizedBox(height: 3),
-        _getBottomBar(job)
-      ],
-    )).toList();
+    return _filterJobs()
+        .map((job) => buildJobCard(
+              job,
+              context,
+              [_getCardContent(context, job), const SizedBox(height: 3), _getBottomBar(job)],
+            ))
+        .toList();
   }
 
   Widget _getStatusTabs() {
@@ -178,7 +175,10 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BuildAppBar(name: "Hannad", profileImageUrl: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250",),
+      appBar: const BuildAppBar(
+        name: "Hannad",
+        profileImageUrl: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250",
+      ),
       body: Column(
         children: [
           const SizedBox(height: 16),
