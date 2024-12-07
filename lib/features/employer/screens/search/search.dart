@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/common/models/job_controller.dart';
+import 'package:job2main/common/controllers/job_controller.dart';
+import 'package:job2main/common/models/job.dart';
 import 'package:job2main/features/employer/screens/search/comfirmed_jobs_page.dart';
 import 'package:job2main/features/employer/screens/search/completed_jobs_page.dart';
 import 'package:job2main/features/employer/screens/search/pending_jobs_page.dart';
@@ -13,14 +14,44 @@ class JobStatusFilterScreen extends StatefulWidget {
     controller.createJob(1, 'Waiter/ess', 'Serve customers', 'Nonna Cucina', DateTime.now(),
         DateTime.now().add(const Duration(days: 2)), 22, 'Montreal', 'Hannah', "10:00", "15:00",
         status: JobStatus.completed);
-    controller.createJob(2, 'Bartender', 'Mix drinks and serve customers', 'El Colon', DateTime.now(),
-        DateTime.now().add(const Duration(days: 2)), 22, 'Montreal', 'Hannah', "18:00", "23:00",
+    controller.createJob(
+        2,
+        'Bartender',
+        'Mix drinks and serve customers',
+        'El Colon',
+        DateTime.now(),
+        DateTime.now().add(const Duration(days: 2)),
+        22,
+        'Montreal',
+        'Hannah',
+        "18:00",
+        "23:00",
         status: JobStatus.pending);
-    controller.createJob(3, 'Dishwasher', 'Clean dishes and maintain kitchen hygiene', 'Casa Amor', DateTime.now(),
-        DateTime.now().add(const Duration(days: 1)), 20, 'Montreal', 'Hannah', "19:00", "22:00",
+    controller.createJob(
+        3,
+        'Dishwasher',
+        'Clean dishes and maintain kitchen hygiene',
+        'Casa Amor',
+        DateTime.now(),
+        DateTime.now().add(const Duration(days: 1)),
+        20,
+        'Montreal',
+        'Hannah',
+        "19:00",
+        "22:00",
         status: JobStatus.refused);
-    controller.createJob(4, 'Chef', 'Prepare meals and supervise kitchen staff', 'Nonna Cucina', DateTime.now(),
-        DateTime.now().add(const Duration(days: 3)), 30, 'Montreal', 'Hannah', "09:00", "17:00",
+    controller.createJob(
+        4,
+        'Chef',
+        'Prepare meals and supervise kitchen staff',
+        'Nonna Cucina',
+        DateTime.now(),
+        DateTime.now().add(const Duration(days: 3)),
+        30,
+        'Montreal',
+        'Hannah',
+        "09:00",
+        "17:00",
         status: JobStatus.requested);
   }
 
@@ -171,9 +202,11 @@ class _JobStatusFilterScreenState extends State<JobStatusFilterScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text('\$${job.wageRange}/h', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text('\$${job.wageRange}/h',
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 8),
-                Text('${job.startHour} - ${job.endHour}', style: TextStyle(color: Colors.grey[600])),
+                Text('${job.startHour} - ${job.endHour}',
+                    style: TextStyle(color: Colors.grey[600])),
               ],
             ),
           ],

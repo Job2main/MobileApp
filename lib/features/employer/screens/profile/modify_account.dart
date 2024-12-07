@@ -4,7 +4,7 @@ import 'package:job2main/features/employer/screens/profile/change_value_page.dar
 import 'package:job2main/features/employer/screens/profile/widgets/parameter_widgets.dart';
 
 class ModifyAccount extends StatelessWidget {
-  final User user;
+  final UserModel user;
   const ModifyAccount({super.key, required this.user});
 
   void _redirectFun(BuildContext context, Map<String, dynamic> toUpdates) {
@@ -16,7 +16,8 @@ class ModifyAccount extends StatelessWidget {
     );
   }
 
-  Widget buildPButton(BuildContext context, String title, List<dynamic> vars, bool haveTextBefore, bool pageRedirection) {
+  Widget buildPButton(BuildContext context, String title, List<dynamic> vars, bool haveTextBefore,
+      bool pageRedirection) {
     String textBefore = '';
     Map<String, dynamic> toUpdates = {};
     if (haveTextBefore) {
@@ -28,7 +29,8 @@ class ModifyAccount extends StatelessWidget {
         }
       }
     }
-    return buildParameterButton(title, textBefore: textBefore, pageRedirection: pageRedirection, () {
+    return buildParameterButton(title, textBefore: textBefore, pageRedirection: pageRedirection,
+        () {
       _redirectFun(context, toUpdates);
     });
   }
@@ -49,7 +51,8 @@ class ModifyAccount extends StatelessWidget {
       addTitle('Gestion du compte'),
       buildCard(context, [
         buildParameterButton('Changer le mot de passe', pageRedirection: true, () {}),
-        buildParameterButton('Supprimer le compte', pageRedirection: false, () {}, myColor: Colors.red),
+        buildParameterButton(
+            'Supprimer le compte', pageRedirection: false, () {}, myColor: Colors.red),
       ])
     ];
   }
@@ -67,9 +70,9 @@ class ModifyAccount extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            ..._accountInformation(context),
-            const SizedBox(height: 20),
-            ..._accountGestion(context),
+              ..._accountInformation(context),
+              const SizedBox(height: 20),
+              ..._accountGestion(context),
             ],
           ),
         ),
