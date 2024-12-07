@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
 import 'package:job2main/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 
