@@ -58,7 +58,8 @@ class JobDetailScreen extends StatelessWidget {
                   children: [
                     Text(
                       '\$${job.wageRange}/h',
-                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -79,7 +80,8 @@ class JobDetailScreen extends StatelessWidget {
                   children: [
                     Text(
                       job.location,
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                     const SizedBox(height: 8),
                     GestureDetector(
@@ -90,7 +92,8 @@ class JobDetailScreen extends StatelessWidget {
                         children: [
                           Text(
                             'Open in Maps',
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           Icon(Icons.arrow_forward, color: Colors.white, size: 16),
                         ],
@@ -201,7 +204,8 @@ class JobDetailScreen extends StatelessWidget {
           children: [
             Text(
               label,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+              style:
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
             ),
             const Icon(Icons.arrow_forward, color: Colors.white),
           ],

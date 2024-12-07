@@ -20,7 +20,7 @@ Widget buildJobCardContent(Job job, BuildContext context, Widget jobWidgets, {vo
   return ListTile(
     leading: const CircleAvatar(
         backgroundImage:
-            AssetImage('assets/images/job_placeholder.png')), // Change this hard coded image
+            AssetImage('assets/images/job_placeholder.jpg')), // Change this hard coded image
     title: Stack(
       children: [
         Text(

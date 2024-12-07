@@ -148,7 +148,7 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
       topBar: [
         Align(
           alignment: Alignment.topRight,
-          child:getJobCompletedOn(job),
+          child: getJobCompletedOn(job),
         ),
       ],
       onTap: selectedStatus != JobFilterStatus.refused ? () => _onJobTap(context, job) : () {},

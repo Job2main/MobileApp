@@ -2,9 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:job2main/app.dart';
 
 void main() {
-  testWidgets('App loads and displays onboarding screen', (WidgetTester tester) async {
+  testWidgets('App loads successfully', (WidgetTester tester) async {
     await tester.pumpWidget(const App());
-
     expect(find.byType(App), findsOneWidget);
   });
 }

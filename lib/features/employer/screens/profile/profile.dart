@@ -26,7 +26,7 @@ class _ProfilePageEmployeeState extends State<ProfilePageEmployee> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CompanyProfilePage()),
+          MaterialPageRoute(builder: (context) => const CompanyProfilePage()),
         );
       },
       style: ElevatedButton.styleFrom(

@@ -74,7 +74,6 @@ class _ListJobsState extends State<ListJobs> {
     });
   }
 
-
   void _addFilter(FilterStatus status, String value) {
     setState(() {
       activeFilters[status] = value;
@@ -115,7 +114,6 @@ class _ListJobsState extends State<ListJobs> {
       });
     }
   }
-
 
   bool returnValue(String filterValue, String jobValue, String filterKey) {
     switch (filterKey) {
@@ -238,7 +236,10 @@ class _ListJobsState extends State<ListJobs> {
   Widget build(BuildContext context) {
     UserController userController = Provider.of<UserController>(context);
     return Scaffold(
-      appBar: BuildAppBar(name: userController.userModel!.name, profileImageUrl: userController.userModel!.profilePictureUrl,),
+      appBar: BuildAppBar(
+        name: userController.userModel!.name,
+        profileImageUrl: userController.userModel!.profilePictureUrl,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 16),
