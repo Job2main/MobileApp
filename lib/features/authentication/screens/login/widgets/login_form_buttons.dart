@@ -14,7 +14,7 @@ class LoginFormButtons extends StatefulWidget {
   final TextEditingController email;
   final TextEditingController password;
 
-  LoginFormButtons({
+  const LoginFormButtons({
     super.key,
     required this.email,
     required this.password,

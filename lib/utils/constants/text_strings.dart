@@ -60,15 +60,7 @@ class TTexts {
       "Didn’t get the email? Check your junk/spam or resend it.";
   static const String yourAccountCreatedTitle = "Your account successfully created!";
   static const String yourAccountCreatedSubTitle =
-      "Welcome to Your Ultimate Shopping Destination: Your Account is Created, Unleash the Joy of Seamless Online Shopping!";
-
-  // -- Product
-  static const String popularProducts = "Popular Products";
-
-  // -- Home
-  static const String homeAppbarTitle = "Good day for shopping";
-  static const String homeAppbarSubTitle = "Taimoor Sikander";
-
+      "Welcome to Job2main ! Your account has been successfully created. You can now login to your account.";
 
   // -- Error Messages
   static const String error = "Error";

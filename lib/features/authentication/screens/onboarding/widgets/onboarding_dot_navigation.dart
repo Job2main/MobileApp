@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:job2main/features/authentication/controllers/onboarding_controller.dart';
 import 'package:job2main/utils/constants/colors.dart';
 import 'package:job2main/utils/constants/sizes.dart';
-import 'package:job2main/utils/device/device_utility.dart';
-import 'package:job2main/utils/helpers/helper_functions.dart';
+import 'package:job2main/utils/helpers/device_utility.dart';
+import 'package:job2main/utils/helpers/others.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingDotNavigation extends StatelessWidget {

@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:job2main/common/widgets/ui_utils.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/features/authentication/screens/signup/verify_email.dart';
 import 'package:job2main/features/authentication/screens/signup/widgets/term_and_condition_checkbox.dart';
 import 'package:job2main/utils/constants/sizes.dart';
@@ -30,17 +28,23 @@ class SignupForm extends StatelessWidget {
         'lastName': _lastName.text,
         'phoneNumber': _phoneNumber.text,
         'userName': _userName.text,
-  };
+      };
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
-      if (_email.text.isEmpty || _password.text.isEmpty || _firstName.text.isEmpty || _lastName.text.isEmpty || _phoneNumber.text.isEmpty || _userName.text.isEmpty) {
+      if (_email.text.isEmpty ||
+          _password.text.isEmpty ||
+          _firstName.text.isEmpty ||
+          _lastName.text.isEmpty ||
+          _phoneNumber.text.isEmpty ||
+          _userName.text.isEmpty) {
         Get.snackbar(TTexts.error, TTexts.allFieldsRequired);
         return;
       }
 
       final auth = Auth();
-      final User? userCredential = await auth.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
+      final User? userCredential =
+          await auth.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
       await auth.createUser(userCredential!.uid ?? '', getData());
       Get.to(() => VerifyEmailScreen(email: _email.text));
     } on FirebaseAuthException catch (e) {
@@ -73,7 +77,8 @@ class SignupForm extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwInputFields),
           getFormField(_phoneNumber, TTexts.phoneNo, Iconsax.call),
           const SizedBox(height: TSizes.spaceBtwInputFields),
-          getFormField(_password, TTexts.password, Iconsax.password_check, suffixIcon: Iconsax.eye_slash),
+          getFormField(_password, TTexts.password, Iconsax.password_check,
+              suffixIcon: Iconsax.eye_slash),
           const SizedBox(height: TSizes.spaceBtwSections),
           const TermAndConditionCheckbox(),
           const SizedBox(height: TSizes.spaceBtwSections),

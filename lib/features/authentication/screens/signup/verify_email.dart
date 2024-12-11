@@ -5,7 +5,7 @@ import 'package:job2main/features/authentication/screens/login/login.dart';
 import 'package:job2main/utils/constants/image_strings.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
-import 'package:job2main/utils/helpers/helper_functions.dart';
+import 'package:job2main/utils/helpers/others.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
   final String email;

@@ -7,7 +7,7 @@ import 'package:job2main/features/worker/screens/profile/profile.dart';
 import 'package:job2main/features/employer/screens/company_jobs/company_jobs.dart';
 import 'package:job2main/features/employer/screens/search/search.dart';
 import 'package:job2main/features/employer/screens/profile/profile.dart';
-import 'package:job2main/utils/helpers/helper_functions.dart';
+import 'package:job2main/utils/helpers/others.dart';
 
 class WorkerNavigation extends StatelessWidget {
   WorkerNavigation({super.key});
@@ -85,9 +85,7 @@ class NavigationMenu extends StatelessWidget {
           selectedIndex: selectedIndex.value,
           onDestinationSelected: (index) => selectedIndex.value = index,
           backgroundColor: Colors.transparent, // Transparent to show blue from parent
-          indicatorColor: darkMode
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.1),
+          indicatorColor: darkMode ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1),
           destinations: bar.entries
               .map(
                 (item) => NavigationDestination(
@@ -101,5 +99,4 @@ class NavigationMenu extends StatelessWidget {
       ),
     );
   }
-
 }

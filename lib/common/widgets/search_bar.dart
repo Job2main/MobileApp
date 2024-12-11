@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/utils/helpers/helper_functions.dart';
+import 'package:job2main/utils/helpers/others.dart';
 
 Widget buildSearchBar(String text, Function(String) onChanged, BuildContext context) {
   final darkMode = THelperFunctions.isDarkMode(context);
@@ -10,8 +10,8 @@ Widget buildSearchBar(String text, Function(String) onChanged, BuildContext cont
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.search, color: Colors.black),
         hintText: text,
-        filled: true, 
-        fillColor: darkMode ?  Colors.black.withOpacity(0.2) : Colors.white,
+        filled: true,
+        fillColor: darkMode ? Colors.black.withOpacity(0.2) : Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),

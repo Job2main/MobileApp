@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job2main/utils/constants/colors.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
-import 'package:job2main/utils/helpers/helper_functions.dart';
+import 'package:job2main/utils/helpers/others.dart';
 
 class TermAndConditionCheckbox extends StatelessWidget {
   const TermAndConditionCheckbox({
@@ -28,16 +28,12 @@ class TermAndConditionCheckbox extends StatelessWidget {
             )),
         const SizedBox(width: TSizes.spaceBtwItems),
         Text.rich(TextSpan(children: [
-          TextSpan(
-              text: '${TTexts.iAgreeTo} ',
-              style: Theme.of(context).textTheme.bodySmall),
+          TextSpan(text: '${TTexts.iAgreeTo} ', style: Theme.of(context).textTheme.bodySmall),
           TextSpan(
             text: TTexts.privacyPolicy,
             style: linkTheme,
           ),
-          TextSpan(
-              text: ' ${TTexts.and} ',
-              style: Theme.of(context).textTheme.bodySmall),
+          TextSpan(text: ' ${TTexts.and} ', style: Theme.of(context).textTheme.bodySmall),
           TextSpan(
             text: TTexts.termsOfUse,
             style: linkTheme,

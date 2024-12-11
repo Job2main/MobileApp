@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
-import 'package:job2main/utils/helpers/any_color_mode.dart';
+import 'package:job2main/utils/theme/widget_themes/logo_divider.dart';
 
 class TFormDivider extends StatelessWidget {
   const TFormDivider({
@@ -21,8 +21,7 @@ class TFormDivider extends StatelessWidget {
             endIndent: 5,
           ),
         ),
-        Text(TTexts.orSignInWith.capitalize!,
-            style: Theme.of(context).textTheme.labelMedium),
+        Text(TTexts.orSignInWith.capitalize!, style: Theme.of(context).textTheme.labelMedium),
         Flexible(
           child: Divider(
             color: TAnyMode.getDividerColor(context),

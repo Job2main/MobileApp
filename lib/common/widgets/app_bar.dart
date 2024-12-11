@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:job2main/utils/helpers/any_color_mode.dart';
-import 'package:job2main/utils/helpers/helper_functions.dart';
+import 'package:job2main/utils/theme/widget_themes/logo_divider.dart';
+import 'package:job2main/utils/helpers/others.dart';
 
 class BuildAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String name;
   final String profileImageUrl;
 
-   const BuildAppBar({super.key, required this.name, required this.profileImageUrl});
+  const BuildAppBar({super.key, required this.name, required this.profileImageUrl});
 
   @override
   Size get preferredSize => const Size.fromHeight(54); // Set the height of the custom AppBar

@@ -1,16 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:job2main/common/controllers/job_controller.dart';
 import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/widgets/app_bar.dart';
 import 'package:get/get.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
-import 'package:job2main/common/widgets/job/job_card.dart';
-import 'package:job2main/common/widgets/job/job_widgets.dart';
 import 'package:job2main/common/widgets/job/new_job_card.dart';
 import 'package:job2main/common/widgets/job/new_job_widgests.dart';
-import 'package:job2main/utils/formatters/formatter.dart';
+import 'package:job2main/utils/helpers/formatter.dart';
 import 'package:job2main/features/worker/screens/myjobs/contract_viewer.dart';
 import 'package:provider/provider.dart';
 import '../../../../common/models/job.dart';
@@ -134,7 +130,8 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
 
   Widget _getSubTitle(BuildContext context, Job job) {
     return buildJobCardSubtitle(
-      job,[
+      job,
+      [
         jobLine(job.company),
       ],
     );
@@ -156,13 +153,13 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
   }
 
   List<Widget> _caller(BuildContext context) {
-    return _filterJobs().map((job) => buildJobCard(job, context,
-      [
-        _getCardContent(context, job),
-        const SizedBox(height: 3),
-        _getBottomBar(job)
-      ],
-    )).toList();
+    return _filterJobs()
+        .map((job) => buildJobCard(
+              job,
+              context,
+              [_getCardContent(context, job), const SizedBox(height: 3), _getBottomBar(job)],
+            ))
+        .toList();
   }
 
   Widget _getStatusTabs() {
@@ -182,7 +179,10 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
   Widget build(BuildContext context) {
     UserController userController = Provider.of<UserController>(context);
     return Scaffold(
-      appBar: BuildAppBar(name: userController.userModel!.name, profileImageUrl: userController.userModel!.profilePictureUrl,),
+      appBar: BuildAppBar(
+        name: userController.userModel!.name,
+        profileImageUrl: userController.userModel!.profilePictureUrl,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 16),

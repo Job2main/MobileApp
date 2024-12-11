@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/common/models/job.dart';
-import 'package:job2main/utils/formatters/formatter.dart';
+import 'package:job2main/utils/helpers/formatter.dart';
 
 enum JobFilterStatus {
   pending,
@@ -16,7 +16,8 @@ const statusList = {
   'requested': [JobFilterStatus.requested, Colors.yellow],
 };
 
-Widget buildJobCardContent(Job job, BuildContext context, Widget jobWidgets, {void Function()? onTap, List<Widget>? topBar}) {
+Widget buildJobCardContent(Job job, BuildContext context, Widget jobWidgets,
+    {void Function()? onTap, List<Widget>? topBar}) {
   return ListTile(
     leading: const CircleAvatar(
         backgroundImage:
@@ -36,12 +37,7 @@ Widget buildJobCardContent(Job job, BuildContext context, Widget jobWidgets, {vo
 }
 
 Widget buildJobCardSubtitle(Job job, List<Widget> jobWidgets) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-        ...jobWidgets
-    ]
-  );
+  return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [...jobWidgets]);
 }
 
 Widget buildStatusTabs(List<Widget> widgets) {
@@ -59,9 +55,11 @@ Widget buildStatusTabs(List<Widget> widgets) {
   );
 }
 
-Widget buildJobCardBottomBar(Job job, List<Widget> widgets, var statusList, {JobFilterStatus? selectedStatus, Color? defaultColor = Colors.grey}) {
+Widget buildJobCardBottomBar(Job job, List<Widget> widgets, var statusList,
+    {JobFilterStatus? selectedStatus, Color? defaultColor = Colors.grey}) {
   Color? statusColor =
-      statusList[selectedStatus.toString().split('.').last.toLowerCase()]?[1] as Color? ?? defaultColor;
+      statusList[selectedStatus.toString().split('.').last.toLowerCase()]?[1] as Color? ??
+          defaultColor;
   return Container(
     decoration: BoxDecoration(
       color: statusColor,
@@ -80,7 +78,8 @@ Widget buildJobCardBottomBar(Job job, List<Widget> widgets, var statusList, {Job
   );
 }
 
-Widget jobLine(String text, {Color? iconColor = Colors.black, IconData? icon, Color? color, FontWeight? fontWeight}) {
+Widget jobLine(String text,
+    {Color? iconColor = Colors.black, IconData? icon, Color? color, FontWeight? fontWeight}) {
   return Row(
     children: [
       if (icon != null) Icon(icon, color: iconColor),
@@ -129,8 +128,13 @@ Widget buildBubble(String text, {Color? color, FontWeight? fontWeight, IconData?
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (icon != null) Icon(icon, color: Colors.black87, size: 13,),
-        const SizedBox(width: 5), 
+        if (icon != null)
+          Icon(
+            icon,
+            color: Colors.black87,
+            size: 13,
+          ),
+        const SizedBox(width: 5),
         Text(
           text,
           style: const TextStyle(
@@ -143,5 +147,3 @@ Widget buildBubble(String text, {Color? color, FontWeight? fontWeight, IconData?
     ),
   );
 }
-
-

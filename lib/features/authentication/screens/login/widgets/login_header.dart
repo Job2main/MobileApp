@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
-import 'package:job2main/utils/helpers/any_color_mode.dart';
+import 'package:job2main/utils/theme/widget_themes/logo_divider.dart';
 
 class TLoginHeader extends StatelessWidget {
   const TLoginHeader({
@@ -14,11 +14,9 @@ class TLoginHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image(height: 150, image: AssetImage(TAnyMode.getLogo(context))),
-        Text(TTexts.loginTitle,
-            style: Theme.of(context).textTheme.headlineMedium),
+        Text(TTexts.loginTitle, style: Theme.of(context).textTheme.headlineMedium),
         const SizedBox(height: TSizes.sm),
-        Text(TTexts.loginSubTitle,
-            style: Theme.of(context).textTheme.bodyMedium),
+        Text(TTexts.loginSubTitle, style: Theme.of(context).textTheme.bodyMedium),
       ],
     );
   }

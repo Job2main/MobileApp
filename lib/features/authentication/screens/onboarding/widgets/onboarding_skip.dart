@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job2main/features/authentication/controllers/onboarding_controller.dart';
 import 'package:job2main/utils/constants/sizes.dart';
-import 'package:job2main/utils/device/device_utility.dart';
+import 'package:job2main/utils/helpers/device_utility.dart';
 
 class OnBoardingSkip extends StatelessWidget {
   const OnBoardingSkip({

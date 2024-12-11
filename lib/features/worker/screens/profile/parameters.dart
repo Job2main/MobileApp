@@ -1,7 +1,6 @@
 // screens/parameters_page.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/widgets/comfirmation_popup.dart';
 import 'package:job2main/common/widgets/snack_bar.dart';
@@ -9,7 +8,6 @@ import 'package:job2main/common/models/user.dart';
 import 'package:job2main/features/authentication/screens/onboarding/branching.dart';
 import 'package:job2main/features/worker/screens/profile/modify_account.dart';
 import 'package:job2main/features/worker/screens/profile/widgets/parameter_widgets.dart';
-import 'package:job2main/utils/firebase/auth.dart';
 
 class ParametersPage extends StatelessWidget {
   final UserModel user;

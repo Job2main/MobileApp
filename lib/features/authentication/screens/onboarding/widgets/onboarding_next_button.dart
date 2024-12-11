@@ -3,8 +3,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:job2main/features/authentication/controllers/onboarding_controller.dart';
 import 'package:job2main/utils/constants/colors.dart';
 import 'package:job2main/utils/constants/sizes.dart';
-import 'package:job2main/utils/device/device_utility.dart';
-import 'package:job2main/utils/helpers/helper_functions.dart';
+import 'package:job2main/utils/helpers/device_utility.dart';
+import 'package:job2main/utils/helpers/others.dart';
 
 class OnBoardingNextButton extends StatelessWidget {
   const OnBoardingNextButton({
