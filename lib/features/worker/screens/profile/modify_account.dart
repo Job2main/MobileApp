@@ -1,29 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/models/user.dart';
 import 'package:job2main/features/worker/screens/profile/change_value_page.dart';
 import 'package:job2main/features/worker/screens/profile/widgets/parameter_widgets.dart';
 
-class ModifyAccount extends StatelessWidget {
-  final UserModel user;
-  const ModifyAccount({super.key, required this.user});
+class ModifyAccount extends StatefulWidget {
+  final UserController userController;
+  late UserModel user;
+  ModifyAccount({super.key, required this.userController});
 
+  @override
+  _ModifyAccountState createState() => _ModifyAccountState();
+}
+
+class _ModifyAccountState extends State<ModifyAccount> {
   void _redirectFun(BuildContext context, Map<String, dynamic> toUpdates) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ChangeValuePage(user: user, toUpdates: toUpdates),
+        builder: (context) =>
+            ChangeValuePage(user: widget.user, toUpdates: toUpdates, userController: widget.userController),
       ),
     );
   }
 
-  Widget buildPButton(BuildContext context, String title, List<dynamic> vars, bool haveTextBefore,
-      bool pageRedirection) {
+  @override
+   void didChangeDependencies() {
+    super.didChangeDependencies();
+    widget.user = widget.userController.getUserModel()!;
+  }
+
+  Widget buildPButton(BuildContext context, String title, List<dynamic> vars, bool haveTextBefore, bool pageRedirection) {
     String textBefore = '';
     Map<String, dynamic> toUpdates = {};
     if (haveTextBefore) {
       for (var i = 0; i < vars.length; i++) {
         textBefore += vars[i];
-        toUpdates[user.getKeyName(vars[i])] = vars[i].runtimeType.toString();
+        // TODO: to FIX creat a bug when key have same value
+        toUpdates[widget.user.getKeyName(vars[i])] = vars[i].runtimeType.toString();
         if (i != vars.length - 1) {
           textBefore += ' ';
         }
@@ -39,9 +53,9 @@ class ModifyAccount extends StatelessWidget {
     return [
       addTitle('Information du compte'),
       buildCard(context, [
-        buildPButton(context, 'Prenom Nom', [user.name, user.familyName], true, true),
-        buildPButton(context, 'Email', [user.email], true, true),
-        buildPButton(context, 'Numéro de téléphone', [user.phoneNumber], true, true),
+        buildPButton(context, 'Prenom Nom', [widget.user.firstName, widget.user.lastName], true, true),
+        buildPButton(context, 'Email', [widget.user.email], true, true),
+        buildPButton(context, 'Numéro de téléphone', [widget.user.phoneNumber], true, true),
       ])
     ];
   }

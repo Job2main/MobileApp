@@ -65,7 +65,7 @@ class _ProfilePageEmployeeState extends State<ProfilePageEmployee> {
               ),
               const SizedBox(height: 20),
               Text(
-                '${widget.userModel.name} ${widget.userModel.familyName}',
+                '${widget.userModel.firstName} ${widget.userModel.lastName}',
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),

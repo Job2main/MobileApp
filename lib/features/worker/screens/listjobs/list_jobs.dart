@@ -235,7 +235,7 @@ class _ListJobsState extends State<ListJobs> {
     UserController userController = Provider.of<UserController>(context);
     return Scaffold(
       appBar: BuildAppBar(
-        name: userController.userModel!.name,
+        name: userController.userModel!.firstName,
         profileImageUrl: userController.userModel!.profilePictureUrl,
       ),
       body: Column(

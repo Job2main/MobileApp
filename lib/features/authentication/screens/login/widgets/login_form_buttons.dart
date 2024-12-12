@@ -6,6 +6,7 @@ import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/widgets/navigation_bar/navigation_menu.dart';
 import 'package:job2main/features/authentication/controllers/usertype_controller.dart';
 import 'package:job2main/features/authentication/screens/signup/signup.dart';
+import 'package:job2main/utils/constants/enums.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,7 @@ class _LoginFormButtonsState extends State<LoginFormButtons> {
       _isLoading = true;
     });
 
-    await userController.login(widget.email.text, widget.password.text);
+    await userController.login(userTypeController.userType.value, widget.email.text, widget.password.text);
     setState(() {
       _isLoading = false;
     });

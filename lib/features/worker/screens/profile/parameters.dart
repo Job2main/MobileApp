@@ -50,7 +50,7 @@ class ParametersPage extends StatelessWidget {
         buildParameterButton('Compte', pageRedirection: true, () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ModifyAccount(user: user)),
+            MaterialPageRoute(builder: (context) => ModifyAccount(userController: userController)),
           );
         }),
         buildParameterButton('Confidentialité & Sécurité', () {

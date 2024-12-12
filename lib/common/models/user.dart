@@ -1,38 +1,30 @@
-class UserModel {
-  final String uid;
-  String name;
-  String familyName;
-  String email;
-  String profilePictureUrl;
-  String phoneNumber;
-  String city;
-  String country;
-  int age;
-  final int totalHoursWorked;
-  final int totalJobsDone;
-  String profileDescription;
-  final int notation;
-  DateTime memberSince = DateTime.now();
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:job2main/utils/constants/enums.dart';
 
-  UserModel({
-    required this.uid,
-    required this.name,
-    required this.familyName,
-    required this.email,
-    required this.profilePictureUrl,
-    required this.phoneNumber,
-    required this.city,
-    required this.country,
-    required this.age,
-    required this.totalHoursWorked,
-    required this.totalJobsDone,
-    required this.profileDescription,
-    required this.notation,
-  });
+class UserModel {
+  String uid = "";
+  String firstName = "";
+  String lastName = "";
+  String userName = "";
+  String email = "";
+  String profilePictureUrl = "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250";
+  String phoneNumber = "";
+  String city = "";
+  String country = "";
+  int age = 0;
+  int totalHoursWorked = 0;
+  int totalJobsDone = 0;
+  String profileDescription = "";
+  int notation = 0;
+  UserType userType = UserType.worker;
+  DateTime createdAt = DateTime.now();
+
+  UserModel();
 
   void updateUserProfile(Map<String, dynamic> updates) {
-    name = updates['name'] ?? name;
-    familyName = updates['familyName'] ?? familyName;
+    firstName = updates['firstName'] ?? firstName;
+    lastName = updates['lastName'] ?? lastName;
+    userName = updates['userName'] ?? userName;
     email = updates['email'] ?? email;
     profilePictureUrl = updates['profilePictureUrl'] ?? profilePictureUrl;
     phoneNumber = updates['phoneNumber'] ?? phoneNumber;
@@ -40,13 +32,15 @@ class UserModel {
     country = updates['country'] ?? country;
     age = updates['age'] ?? age;
     profileDescription = updates['profileDescription'] ?? profileDescription;
+    userType = updates['userType'] ?? userType;
   }
 
   Map<String, dynamic> getAsMap() {
     return {
       'uid': uid,
-      'name': name,
-      'familyName': familyName,
+      'firstName': firstName,
+      'lastName': lastName,
+      'userName': userName,
       'email': email,
       'profilePictureUrl': profilePictureUrl,
       'phoneNumber': phoneNumber,
@@ -57,26 +51,29 @@ class UserModel {
       'totalJobsDone': totalJobsDone,
       'profileDescription': profileDescription,
       'notation': notation,
-      'memberSince': memberSince,
+      'createdAt': createdAt,
     };
   }
 
   factory UserModel.fromFirestore(Map<String, dynamic> data, String uid) {
-    return UserModel(
-      uid: uid,
-      name: data['firstName'] ?? '',
-      familyName: data['lastName'] ?? '',
-      email: data['email'] ?? '',
-      profilePictureUrl: data['profilePictureUrl'] ?? 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-      phoneNumber: data['phoneNumber'] ?? '078255794815',
-      city: data['city'] ?? 'Toronto',
-      country: data['country'] ?? 'frane',
-      age: data['age'] ?? 20,
-      totalHoursWorked: data['totalHoursWorked'] ?? 20,
-      totalJobsDone: data['totalJobsDone'] ?? 10,
-      profileDescription: data['profileDescription'] ?? '',
-      notation: data['notation'] ?? 4,
-    );
+    UserModel userModel = UserModel();
+    userModel.uid = uid;
+    userModel.firstName = data['firstName'] ?? userModel.firstName;
+    userModel.lastName = data['lastName'] ?? userModel.lastName;
+    userModel.userName = data['userName'] ?? userModel.userName;
+    userModel.email = data['email'] ?? userModel.email;
+    userModel.profilePictureUrl = data['profilePictureUrl'] ?? userModel.profilePictureUrl;
+    userModel.phoneNumber = data['phoneNumber'] ?? userModel.phoneNumber;
+    userModel.city = data['city'] ?? userModel.city;
+    userModel.country = data['country'] ?? userModel.country;
+    userModel.age = data['age'] ?? userModel.age;
+    userModel.totalHoursWorked = data['totalHoursWorked'] ?? userModel.totalHoursWorked;
+    userModel.totalJobsDone = data['totalJobsDone'] ?? userModel.totalJobsDone;
+    userModel.profileDescription = data['profileDescription'] ?? userModel.profileDescription;
+    userModel.notation = data['notation'] ?? userModel.notation;
+    userModel.createdAt = (data['createdAt'] ?? userModel.createdAt as Timestamp).toDate();
+    userModel.userType = userTypeMapReverse[data["userType"]] ?? userModel.userType;
+    return userModel;
   }
 
   String getKeyName(dynamic value) {
