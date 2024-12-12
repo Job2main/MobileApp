@@ -3,8 +3,10 @@ import 'package:job2main/common/widgets/ui_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:job2main/features/authentication/controllers/usertype_controller.dart';
 import 'package:job2main/features/authentication/screens/signup/verify_email.dart';
 import 'package:job2main/features/authentication/screens/signup/widgets/term_and_condition_checkbox.dart';
+import 'package:job2main/utils/constants/enums.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
 import 'package:job2main/utils/firebase/auth.dart';
@@ -22,15 +24,16 @@ class SignupForm extends StatelessWidget {
   final TextEditingController _userName = TextEditingController();
 
   Map<String, dynamic> getData() => {
-        'email': _email.text,
-        'password': _password.text,
-        'firstName': _firstName.text,
-        'lastName': _lastName.text,
-        'phoneNumber': _phoneNumber.text,
-        'userName': _userName.text,
-      };
+    'email': _email.text,
+    'password': _password.text,
+    'firstName': _firstName.text,
+    'lastName': _lastName.text,
+    'userName': _userName.text,
+    'phoneNumber': _phoneNumber.text,
+    'createdAt': DateTime.now(),
+  };
 
-  Future<void> createUserWithEmailAndPassword() async {
+  Future<void> createUserWithEmailAndPassword(UserTypeController userTypeController) async {
     try {
       if (_email.text.isEmpty ||
           _password.text.isEmpty ||
@@ -43,9 +46,13 @@ class SignupForm extends StatelessWidget {
       }
 
       final auth = Auth();
-      final User? userCredential =
-          await auth.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
-      await auth.createUser(userCredential!.uid ?? '', getData());
+      final User? userCredential = await auth.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
+      Map<String, dynamic> userData = getData();
+
+      userData['uid'] = userCredential!.uid;
+      userData['userType'] = userTypeController.getUserTypeString();
+
+      await auth.createUser(userTypeController.getUserType(), userCredential.uid, userData);
       Get.to(() => VerifyEmailScreen(email: _email.text));
     } on FirebaseAuthException catch (e) {
       printError(info: e.toString());
@@ -56,6 +63,8 @@ class SignupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final UserTypeController userTypeController = Get.find<UserTypeController>();
+    
     return Form(
       child: Column(
         children: [
@@ -85,7 +94,7 @@ class SignupForm extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: createUserWithEmailAndPassword,
+                  onPressed: () => createUserWithEmailAndPassword(userTypeController),
                   child: const Text(TTexts.createAccount))),
         ],
       ),

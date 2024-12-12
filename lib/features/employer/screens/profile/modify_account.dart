@@ -39,7 +39,7 @@ class ModifyAccount extends StatelessWidget {
     return [
       addTitle('Information du compte'),
       buildCard(context, [
-        buildPButton(context, 'Prenom Nom', [user.name, user.familyName], true, true),
+        buildPButton(context, 'Prenom Nom', [user.firstName, user.lastName], true, true),
         buildPButton(context, 'Email', [user.email], true, true),
         buildPButton(context, 'Numéro de téléphone', [user.phoneNumber], true, true),
       ])

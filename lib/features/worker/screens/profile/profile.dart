@@ -152,7 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${widget.userModel.name} ${widget.userModel.familyName}',
+          '${widget.userModel.firstName} ${widget.userModel.lastName}',
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -175,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return _buildInfo("Information additionel", [
       _buildInfoRow(Icons.work, '${widget.userModel.totalJobsDone} travaux effectués'),
       _buildInfoRow(Icons.work, '${widget.userModel.totalHoursWorked} heures travaillées'),
-      _buildInfoRow(Icons.work, 'Membre depuis ${widget.userModel.memberSince.year}')
+      _buildInfoRow(Icons.work, 'Membre depuis ${widget.userModel.createdAt.year}'),
     ]);
   }
 

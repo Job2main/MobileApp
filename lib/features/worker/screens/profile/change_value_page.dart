@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/widgets/comfirmation_popup.dart';
 import 'package:job2main/common/models/user.dart';
 
 class ChangeValuePage extends StatefulWidget {
   final UserModel user;
+  final UserController userController;
   final Map<String, dynamic> toUpdates;
-  const ChangeValuePage({super.key, required this.user, required this.toUpdates});
+  const ChangeValuePage({super.key, required this.user, required this.toUpdates, required this.userController});
 
   @override
   _ChangeValuePageState createState() => _ChangeValuePageState();
@@ -31,11 +33,8 @@ class _ChangeValuePageState extends State<ChangeValuePage> {
       'Voulez-vous sauvegarder les modifications?',
       'Oui',
       () {
-        setState(() {
-          widget.user.updateUserProfile(updatedList);
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
-        });
+        widget.userController.updateUser(updatedList);
+        Navigator.of(context).pop();
       },
       'Non',
       () {

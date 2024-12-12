@@ -6,6 +6,7 @@ import 'package:job2main/features/authentication/controllers/usertype_controller
 import 'package:job2main/features/authentication/screens/common/header.dart';
 import 'package:job2main/features/authentication/screens/login/login.dart';
 import 'package:job2main/utils/constants/colors.dart';
+import 'package:job2main/utils/constants/enums.dart';
 import 'package:job2main/utils/constants/sizes.dart';
 import 'package:job2main/utils/constants/text_strings.dart';
 import 'package:provider/provider.dart';
