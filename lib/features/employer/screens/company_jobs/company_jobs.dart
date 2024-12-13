@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:job2main/common/controllers/job_controller.dart';
 import 'package:job2main/common/models/job.dart';
 import 'package:job2main/features/employer/screens/company_jobs/job_detail_screen.dart';
+import 'package:job2main/utils/constants/enums.dart';
 
 class CompanyJobs extends StatefulWidget {
   final JobController controller = JobController();
 
   CompanyJobs({super.key}) {
     controller.createJob(
-        1, 'Waiter/ess', 'Nonna cucina', 'MyCompany', DateTime.now(), DateTime.now().add(const Duration(days: 1)), 25, 'Toronto', 'Jane Doe', "12:00", "19:30",
+        "1", 'Waiter/ess', 'Nonna cucina', 'MyCompany', DateTime.now(), DateTime.now().add(const Duration(days: 1)), 25, 'Toronto', 'Jane Doe', "12:00", "19:30",
         status: JobStatus.pending);
     controller.createJob(
-        2, 'Bartender', 'El Colon', 'MyCompany', DateTime.now(), DateTime.now().add(const Duration(days: 3)), 22, 'Toronto', 'Jane Doe', "19:00", "00:00",
+        "2", 'Bartender', 'El Colon', 'MyCompany', DateTime.now(), DateTime.now().add(const Duration(days: 3)), 22, 'Toronto', 'Jane Doe', "19:00", "00:00",
         status: JobStatus.pending);
     controller.createJob(
-        3, 'Dishwasher', 'Casa Amor', 'MyCompany', DateTime.now(), DateTime.now().add(const Duration(days: 7)), 18, 'Vaughan', 'Jane Doe', "19:00", "00:00",
+        "3", 'Dishwasher', 'Casa Amor', 'MyCompany', DateTime.now(), DateTime.now().add(const Duration(days: 7)), 18, 'Vaughan', 'Jane Doe', "19:00", "00:00",
         status: JobStatus.completed);
   }
 

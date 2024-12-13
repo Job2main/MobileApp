@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/models/user.dart';
 import 'package:job2main/features/employer/screens/profile/company_profile.dart';
@@ -17,7 +19,7 @@ class _ProfilePageEmployeeState extends State<ProfilePageEmployee> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    widget.userController = Provider.of<UserController>(context, listen: false);
+    widget.userController = Get.find<UserController>();
     widget.userModel = widget.userController.userModel!;
   }
 

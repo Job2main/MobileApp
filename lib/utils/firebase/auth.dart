@@ -7,14 +7,14 @@ class Auth {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   User? get currentUser => _firebaseAuth.currentUser;
-
-  Stream<User?> authStateChanges() {
-    return _firebaseAuth.authStateChanges();
-  }
+  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
   Future<User?> signInWithEmailAndPassword({required email, required password}) async {
     UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-    return userCredential.user;
+    if (userCredential.user != null) {
+      return userCredential.user;
+    }
+    return null;
   }
 
   Future<void> signOut() async {
@@ -52,7 +52,6 @@ class Auth {
     return null;
   }
   
-
   Future<void> updateUser(UserType type, String uid, Map<String, dynamic> data) async {
     String collection = userTypeMap[type]!;
     await _firestore.collection(collection).doc(uid).update(data);

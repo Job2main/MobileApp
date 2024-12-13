@@ -23,8 +23,8 @@ class ParametersPage extends StatelessWidget {
     Navigator.of(context).pop();
   }
 
-  void _logout(BuildContext context) {
-    userController.logout();
+  void _logout(BuildContext context) async {
+    await userController.logout();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('You have been logged out.')),
     );

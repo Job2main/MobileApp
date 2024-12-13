@@ -1,14 +1,15 @@
 import 'package:job2main/common/models/job.dart';
+import 'package:job2main/utils/constants/enums.dart';
 
 class JobController {
   List<Job> jobs = [];
 
-  Job getJob(int id) {
-    return jobs.firstWhere((job) => job.id == id);
+  Job getJob(String uuid) {
+    return jobs.firstWhere((job) => job.uuid == uuid);
   }
 
   void createJob(
-    int id,
+    String uuid,
     String title,
     String description,
     String company,
@@ -22,7 +23,7 @@ class JobController {
     {JobStatus status = JobStatus.pending}
   ) {
     Job newJob = Job(
-        id: id,
+        uuid: uuid,
         title: title,
         description: description,
         company: company,
@@ -39,12 +40,12 @@ class JobController {
     jobs.add(newJob);
   }
 
-  void updateJob(int id, Map<String, dynamic> updates) {
-    Job job = getJob(id);
+  void updateJob(String uuid, Map<String, dynamic> updates) {
+    Job job = getJob(uuid);
     job.updateJob(updates);
   }
 
-  void deleteJob(int id) {
-    jobs.removeWhere((job) => job.id == id);
+  void deleteJob(String uuid) {
+    jobs.removeWhere((job) => job.uuid == uuid);
   }
 }

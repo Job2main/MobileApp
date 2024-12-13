@@ -6,16 +6,17 @@ import 'package:job2main/features/employer/screens/search/completed_jobs_page.da
 import 'package:job2main/features/employer/screens/search/pending_jobs_page.dart';
 import 'package:job2main/features/employer/screens/search/refused_jobs_page.dart';
 import 'package:job2main/features/employer/screens/search/requested_jobs_page.dart';
+import 'package:job2main/utils/constants/enums.dart';
 
 class JobStatusFilterScreen extends StatefulWidget {
   final JobController controller = JobController();
 
   JobStatusFilterScreen({super.key}) {
-    controller.createJob(1, 'Waiter/ess', 'Serve customers', 'Nonna Cucina', DateTime.now(),
+    controller.createJob("1", 'Waiter/ess', 'Serve customers', 'Nonna Cucina', DateTime.now(),
         DateTime.now().add(const Duration(days: 2)), 22, 'Montreal', 'Hannah', "10:00", "15:00",
         status: JobStatus.completed);
     controller.createJob(
-        2,
+        "2",
         'Bartender',
         'Mix drinks and serve customers',
         'El Colon',
@@ -28,7 +29,7 @@ class JobStatusFilterScreen extends StatefulWidget {
         "23:00",
         status: JobStatus.pending);
     controller.createJob(
-        3,
+        "3",
         'Dishwasher',
         'Clean dishes and maintain kitchen hygiene',
         'Casa Amor',
@@ -41,7 +42,7 @@ class JobStatusFilterScreen extends StatefulWidget {
         "22:00",
         status: JobStatus.refused);
     controller.createJob(
-        4,
+        "4",
         'Chef',
         'Prepare meals and supervise kitchen staff',
         'Nonna Cucina',

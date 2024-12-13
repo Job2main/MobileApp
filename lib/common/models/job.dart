@@ -1,13 +1,7 @@
-enum JobStatus {
-  comfirmed,
-  pending,
-  refused,
-  completed,
-  requested,
-}
+import 'package:job2main/utils/constants/enums.dart';
 
 class Job {
-  int id;
+  String uuid;
   String title;
   String description;
   String company;
@@ -22,7 +16,7 @@ class Job {
   JobStatus status = JobStatus.pending;
 
   Job({
-    required this.id,
+    required this.uuid,
     required this.title,
     required this.description,
     required this.company,
@@ -39,7 +33,7 @@ class Job {
 
   Map<String, dynamic> getAsMap() {
     return {
-      'id': id,
+      'uuid': uuid,
       'title': title,
       'description': description,
       'company': company,
