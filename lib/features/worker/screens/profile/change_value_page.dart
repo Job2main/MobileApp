@@ -35,6 +35,7 @@ class _ChangeValuePageState extends State<ChangeValuePage> {
       () {
         widget.userController.updateUser(updatedList);
         Navigator.of(context).pop();
+        Navigator.of(context).pop();
       },
       'Non',
       () {

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:job2main/common/widgets/buttons/default_button.dart';
 import 'package:job2main/common/widgets/job/new_job_card.dart';
 import 'package:job2main/common/widgets/job/new_job_widgests.dart';
+import 'package:job2main/utils/constants/enums.dart';
 import 'package:job2main/utils/helpers/formatter.dart';
 import 'package:job2main/features/worker/screens/myjobs/contract_viewer.dart';
 import 'package:provider/provider.dart';
@@ -16,16 +17,16 @@ class MyJobsScreen extends StatefulWidget {
   final JobController controller = JobController();
 
   MyJobsScreen({super.key}) {
-    controller.createJob(1, 'Waiter/ess', 'Description', 'Nonna Cucina', DateTime.now(),
+    controller.createJob("1", 'Waiter/ess', 'Description', 'Nonna Cucina', DateTime.now(),
         DateTime.now().add(const Duration(days: 2)), 22, 'Montreal', 'Hannah', "10:00", "15:00",
         status: JobStatus.completed);
-    controller.createJob(10, 'Waiter/ess', 'Description', 'Nonna Cucina', DateTime.now(),
+    controller.createJob("10", 'Waiter/ess', 'Description', 'Nonna Cucina', DateTime.now(),
         DateTime.now().add(const Duration(days: 2)), 22, 'Montreal', 'Hannah', "10:00", "15:00",
         status: JobStatus.completed);
-    controller.createJob(2, 'Bartender', 'Description', 'El Colon', DateTime.now(),
+    controller.createJob("2", 'Bartender', 'Description', 'El Colon', DateTime.now(),
         DateTime.now().add(const Duration(days: 2)), 22, 'Montreal', 'Hannah', "10:00", "15:00",
         status: JobStatus.pending);
-    controller.createJob(3, 'Bartenders', 'Descriptions', 'El Colons', DateTime.now(),
+    controller.createJob("3", 'Bartenders', 'Descriptions', 'El Colons', DateTime.now(),
         DateTime.now().add(const Duration(days: 2)), 22, 'Montreal', 'Hannah', "10:00", "15:00",
         status: JobStatus.refused);
   }
@@ -177,7 +178,7 @@ class _MyJobsScreenState extends State<MyJobsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    UserController userController = Provider.of<UserController>(context);
+    UserController userController = Get.find<UserController>();
     return Scaffold(
       appBar: BuildAppBar(
         name: userController.userModel!.firstName,

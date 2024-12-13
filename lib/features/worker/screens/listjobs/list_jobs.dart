@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:job2main/common/controllers/job_controller.dart';
 import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/models/job.dart';
@@ -29,13 +31,13 @@ class ListJobs extends StatefulWidget {
   final JobController controller = JobController();
 
   ListJobs({super.key}) {
-    controller.createJob(1, 'Job 1', 'Description of job 1', 'Restaurant 1', DateTime.now(),
+    controller.createJob("1", 'Job 1', 'Description of job 1', 'Restaurant 1', DateTime.now(),
         DateTime.now().add(const Duration(days: 2)), 21, 'Toronto', 'John Doe', "10:10", "15:00");
-    controller.createJob(2, 'Job 2', 'Description of job 2', 'Restaurant 2', DateTime.now(),
+    controller.createJob("2", 'Job 2', 'Description of job 2', 'Restaurant 2', DateTime.now(),
         DateTime.now().add(const Duration(days: 6)), 22, 'Toronto', 'John Doe', "10:10", "15:00");
-    controller.createJob(3, 'Job 3', 'Description of job 3', 'Restaurant 3', DateTime.now(),
+    controller.createJob("3", 'Job 3', 'Description of job 3', 'Restaurant 3', DateTime.now(),
         DateTime.now().add(const Duration(days: 9)), 24, 'Vancouver', 'John Doe', "10:10", "15:00");
-    controller.createJob(4, 'Job 4', 'Description of job 4', 'Restaurant 4', DateTime.now(),
+    controller.createJob("4", 'Job 4', 'Description of job 4', 'Restaurant 4', DateTime.now(),
         DateTime.now().add(const Duration(days: 4)), 25, 'Toronto', 'John Doe', "10:10", "15:00");
   }
 
@@ -232,7 +234,7 @@ class _ListJobsState extends State<ListJobs> {
 
   @override
   Widget build(BuildContext context) {
-    UserController userController = Provider.of<UserController>(context);
+    UserController userController = Get.find<UserController>();
     return Scaffold(
       appBar: BuildAppBar(
         name: userController.userModel!.firstName,

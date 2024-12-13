@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job2main/common/controllers/user_controller.dart';
@@ -37,16 +38,20 @@ class _LoginFormButtonsState extends State<LoginFormButtons> {
     setState(() {
       _isLoading = true;
     });
-
-    await userController.login(userTypeController.userType.value, widget.email.text, widget.password.text);
+    bool isUserLoggedIn = false;
+    try {
+      isUserLoggedIn = await userController.login(userTypeController.userType.value, widget.email.text, widget.password.text);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      Get.snackbar(TTexts.error, e.message!);
+      return;
+    }
+  
     setState(() {
       _isLoading = false;
     });
-
-    if (userController.currentUser == null) {
-      Get.snackbar(TTexts.error, TTexts.invalidCredentials);
-      return;
-    }
 
     if (userTypeController.userType.value == UserType.employer) {
       Get.to(() => EmployerNavigation());
@@ -58,7 +63,7 @@ class _LoginFormButtonsState extends State<LoginFormButtons> {
   @override
   Widget build(BuildContext context) {
     final UserTypeController userTypeController = Get.find<UserTypeController>();
-    final UserController userController = Provider.of<UserController>(context, listen: false);
+    final UserController userController = Get.find<UserController>();
 
     return Column(
       children: [

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:job2main/common/controllers/user_controller.dart';
 import 'package:job2main/common/models/user.dart';
 import 'package:provider/provider.dart';
@@ -6,8 +9,6 @@ import 'parameters.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({super.key});
-  late UserModel userModel;
-  late UserController userController;
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -16,14 +17,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool _isEditing = false;
   late TextEditingController _controller;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    widget.userController = Provider.of<UserController>(context);
-    widget.userModel = widget.userController.getUserModel()!;
-    _controller = TextEditingController(text: widget.userModel.profileDescription);
-  }
+  late UserModel? userModel;
+  late UserController userController;
 
   void _toggleEdit() {
     setState(() {
@@ -33,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _saveDescription() {
     setState(() {
-      widget.userModel.profileDescription = _controller.text;
+      userModel?.profileDescription = _controller.text;
       _isEditing = false;
     });
   }
@@ -91,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Text(
-              widget.userModel.profileDescription,
+              userModel!.profileDescription,
               style: const TextStyle(
                 fontSize: 16,
                 color: Colors.black87,
@@ -121,7 +116,8 @@ class _ProfilePageState extends State<ProfilePage> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ParametersPage(user: widget.userModel, userController: widget.userController)),
+          MaterialPageRoute(
+              builder: (context) => ParametersPage(user: userModel!, userController: userController)),
         );
       },
     );
@@ -130,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _buildProfilePicture() {
     return CircleAvatar(
       radius: 50,
-      backgroundImage: NetworkImage(widget.userModel.profilePictureUrl),
+      backgroundImage: NetworkImage(userModel!.profilePictureUrl),
       backgroundColor: Colors.grey.shade200,
       child: Container(
         decoration: BoxDecoration(
@@ -152,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${widget.userModel.firstName} ${widget.userModel.lastName}',
+          '${userModel!.firstName} ${userModel!.lastName}',
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -162,8 +158,8 @@ class _ProfilePageState extends State<ProfilePage> {
         Row(
           children: List.generate(5, (index) {
             return Icon(
-              index < widget.userModel.notation ? Icons.star : Icons.star_border,
-              color: index < widget.userModel.notation ? Colors.yellow : Colors.grey,
+              index < userModel!.notation ? Icons.star : Icons.star_border,
+              color: index < userModel!.notation ? Colors.yellow : Colors.grey,
             );
           }),
         ),
@@ -173,18 +169,18 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildAdditionnalInfo() {
     return _buildInfo("Information additionel", [
-      _buildInfoRow(Icons.work, '${widget.userModel.totalJobsDone} travaux effectués'),
-      _buildInfoRow(Icons.work, '${widget.userModel.totalHoursWorked} heures travaillées'),
-      _buildInfoRow(Icons.work, 'Membre depuis ${widget.userModel.createdAt.year}'),
+      _buildInfoRow(Icons.work, '${userModel!.totalJobsDone} travaux effectués'),
+      _buildInfoRow(Icons.work, '${userModel!.totalHoursWorked} heures travaillées'),
+      _buildInfoRow(Icons.work, 'Membre depuis ${userModel!.createdAt.year}'),
     ]);
   }
 
   Widget _buildContactlInfo() {
     return _buildInfo("Information du contact", [
-      _buildInfoRow(Icons.person, '${widget.userModel.age} ans'),
-      _buildInfoRow(Icons.phone, '+${widget.userModel.phoneNumber}'),
-      _buildInfoRow(Icons.email, widget.userModel.email),
-      _buildInfoRow(Icons.location_on, '${widget.userModel.city}, ${widget.userModel.country}'),
+      _buildInfoRow(Icons.person, '${userModel!.age} ans'),
+      _buildInfoRow(Icons.phone, '+${userModel!.phoneNumber}'),
+      _buildInfoRow(Icons.email, userModel!.email),
+      _buildInfoRow(Icons.location_on, '${userModel!.city}, ${userModel!.country}'),
     ]);
   }
 
@@ -237,37 +233,46 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    userController = Get.find<UserController>();
+    _controller = TextEditingController(text: userController.userModel?.profileDescription);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('PROFILE'),
-        centerTitle: false,
-        actions: [
-          _paramsButton(context),
-        ],
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
-          child: Divider(color: Colors.black12),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _buildProfilePicture(),
-              const SizedBox(height: 20),
-              _buildUserNameNotation(),
-              const SizedBox(height: 0),
-              _buildDescription(),
-              const SizedBox(height: 22),
-              _buildContactlInfo(),
-              const SizedBox(height: 16),
-              _buildAdditionnalInfo(),
-            ],
+        appBar: AppBar(
+          title: const Text('PROFILE'),
+          centerTitle: false,
+          actions: [
+            _paramsButton(context),
+          ],
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1.0),
+            child: Divider(color: Colors.black12),
           ),
         ),
-      ),
-    );
+        body: Obx(() {
+          userModel = userController.userModel;
+          if (userModel == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _buildProfilePicture(),
+                  const SizedBox(height: 20),
+                  _buildUserNameNotation(),
+                  const SizedBox(height: 0),
+                  _buildDescription(),
+                  const SizedBox(height: 22),
+                  _buildContactlInfo(),
+                  const SizedBox(height: 16),
+                  _buildAdditionnalInfo(),
+                ],
+              ),
+            ),
+          );
+        }));
   }
 }

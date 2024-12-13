@@ -32,3 +32,27 @@ const Map<String, UserType> userTypeMapReverse = {
   'Workers': UserType.worker,
   'Employers': UserType.employer
 };
+
+enum JobStatus {
+  comfirmed,
+  pending,
+  refused,
+  completed,
+  requested,
+}
+
+const Map<JobStatus, String> jobStatusMap = {
+  JobStatus.comfirmed: 'Confirmed',
+  JobStatus.pending: 'Pending',
+  JobStatus.refused: 'Refused',
+  JobStatus.completed: 'Completed',
+  JobStatus.requested: 'Requested',
+};
+
+const Map<String, JobStatus> jobStatusMapReverse = {
+  'Confirmed': JobStatus.comfirmed,
+  'Pending': JobStatus.pending,
+  'Refused': JobStatus.refused,
+  'Completed': JobStatus.completed,
+  'Requested': JobStatus.requested,
+};

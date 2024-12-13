@@ -1,68 +1,59 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:job2main/common/models/user.dart';
 import 'package:job2main/utils/constants/enums.dart';
 import 'package:job2main/utils/firebase/auth.dart';
 
-class UserController extends ChangeNotifier {
+class UserController extends GetxController {
   final Auth _authService = Auth();
 
-  User? _currentUser;
-  Map<String, dynamic>? _userData;
-  UserModel? _userModel;
+  User? currentUser = FirebaseAuth.instance.currentUser;
+  final Rx<UserModel?> _userModel = Rx<UserModel?>(null);
+  UserModel? get userModel => _userModel.value;
 
-  User? get currentUser => _currentUser;
-  Map<String, dynamic>? get userData => _userData;
-  UserModel? get userModel => _userModel;
-
-  UserModel? getUserModel() {
-    return _userModel;
-  }
-
-  Future<void> initialize() async {
-    _authService.authStateChanges().listen((user) async {
-      if (_currentUser != null) {
-        await loadUserData(UserType.none);
-      }
-      notifyListeners();
-    });
-  }
-
-  Future<void> login(UserType type, String email, String password) async {
-    _currentUser = await _authService.signInWithEmailAndPassword(email: email, password: password);
-    if (_currentUser != null) {
-      await loadUserData(type);
-      notifyListeners();
+  Future<UserModel?> fetchUserModel() async {
+    if (_userModel.value == null) {
+      await loadUserData(UserType.none);
+      return Future.value(_userModel.value);
     }
+    return _userModel.value;
+  }
+
+  Future<bool> login(UserType type, String email, String password) async {
+    currentUser = await _authService.signInWithEmailAndPassword(email: email, password: password);
+    if (currentUser != null) {
+      await loadUserData(type);
+      return true;
+    }
+    return false;
   }
 
   Future<void> logout() async {
     await _authService.signOut();
-    _currentUser = null;
-    _userData = null;
-    _userModel = null;
-    notifyListeners();
+    currentUser = null;
+    _userModel.value = null;
+    _userModel.refresh();
   }
 
   Future<void> loadUserData(UserType type) async {
-    if (_currentUser != null) {
-      Map<String, dynamic>? data = await _authService.getUserByUuid(_currentUser!.uid, type: type);
+    if (currentUser != null) {
+      Map<String, dynamic>? data = await _authService.getUserByUuid(currentUser!.uid, type: type);
       if (data != null) {
-        _userData = data;
-        _userModel = UserModel.fromFirestore(data, _currentUser!.uid);
-        notifyListeners();
+        _userModel.value = UserModel.fromFirestore(data, currentUser!.uid);
+        _userModel.refresh();
       }
     }
   }
 
   Future<void> updateUser(Map<String, dynamic> updatedData, {UserType type = UserType.none}) async {
     if (type == UserType.none) {
-      type = _userModel?.userType ?? UserType.none;
+      type = _userModel.value?.userType ?? UserType.none;
     }
-    if (_currentUser != null && type != UserType.none) {
-      await _authService.updateUser(type, _currentUser!.uid, updatedData);
-      _userModel?.updateUserProfile(updatedData);
-      notifyListeners();
+    if (currentUser != null && type != UserType.none) {
+      await _authService.updateUser(type, currentUser!.uid, updatedData);
+      _userModel.value?.updateUserProfile(updatedData);
+      _userModel.refresh();
     } else {
       print('User not logged in');
     }
